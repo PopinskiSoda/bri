@@ -1,0 +1,38 @@
+2)
+	tarasov-ki@k1730 MINGW64 ~/training-kit (fix-paths)
+	$ git log -3
+	commit 358b12f823b3372ac41f834bd73ef79a79cfbfe0
+	Author: Allen Smith <loranallensmith@github.com>
+	Date:   Fri Jul 17 21:07:58 2015 -0400
+
+	    Add baseurl support for kit
+
+	commit dc6466f97b54ec1025260ca20fe717b169f9c886
+	Merge: 46dcbf9 07ccb87
+	Author: Allen Smith <allen.smith@github.com>
+	Date:   Fri Jul 17 14:38:15 2015 -0400
+
+	    Merge pull request #318 from github/convert-curriculum
+
+	    Update Curriculum
+
+	commit 07ccb8782bf24b652203d0244299adb9c238edd6
+	Author: Allen Smith <loranallensmith@github.com>
+	Date:   Wed Jul 8 01:55:14 2015 -0400
+
+	    Escape HTML strings in demonstrations
+
+3)
+	
+	git log --until=01.05.2014 --numstat --oneline *_includes/navigation.html | awk 'NF==3 {added+=$1; deleted+=$2} END {print added-deleted}'
+	> 29
+	
+	git show $(git log --until=01.05.2014 -1 *_includes/navigation.html | grep commit | cut -d ' ' -f2):_includes/navigation.html | wc -l
+	29
+
+	git log --until=01.05.2014 -1 *_includes/navigation.html | grep commit | cut -d ' ' -f2
+	> a0441d59941cab72c411eaea40524861b184ac1b
+
+4)	https://github.com/PopinskiSoda/training_day
+
+5)	https://github.com/PopinskiSoda/training-kit
