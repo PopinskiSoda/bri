@@ -1,0 +1,238 @@
+/********************************* Sprites ******************************************/
+
+.maestro-logo, .visa-logo, .cart-icon, .right-arrow:hover, 
+.left-arrow, .left-arrow:hover, .right-arrow, .rss-icon, .button1, 
+.down-arrow, .sheet-icon
+{ display: inline-block; background: url('./sprites/layout.png') no-repeat;
+overflow: hidden; text-indent: -9999px; text-align: left; }
+ 
+.maestro-logo { background-position: -1px -0px; width: 40px; height: 25px; }
+.visa-logo { background-position: -1px -26px; width: 40px; height: 25px; }
+.cart-icon { background-position: -1px -52px; width: 26px; height: 23px; }
+/*.background1 { background-position: 50px 0px; width: 1px; height: 264px; }*/
+/*.background2 { background-position: -1px -76px; width: 22px; height: 40px; }*/
+.right-arrow:hover { background-position: -2px -117px; width: 19px; height: 38px; }
+.left-arrow { background-position: -21px -117px; width: 18px; height: 38px; }
+.left-arrow:hover { background-position: -1px -156px; width: 18px; height: 38px; }
+.right-arrow { background-position: -20px -156px; width: 18px; height: 38px; }
+.rss-icon { background-position: -28px -52px; width: 12px; height: 12px; }
+.button1 { background-position: -28px -65px; width: 11px; height: 29px; }
+.down-arrow { background-position: -24px -95px; width: 11px; height: 6px; }
+.sheet-icon { background-position: -24px -102px; width: 8px; height: 10px; }
+ 
+.auto-logo-audi, .auto-logo-bmw, .auto-logo-mercedez, .auto-logo-porshe
+{ display: inline-block; background: url('./sprites/auto_logos.png') no-repeat;
+  overflow: hidden; text-indent: -9999px; text-align: left; }
+ 
+.auto-logo-audi { background-position: -1px -0px; width: 55px; height: 35px; }
+.auto-logo-bmw { background-position: -1px -36px; width: 53px; height: 53px; }
+.auto-logo-mercedez { background-position: -1px -90px; width: 49px; height: 49px; }
+.auto-logo-porshe { background-position: -1px -140px; width: 31px; height: 40px; }
+ 
+.brand-logo2, .brand-logo1, .brand-logo3
+{ display: inline-block; background: url('./sprites/brand_logos.png') no-repeat;
+  overflow: hidden; text-indent: -9999px; text-align: left; }
+ 
+.brand-logo2 { background-position: -1px -0px; width: 122px; height: 39px; }
+.brand-logo1 { background-position: -1px -40px; width: 73px; height: 84px; }
+.brand-logo3 { background-position: -1px -125px; width: 73px; height: 84px; }
+ 
+.brand-logo2-transparent, .brand-logo1-transparent, .brand-logo3-transparent
+{ display: inline-block; background: url('./sprites/brand_logos_transparent.png')
+  no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; }
+ 
+.brand-logo2-transparent { background-position: -1px -0px; width: 82px; height: 26px; }
+.brand-logo1-transparent { background-position: -1px -27px; width: 47px; height: 52px; }
+.brand-logo3-transparent { background-position: -1px -80px; width: 47px; height: 50px; }
+
+/****************************************************************************************/
+
+.container {
+	margin: 0 auto;
+	width: 1000px;
+	height: 1500px;
+	background: url('./sprites/layout_repeat_x.png') #000000 0 -512px repeat-x;
+}
+
+.header {
+	margin-top: 14px;
+	height: 133px;
+}
+
+.header-bar {
+	width: 856px;
+	height: 40px;
+	margin: 0 auto;
+	background: url('./sprites/layout_repeat_x.png') 0 -442px repeat-x;
+	position: relative;
+}
+
+.header-bar:before {
+	display: inline-block;
+	background: url('./sprites/layout.png') no-repeat;
+	position: absolute;
+	background-position: -1px -76px;
+	width: 9px;
+	height: 40px;
+	content: "";
+	top: 0;
+	left: -9px;
+}
+
+.header-bar:after {
+	display: inline-block;
+	background: url('./sprites/layout.png') no-repeat;
+	position: absolute;
+	background-position: -14px -76px;
+	width: 10px;
+	height: 40px;
+	content: "";
+	top: 0;
+	right: -10px;
+}
+
+.header-bar__news-link {
+	position: absolute;
+	left: 82px;
+	top: 12px;
+}
+
+
+.header-bar__rss-icon {
+	line-height: 14px;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+.header-bar__cart-link {
+	position: absolute;
+	left: 520px;
+	top: 4px;
+}
+
+.header-bar__button {
+	position: absolute;
+	left: 702px;
+	top: 7px;
+	background: url("./sprites/layout_repeat_x.png") 0 -483px repeat-x;
+	width: 150px;
+	height: 29px;
+	border: none;
+	color: #fff;
+	font-family: "Arial";
+	z-index: 10;
+	outline: none;
+	cursor: pointer;
+}
+
+.header-bar__button:before {
+	position: absolute;
+	top: 0;
+	left: -2px;
+	background: url("./sprites/layout.png") -28px -65px;
+	width: 2px;
+	height: 29px;
+	content: "";
+	z-index: 10;
+}
+
+.header-bar__button:after {
+	position: absolute;
+	top: 0;
+	right: -8px;
+	background: url("./sprites/layout.png") -32px -65px;
+	width: 8px;
+	height: 29px;
+	content: "";
+	z-index: 10;
+}
+
+.cart-icon {
+	position: absolute;
+	left: 3px;
+	top: 3px;
+}
+
+.cart-link {
+	font-family: Arial;
+	font-size: 13px;
+	color: #ffffff;
+	text-decoration: none;
+	display: block;
+	width: 130px;
+	height: 33px;
+	padding-left: 35px;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.news-link {
+	font-family: "Arial";
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.news-link:hover {
+	text-decoration: underline;
+}
+
+.menu-top {
+	width: 956px;
+	height: 43px;
+	margin: 0 auto;
+	margin-top: 3px;
+	background: url('./sprites/layout_repeat_x.png') 0 -396px repeat-x;
+	border: solid 1px rgba(0,0,0,0.5);
+	box-shadow: 0 0 0 1px #646464;
+	border-radius: 2px;
+	box-sizing: border-box;
+}
+
+.menu-top__link {
+	box-sizing: border-box;
+	display: inline-block;
+	height: 41px;
+	margin-right: -4px;
+	padding: 13px 10px;
+	text-decoration: none;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	color: #e2e15d;
+}
+
+.menu-top__link:first-child {
+	border-radius: 1px 0 0 1px; 
+}
+
+.menu-top__link:last-child {
+	border-radius: 0 1px 1px 0;
+}
+
+.menu-top__link:hover {
+	background: url('./sprites/layout_repeat_x.png') 0 -351px repeat-x;
+}
+
+.carousel-top {
+	margin: 0 auto;
+	width: 960px;
+	height: 139px;
+	background-color: #515151;
+	border-bottom: solid 2px #252525;
+}
+
+.carousel__figure {
+	float: left;
+}
+
+.carousel__image {
+	vertical-align: middle;
+}
+
+.carousel-top__figure {
+	border: solid 1px #cccccc;
+	border-radius: 2px;
+	padding: 2px;
+	margin-right: 9px;
+	margin-top: 15px;
+}
