@@ -2,44 +2,52 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="index.css">
+		<meta charset="utf-8">
 	</head>
 	<body>
 		<div class="container">
-			<div class="carousel carousel-top">
-				<div class="left-arrow"></div>
-				<div class="carousel__figure carousel-top__figure">
-					<img class="carousel__image" src="./images/disk1.png">
-				</div>
-				<div class="carousel__figure carousel-top__figure">
-					<img class="carousel__image" src="./images/disk2.png">
-				</div>
-				<div class="carousel__figure carousel-top__figure">
-					<img class="carousel__image" src="./images/disk3.png">
-				</div>
-				<div class="carousel__figure carousel-top__figure">
-					<img class="carousel__image" src="./images/disk4.png">
-				</div>
-				<div class="carousel__figure carousel-top__figure">
-					<img class="carousel__image" src="./images/disk5.png">
-				</div>
-				<div class="carousel__figure carousel-top__figure">
-					<img class="carousel__image" src="./images/disk6.png">
-				</div>
-				<div class="carousel__figure carousel-top__figure">
-					<img class="carousel__image" src="./images/disk7.png">
-				</div>
-				<div class="right-arrow"></div>
-			</div>
 			<div class="header">
+				<div class="carousel carousel-top">
+					<div class="left-arrow"></div>
+					<div class="carousel__figure carousel-top__figure">
+						<img class="carousel__image" src="./images/disk1.png">
+					</div>
+					<div class="carousel__figure carousel-top__figure">
+						<img class="carousel__image" src="./images/disk2.png">
+					</div>
+					<div class="carousel__figure carousel-top__figure">
+						<img class="carousel__image" src="./images/disk3.png">
+					</div>
+					<div class="carousel__figure carousel-top__figure">
+						<img class="carousel__image" src="./images/disk4.png">
+					</div>
+					<div class="carousel__figure carousel-top__figure">
+						<img class="carousel__image" src="./images/disk5.png">
+					</div>
+					<div class="carousel__figure carousel-top__figure">
+						<img class="carousel__image" src="./images/disk6.png">
+					</div>
+					<div class="carousel__figure carousel-top__figure">
+						<img class="carousel__image" src="./images/disk7.png">
+					</div>
+					<div class="right-arrow"></div>
+				</div>
+				<div class="header__top-wrapper">
+					<div class="header__phone">
+						<span class="header__phone-code">343</span><span class="header__phone-slash">/</span> 356-52-63
+					</div>
+				</div>
 				<div class="header-bar">
 						<a class="news-link header-bar__news-link" href="#">
 							Эксклюзивные новости <span class="rss-icon header-bar__rss-icon"></span>
 						</a>
+						<div class="logo header-bar__logo">
+						</div>
 						<a class="cart-link header-bar__cart-link">
 							<div class="cart-icon header-bar__cart-icon"></div>
 							<b>3</b> товара<br/>на <b>250 000</b> руб.
 						</a>
-						<button class="header-bar__button">
+						<button class="button header-bar__button">
 							Оформить заказ
 						</button>
 				</div>
@@ -50,30 +58,207 @@
 					<a class="menu-top__link" href="#">КОНТАКТЫ</a>
 				</div>
 			</div>
-			<div class="slideshow">
-
-			</div>
-			<div class="carousel carousel-section">
-				
-			</div>
-			<div class="carousel carousel-section">
-				
-			</div>
-			<div class="news">
-
-			</div>
-			<div class="offers">
-
-			</div>
-			<div class="logos-section logos-section-large">
-
-			</div>
-			<div class="logos-section logos-section-small">
-
-			</div>
-			<div class="menu-bottom">
+			<div class="content-container">
+				<div class="row">
+					<div class="column">
+						<div class="slider">
+							<img class="slider__image" src="./images/car1.png"/>
+							<div class="slider__bottom-fade">
+								<div class="slider__button-group">
+									<button class="button slider__button slider__button--pressed">1</button>
+									<button class="button slider__button">2</button>
+									<button class="button slider__button">3</button>
+									<button class="button slider__button">4</button>
+									<button class="button slider__button">5</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column col-6">
+						<div class="carousel carousel-section">
+							
+						</div>
+					</div>
+					<div class="column col-6">
+						<div class="carousel carousel-section">
+							
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column col-6">
+						<div class="block news">
+							<div class="block-header news__block-header">
+								НОВОСТИ <span class="rss-icon news__block-header-rss-icon"></span><span class="news__block-header-rss-label">RSS</span>
+							</div>
+							<div class="news__section">
+								<div class="news__figure">
+									<img class="news__image" src="./images/photo1.jpg"/>
+								</div>
+								<div class="news__column">
+									<div class="news__content">Новые поступления дисков <br/>для Chrysler 300C. Теперь в золоте и брильянтах.</div>
+									<div class="news__date"><span class="sheet-icon"></span> 5 января 2010</div>
+								</div>
+							</div>
+							<div class="news__section">
+								<div class="news__figure">
+									<img class="news__image" src="./images/photo2.jpg"/>
+								</div>
+								<div class="news__column">
+									<div class="news__content">Новые поступления дисков <br/>для Chrysler 300C. Теперь в золоте и брильянтах.</div>
+									<div class="news__date"><span class="sheet-icon"></span> 5 января 2010</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="column column--separator col-6">
+						<div class="block offers">
+							<div class="offers__section">
+								<div class="block-header">
+									ЭКСКЛЮЗИВНЫЕ ДИСКИ
+								</div>
+								<div class="offers__figure">
+									<img class="offers__image" src="./images/disk.png" />
+								</div>
+							</div>
+							<div class"offers__figure">
+								<div class="block-header">
+									ЭКСКЛЮЗИВНЫЕ РЕШЕТКИ
+								</div>
+								<div class="offers__figure">
+									<img class="offers__image" src="./images/grille.png" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column col-4">
+						<div class="big-logo">
+							<img class="big-logo__image" src="./images/block_logo1.png">
+						</div>
+					</div>
+					<div class="column col-4">
+						<div class="big-logo">
+							<img class="big-logo__image" src="./images/block_logo2.png">
+						</div>
+					</div>
+					<div class="column col-4">
+						<div class="big-logo">
+							<img class="big-logo__image" src="./images/block_logo3.png">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo1-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo2-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo3-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo1-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo2-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo3-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo1-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo2-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo3-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo1-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo2-transparent"></div>
+						</div>
+					</div>
+					<div class="column col-1">
+						<div class="brand-logo-transparent">
+							<div class="brand-logo3-transparent"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="menu-bottom">
+						<a class="menu-bottom__link" href="#">Эксклюзивные новости</a>
+						<a class="menu-bottom__link" href="#">Диски</a>
+						<a class="menu-bottom__link" href="#">Решетки</a>
+						<a class="menu-bottom__link" href="#">Доставка</a>
+						<a class="menu-bottom__link" href="#">Контакты</a>
+					</div>
+				</div>
 			</div>
 			<div class="footer">
+				<div class="row">
+					<div class="column col-3">
+						<div class="footer__section">
+							<h4>Мы работаем для вас:</h4>
+							будни: 9:00 - 21:00<br/>
+							суббота: 10:00 - 16:00<br/>
+							воскресенье: выходной<br/>
+						</div>
+					</div>
+					<div class="column col-3">
+						<div class="footer__section">
+							<h4>Мы принимаем карты:</h4>
+							<span class="visa-logo"></span>
+							<span class="maestro-logo"></span>
+							<span class="visa-logo"></span>
+							<span class="maestro-logo"></span>
+						</div>
+					</div>
+					<div class="column col-3">
+						<div class="footer__section">
+							<h4>Наши адреса:</h4>
+							г. Екатеринбург,<br/>
+							ул. Посадская, д. 23. (въезд с ул. Гурзуфской)<br/>
+							ул. Новгородцевой, 11<br/>
+						</div>
+					</div>
+					<div class="column col-3">
+						<div class="footer__section">
+							<h4>Наши телефоны:</h4>
+							(343) <b>356-52-63</b><br/>
+							(многоканальный)<br/>
+							(343) <b>216-43-78</b> (ЖБИ)<br/>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
