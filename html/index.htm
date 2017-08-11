@@ -8,31 +8,67 @@
 		<div class="container">
 			<div class="header">
 				<div class="carousel carousel-top">
-					<div class="left-arrow"></div>
-					<div class="carousel__figure carousel-top__figure">
-						<img class="carousel__image" src="./images/disk1.png">
+					<div class="left-arrow carousel__arrow carousel__left-arrow carousel-top__arrow"></div>
+					<div class="carousel-wrapper carousel-top__figures-wrapper">
+						<div class="carousel__figure carousel-top__figure">
+							<img class="carousel__image" src="./images/disk1.png">
+						</div>
+						<div class="carousel__figure carousel-top__figure">
+							<img class="carousel__image" src="./images/disk2.png">
+						</div>
+						<div class="carousel__figure carousel-top__figure">
+							<img class="carousel__image" src="./images/disk3.png">
+						</div>
+						<div class="carousel__figure carousel-top__figure">
+							<img class="carousel__image" src="./images/disk4.png">
+						</div>
+						<div class="carousel__figure carousel-top__figure">
+							<img class="carousel__image" src="./images/disk5.png">
+						</div>
+						<div class="carousel__figure carousel-top__figure">
+							<img class="carousel__image" src="./images/disk6.png">
+						</div>
+						<div class="carousel__figure carousel-top__figure">
+							<img class="carousel__image" src="./images/disk7.png">
+						</div>
 					</div>
-					<div class="carousel__figure carousel-top__figure">
-						<img class="carousel__image" src="./images/disk2.png">
-					</div>
-					<div class="carousel__figure carousel-top__figure">
-						<img class="carousel__image" src="./images/disk3.png">
-					</div>
-					<div class="carousel__figure carousel-top__figure">
-						<img class="carousel__image" src="./images/disk4.png">
-					</div>
-					<div class="carousel__figure carousel-top__figure">
-						<img class="carousel__image" src="./images/disk5.png">
-					</div>
-					<div class="carousel__figure carousel-top__figure">
-						<img class="carousel__image" src="./images/disk6.png">
-					</div>
-					<div class="carousel__figure carousel-top__figure">
-						<img class="carousel__image" src="./images/disk7.png">
-					</div>
-					<div class="right-arrow"></div>
+					<div class="right-arrow carousel__arrow carousel__right-arrow carousel-top__arrow"></div>
 				</div>
 				<div class="header__top-wrapper">
+					<div class="select-region">
+						<span class="select-region__my-region">Мой регион:</span>
+						<div id="select-region-button">
+							<span id="current-option" class="select-region__current-option">Екатеринбург</span> <span class="down-arrow select-region__down-arrow"></span>
+						</div>
+						<div id="popup" class="select-region__popup">
+							<div id="select-region-row" class="select-region__popup-row">
+								<ul class="select-region__popup-list">
+									<li class="select-region__popup-list-item ">Астрахань</li>
+									<li class="select-region__popup-list-item ">Воронеж</li>
+									<li class="select-region__popup-list-item ">Нижний Новгород</li>
+									<li class="select-region__popup-list-item ">Новосибирск</li>
+									<li class="select-region__popup-list-item ">Краснодар</li>
+									<li class="select-region__popup-list-item ">Ростов</li>
+									<li class="select-region__popup-list-item ">Самара</li>
+									<li class="select-region__popup-list-item ">Уфа</li>
+									<li class="select-region__popup-list-item ">Казань</li>
+									<li class="select-region__popup-list-item ">Пермь</li>
+								</ul>
+								<ul class="select-region__popup-list">
+									<li class="select-region__popup-list-item ">Красноярск</li>
+									<li class="select-region__popup-list-item ">Омск</li>
+									<li class="select-region__popup-list-item ">Волгоград</li>
+									<li class="select-region__popup-list-item ">Ханты-Мансийск</li>
+									<li class="select-region__popup-list-item ">Москва</li>
+									<li class="select-region__popup-list-item ">Санкт-Петербург</li>
+									<li class="select-region__popup-list-item select-region__popup-list-item--selected ">Екатеринбург</li>
+									<li class="select-region__popup-list-item ">Тюмень</li>
+									<li class="select-region__popup-list-item ">Челябинск</li>
+								</ul>
+							</div>
+							<div id="cross" class="cross select-region__popup-cross"></div>
+						</div>
+					</div>
 					<div class="header__phone">
 						<span class="header__phone-code">343</span><span class="header__phone-slash">/</span> 356-52-63
 					</div>
@@ -52,10 +88,11 @@
 						</button>
 				</div>
 				<div class="menu-top">
-					<a class="menu-top__link" href="#">ДИСКИ</a>
-					<a class="menu-top__link" href="#">РЕШЕТКИ</a>
-					<a class="menu-top__link" href="#">ДОСТАВКА</a>
-					<a class="menu-top__link" href="#">КОНТАКТЫ</a>
+					<a class="menu-top__link" href="#">диски</a>
+					<a class="menu-top__link" href="#">решетки</a>
+					<div class="menu-top__space"></div>
+					<a class="menu-top__link" href="#">доставка</a>
+					<a class="menu-top__link" href="#">контакты</a>
 				</div>
 			</div>
 			<div class="content-container">
@@ -78,12 +115,18 @@
 				<div class="row">
 					<div class="column col-6">
 						<div class="carousel carousel-section">
-							
+							<div class="left-arrow carousel__arrow carousel__left-arrow carousel-section__arrow"></div>
+							<div class="block-header carousel-section__header">
+								Выберите модель вашего автомобиля
+							</div>
+							<div class="right-arrow carousel__arrow carousel__right-arrow carousel-section__arrow"></div>
 						</div>
 					</div>
 					<div class="column col-6">
 						<div class="carousel carousel-section">
-							
+							<div class="block-header carousel-section__header">
+								Выберите бренд
+							</div>
 						</div>
 					</div>
 				</div>
@@ -91,14 +134,16 @@
 					<div class="column col-6">
 						<div class="block news">
 							<div class="block-header news__block-header">
-								НОВОСТИ <span class="rss-icon news__block-header-rss-icon"></span><span class="news__block-header-rss-label">RSS</span>
+								новости <span class="rss-icon news__block-header-rss-icon"></span><span class="news__block-header-rss-label">RSS</span>
 							</div>
 							<div class="news__section">
 								<div class="news__figure">
 									<img class="news__image" src="./images/photo1.jpg"/>
 								</div>
 								<div class="news__column">
-									<div class="news__content">Новые поступления дисков <br/>для Chrysler 300C. Теперь в золоте и брильянтах.</div>
+									<div class="news__content">
+										Новые поступления дисков <br/>для Chrysler 300C. Теперь в золоте и брильянтах.
+									</div>
 									<div class="news__date"><span class="sheet-icon"></span> 5 января 2010</div>
 								</div>
 							</div>
@@ -107,7 +152,9 @@
 									<img class="news__image" src="./images/photo2.jpg"/>
 								</div>
 								<div class="news__column">
-									<div class="news__content">Новые поступления дисков <br/>для Chrysler 300C. Теперь в золоте и брильянтах.</div>
+									<div class="news__content">
+										Новые поступления дисков <br/>для Chrysler 300C. Теперь в золоте и брильянтах.
+									</div>
 									<div class="news__date"><span class="sheet-icon"></span> 5 января 2010</div>
 								</div>
 							</div>
@@ -117,18 +164,38 @@
 						<div class="block offers">
 							<div class="offers__section">
 								<div class="block-header">
-									ЭКСКЛЮЗИВНЫЕ ДИСКИ
+									эксклюзивные диски
 								</div>
-								<div class="offers__figure">
-									<img class="offers__image" src="./images/disk.png" />
+								<div class="offers__row">
+									<div class="offers__figure">
+										<img class="offers__image" src="./images/disk.png" />
+									</div>
+									<div class="offers__column">
+										<div class="offers__content">
+											Автомобильные диски: литые диски, хромированные колесные диски, кованые диски, легкосплавные диски.
+											В нашем интернет-магазине дисков Вы можете сделать подбор дисков по размеру, купить диски ведущих
+											производителей.
+										</div>
+										<a class="offers__show-more-link" href="#">Подробнее</a>
+									</div>
 								</div>
 							</div>
-							<div class"offers__figure">
+							<div class="offers__section">
 								<div class="block-header">
-									ЭКСКЛЮЗИВНЫЕ РЕШЕТКИ
+									эксклюзивные решетки
 								</div>
-								<div class="offers__figure">
-									<img class="offers__image" src="./images/grille.png" />
+								<div class="offers__row">
+									<div class="offers__figure">
+										<img class="offers__image" src="./images/grille.png" />
+									</div>
+									<div class="offers__column">
+										<div class="offers__content">
+											Автомобильные решетки: литые решетки, хромированные колесные решетки, кованые решетки, легкосплавные решетки.
+											В нашем интернет-магазине решеток Вы можете сделать подбор решетки по размеру, купить решетки ведущих
+											производителей.
+										</div>
+										<a class="offers__show-more-link" href="#">Подробнее</a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -261,5 +328,6 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="./index.js"></script>>
 	</body>
 </html>

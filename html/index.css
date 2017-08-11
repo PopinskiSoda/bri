@@ -1,24 +1,24 @@
 /********************************* Sprites ******************************************/
 
-.maestro-logo, .visa-logo, .cart-icon, .right-arrow:hover, 
-.left-arrow, .left-arrow:hover, .right-arrow, .rss-icon, .button1, 
-.down-arrow, .sheet-icon
-{ display: inline-block; background: url("./sprites/layout.png") no-repeat;
-overflow: hidden; text-indent: -9999px; text-align: left; }
+.maestro-logo, .visa-logo, .cart-icon, .background2, .right-arrow:hover, 
+.left-arrow, .left-arrow:hover, .right-arrow, .cross, .rss-icon, 
+.button1, .down-arrow, .sheet-icon, .separator
+{ display: inline-block; background: url('./sprites/layout.png') no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; }
  
 .maestro-logo { background-position: -1px -0px; width: 40px; height: 25px; }
 .visa-logo { background-position: -1px -26px; width: 40px; height: 25px; }
 .cart-icon { background-position: -1px -52px; width: 26px; height: 23px; }
-/*.background1 { background-position: 50px 0px; width: 1px; height: 264px; }*/
-/*.background2 { background-position: -1px -76px; width: 22px; height: 40px; }*/
-.right-arrow:hover { background-position: -2px -117px; width: 19px; height: 38px; }
+.background2 { background-position: -1px -76px; width: 22px; height: 40px; }
+.right-arrow:hover { background-position: -1px -117px; width: 19px; height: 38px; }
 .left-arrow { background-position: -21px -117px; width: 18px; height: 38px; }
 .left-arrow:hover { background-position: -1px -156px; width: 18px; height: 38px; }
 .right-arrow { background-position: -20px -156px; width: 18px; height: 38px; }
+.cross { background-position: -24px -76px; width: 13px; height: 13px; }
 .rss-icon { background-position: -28px -52px; width: 12px; height: 12px; }
-.button1 { background-position: -28px -65px; width: 11px; height: 29px; }
-.down-arrow { background-position: -24px -95px; width: 11px; height: 6px; }
-.sheet-icon { background-position: -24px -102px; width: 8px; height: 10px; }
+.button1 { background-position: -1px -195px; width: 11px; height: 29px; }
+.down-arrow { background-position: -28px -65px; width: 11px; height: 6px; }
+.sheet-icon { background-position: -24px -90px; width: 8px; height: 10px; }
+.separator { background-position: -38px -76px; width: 2px; height: 37px; }
  
 .auto-logo-audi, .auto-logo-bmw, .auto-logo-mercedez, .auto-logo-porshe
 { display: inline-block; background: url("./sprites/auto_logos.png") no-repeat;
@@ -108,14 +108,30 @@ body {
 }
 
 .container {
-	padding-top: 14px;
+	padding: 14px 0;
 	margin: 0 auto;
 	width: 1000px;
 	background: url("./sprites/layout_repeat_x.png") #000000 0 -512px repeat-x;
 }
 
-.header {
-	/*margin-top: 14px;*/
+/*.header {
+}*/
+
+.carousel {
+	position: relative;
+}
+
+.carousel__arrow {
+	position: absolute;
+	cursor: pointer;
+}
+
+.carousel__left-arrow {
+	left: 8px;
+}
+
+.carousel__right-arrow {
+	right: 8px;
 }
 
 .carousel-top {
@@ -126,12 +142,26 @@ body {
 	border-bottom: solid 2px #252525;
 }
 
+.carousel-top__arrow {
+	top: 50px;
+}
+
 .carousel__figure {
-	float: left;
+	display: inline-block;
 }
 
 .carousel__image {
 	vertical-align: middle;
+}
+
+.carousel-top {
+	position: relative;
+}
+
+.carousel-top__figures-wrapper {
+	position: absolute;
+	top: 15px;
+	left: 35px;
 }
 
 .carousel-top__figure {
@@ -139,20 +169,103 @@ body {
 	border-radius: 2px;
 	padding: 2px;
 	margin-right: 9px;
-	margin-top: 15px;
+}
+
+.carousel-top__figure:last-child {
+	margin-right: 0;
+}
+
+.select-region {
+	font-family: "Arial";
+	font-size: 15px;
+	color: #999999;
+	position: absolute;
+	left: 0;
+	top: 9px;
+}
+
+.select-region__my-region {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+
+.select-region__current-option {
+	margin-left: 90px; 
+	color: #ffffff;
+	border-bottom: dotted 1px #ffffff;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.select-region__down-arrow {
+	vertical-align: middle;
+	z-index: 10;
+}
+
+.select-region__popup {
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	width: 415px;
+	height: 195px;
+	z-index: 30;
+	border: solid 1px #b4b4b4;
+	border-radius: 2px;
+	background: url("./sprites/layout_repeat_x.png") 0 -512px repeat-x;
+	display: none;
+}
+
+.select-region__popup--opened {
+	display: block;
+}
+
+.select-region__popup-row {
+	margin-left: 105px;
+}
+
+.select-region__popup-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-top: 9px;
+	margin-right: 20px;
+	float: left;
+	color: #e2e15d;
+}
+
+.select-region__popup-list-item {
+	cursor: pointer;
+}
+
+.select-region__popup-list-item:hover {
+	text-decoration: underline;
+}
+
+.select-region__popup-list-item--selected {
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.select-region__popup-cross {
+	position: absolute;
+	right: 12px;
+	top: 10px;
+	cursor: pointer;
 }
 
 .header__top-wrapper {
-	background: red;
 	position: relative;
 	width: 874px;
-	height: 50px;
-	margin: 0 auto;
+	height: 35px;
+	margin: 16px auto ;
 }
 
 .header__phone {
 	position: absolute;
 	right: 0;
+	top: 0;
 	color: #dddc4a;
 	font-size: 35px;
 	font-family: "Book Antiqua";
@@ -245,7 +358,7 @@ body {
 	position: absolute;
 	top: 0;
 	left: -2px;
-	background: url("./sprites/layout.png") -28px -65px;
+	background: url("./sprites/layout.png") -1px -195px;
 	width: 2px;
 	height: 29px;
 	content: "";
@@ -256,7 +369,7 @@ body {
 	position: absolute;
 	top: 0;
 	right: -8px;
-	background: url("./sprites/layout.png") -32px -65px;
+	background: url("./sprites/layout.png") -5px -195px;
 	width: 8px;
 	height: 29px;
 	content: "";
@@ -306,15 +419,30 @@ body {
 }
 
 .menu-top__link {
+	position: relative;
 	box-sizing: border-box;
 	display: inline-block;
+	width: 206px;
 	height: 41px;
 	margin-right: -4px;
 	padding: 13px 10px;
 	text-decoration: none;
 	font-family: "Times New Roman";
 	font-size: 15px;
+	text-align: center;
 	color: #e2e15d;
+	text-transform: uppercase;
+}
+
+.menu-top__link:after {
+	position: absolute;
+	right: -1px;
+	top: 2px;
+	background: url("./sprites/layout.png") -38px -76px;
+	width: 2px;
+	height: 37px;
+	content: "";
+	z-index: 10;
 }
 
 .menu-top__link:first-child {
@@ -325,15 +453,25 @@ body {
 	border-radius: 0 1px 1px 0;
 }
 
+.menu-top__link:last-child:after {
+	display: none;
+}
+
 .menu-top__link:hover {
 	background: url("./sprites/layout_repeat_x.png") 0 -351px repeat-x;
+	color: #ffffff;
+}
+
+.menu-top__space {
+	display: inline-block;
+	width: 130px;
 }
 
 .logo {
 	background-image: url("./images/logo.png");
 	width: 171px;
 	height: 157px;
-	z-index: 10;
+	z-index: 20;
 }
 
 .content-container {
@@ -410,11 +548,31 @@ body {
 	font-size: 15px;
 	font-family: "Book Antiqua";
 	color: #ebebeb;
+	text-transform: uppercase;
+	margin-bottom: 12px;
 }
 
-.news {
-	
+.carousel-section {
+	width: 470px;
+	height: 173px;
+	background: url("./sprites/layout_repeat_x.png") 0 -162px repeat-x;
+	border: solid 1px #474747;
+	border-radius: 2px;
+	box-sizing: border-box;
 }
+
+.carousel-section__header {
+	padding: 12px 25px;
+	border-bottom: solid 1px #474747;
+}
+
+.carousel-section__arrow {
+	top: 70px;
+}
+
+/*.news {
+	
+}*/
 
 .news__block-header {
 	margin-bottom: 14px;
@@ -518,7 +676,80 @@ body {
 	color: #ebebeb;
 }
 
-.footer__section{
+.offers__section {
+	margin-bottom: 30px;
+	position: relative;
+}
+
+.offers__section:last-child {
+	margin-bottom: 0;
+}
+
+.offers__section:after {
+	position: absolute;
+	display: block;
+	content: "";
+	width: 100%;
+	border-bottom: dotted 1px #474747;
+	left: 0;
+	bottom: -15px;
+}
+
+.offers__section:last-child:after {
+	display: none;
+}
+
+.offers__row {
+	position: relative;
+	min-height: 111px;
+}
+
+.offers__figure {
+	position: absolute;
+	width: 94px;
+	height: 111px;
+}
+
+.offers__image {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+}
+
+.offers__column {
+	padding-left: 118px;
+	color: white;
+}
+
+.offers__content {
+	font-family: "Arial";
+	font-size: 13px;
+	color: #999999;
+	margin-bottom: 5px;
+}
+
+.offers__show-more-link {
+	text-decoration: none;
+	font-family: "Arial";
+	font-size: 13px;
+	color: #e2e15d;
+}
+
+.offers__show-more-link:hover {
+	text-decoration: underline;
+}
+
+.offers__show-more-link:after {
+	content: " >"
+}
+
+/*.footer {
+}*/
+
+.footer__section {
 	font-size: 13px;
 	font-family: Arial;
 	color: #666666;
