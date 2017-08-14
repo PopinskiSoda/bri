@@ -409,8 +409,7 @@ body {
 .menu-top {
 	width: 960px;
 	height: 43px;
-	margin: 0 auto;
-	margin-top: 3px;
+	margin: 3px auto 1px;
 	background: url("./sprites/layout_repeat_x.png") 0 -396px repeat-x;
 	border: solid 1px rgba(0,0,0,0.5);
 	box-shadow: 0 0 0 1px #646464;
@@ -554,6 +553,10 @@ body {
 	color: #ebebeb;
 	text-transform: uppercase;
 	margin-bottom: 12px;
+}
+
+.carousel__wrapper {
+	white-space: nowrap;
 }
 
 .carousel-section {
