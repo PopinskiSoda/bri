@@ -158,7 +158,7 @@ body {
 	position: relative;
 }
 
-.carousel-top__figures-wrapper {
+.carousel-top__wrapper {
 	position: absolute;
 	top: 15px;
 	left: 35px;
@@ -540,6 +540,10 @@ body {
 	background-color: #ebebeb;
 }
 
+.slider__button:not(.slider__button--pressed):hover {
+	background-color: #474747;
+}
+
 .block {
 	padding: 10px 24px;
 }
@@ -567,7 +571,78 @@ body {
 }
 
 .carousel-section__arrow {
-	top: 70px;
+	top: 87px;
+}
+
+.carousel-section__wrapper {
+	position: absolute;
+	top: 55px;
+	left: 56px;
+	width: 356px;
+}
+
+.carousel-section__figure {
+	margin-right: 6px;
+	vertical-align: top;
+	box-sizing: border-box;
+}
+
+.carousel-section__figure:last-child {
+	margin-right: 0;
+}
+
+.carousel-section__auto-logo-wrapper {
+	margin-bottom: 13px;
+	height: 40px;
+}
+
+/*.carousel-section__auto-logo {
+}*/
+
+.carousel-section__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.carousel-section__list-item {
+	margin-bottom: 2px;
+	font-size: 13px;
+	font-family: "Arial";
+	color: #e2e15d;
+}
+
+.carousel-section__link {
+	color: #e2e15d;
+	text-decoration: none;
+}
+
+.carousel-section__link:hover {
+	text-decoration: underline;
+}
+
+.carousel-autos__figure {
+	width: 173px;
+	box-sizing: border-box;
+	padding: 2px 15px;
+	border-right: solid 1px #474747;
+}
+
+.carousel-autos__figure:first-child {
+	padding-left: 0;
+}
+
+.carousel-autos__figure:last-child {
+	border-right: none;
+}
+
+.carousel-brand-logos__brand-logo-wrapper {
+	display: table-cell;
+	vertical-align: middle;
+	height: 105px;
+	width: 107px;
+	text-align: center;
+	margin: 0;
 }
 
 /*.news {
