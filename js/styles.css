@@ -1,0 +1,57 @@
+body {
+	margin: 0;
+	background: #000000;
+	font-family: "Arial";
+}
+
+button {
+	/*margin: 0;*/
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	border: none;
+}
+
+.popup-background {
+	text-align: center;
+}
+
+.popup {
+	display: inline-block;
+	margin: 200px auto;
+	background: #333333;
+	border: solid 2px #ffffff;
+	border-radius: 5px;
+	text-align: center;
+	padding: 10px 20px;
+}
+
+.popup--hidden {
+	display: none;
+}
+
+.popup__header {
+	color: #ffffff;
+	font-size: 16px;
+}
+
+.popup__textarea {
+	display: block;
+	margin: 10px 0 auto;
+	width: 400px;
+	height: 200px;
+}
+
+.popup__button {
+	color: #ffffff;
+	background: #009900;
+	padding: 5px;
+	min-width: 100px;
+	margin-top: 10px;
+}
+
+.popup__button:hover {
+	background: #99ff99;
+	color: #009900;
+}
