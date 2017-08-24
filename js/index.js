@@ -1,74 +1,131 @@
 $('document').ready(function() {
 
-  function Popup(domObject) {
-    this.close = function() {
-      $(domObject).addClass('popup--hidden');
-    };
-
-    this.open = function() {
-      $(domObject).removeClass('popup--hidden');
-    };
-
-    this._handleSubmit = function() {
-      console.log('No submit handler specified for this popup');
-    };
-
-    this.setSubmitHandler = function(handler) {
-      this._handleSubmit = handler;
-      $(domObject).find('.popup__ok-button').unbind('click');
-      $(domObject).find('.popup__ok-button').click(this._handleSubmit);
-    };
-
-    this.initialize = function() {
-      $(domObject).find('.popup__cross-button').click(this.close);
-      $(domObject).find('.popup__ok-button').click(this._handleSubmit);
-    };
+  /**
+   * [Popup description]
+   * @param {[type]} $domObject [description]
+   */
+  function Popup($domObject) {
+    this._$domObject = $domObject;
   }
 
-  function InputPopup(domObject) {
-    Popup.call(this, domObject);
+  Popup.prototype.close = function() {
+    this._$domObject.addClass('popup--hidden');
+  };
 
+  Popup.prototype.open = function() {
+    this._$domObject.removeClass('popup--hidden');
+  };
+
+  Popup.prototype._handleSubmit = function() {
+    console.log('No submit handler specified for this popup');
+  };
+
+  Popup.prototype.setSubmitHandler = function(handler) {
+    this._handleSubmit = handler;
+    this._$domObject.find('.popup__ok-button').unbind('click');
+    this._$domObject.find('.popup__ok-button').click(this._handleSubmit.bind(this));
+  };
+
+  Popup.prototype.initialize = function() {
+    this._$domObject.find('.popup__cross-button').unbind('click');
+    this._$domObject.find('.popup__ok-button').unbind('click');
+    this._$domObject.find('.popup__cross-button').click(this.close.bind(this));
+    this._$domObject.find('.popup__ok-button').click(this._handleSubmit.bind(this));
+  };
+
+  /**
+   * [InputPopup description]
+   * @param {[type]} $domObject [description]
+   */
+  function InputPopup($domObject) {
+    Popup.apply(this, arguments);
     this._errorMessage = 'Неверный ввод';
+    this._value = '';
+  }
 
-    this.showError = function() {
-      alert(this._errorMessage);
+  InputPopup.prototype = Object.create(Popup.prototype);
+
+  InputPopup.prototype.constructor = InputPopup;
+
+  InputPopup.prototype.showError = function() {
+    alert(this._errorMessage);
+  };
+
+  InputPopup.prototype.validate = function(callback) {
+    if (!this._validator(this._value)) {
+      this.showError();
+      return;
     }
+    callback();
+  };
 
-    this.validate = function(callback) {
-      if (!this._validator(this._value)) {
-        this.showError();
-        return;
+  InputPopup.prototype._validator = function(value) {
+    console.log('No validator specified for this popup');
+    return true;
+  };
+
+  InputPopup.prototype.setValidator = function(validator) {
+    this._validator = validator;
+  };
+
+  InputPopup.prototype.initialize = function() {
+    Popup.prototype.initialize.apply(this, arguments);
+    var self, $textarea;
+
+    self = this;
+    $textarea = this._$domObject.find('.popup__textarea');
+
+    this._value = $textarea.val();
+    $textarea.unbind('change');
+    $textarea.change(function(event) {
+      self._value = event.target.value;
+      console.log(self);
+    });
+  };
+
+  /**
+   * [SlideBlockPopup description]
+   * @param {[type]} $domObject [description]
+   */
+  function SlideBlockPopup($domObject) {
+    Popup.apply(this, arguments);
+  }
+
+  SlideBlockPopup.prototype = Object.create(Popup.prototype);
+
+  SlideBlockPopup.prototype.constructor = SlideBlockPopup;
+
+  function stringsArrayValidator(value) {
+    try {
+      var strings = JSON.parse(value);
+    }
+    catch(e) {
+      if (e.name === 'SyntaxError') {
+        return false;
       }
-      callback();
-    };
-
-    this._validator = function(value) {
-      console.log('No validator specified for this popup');
-      return true;
-    };
-
-    this.setValidator = function(validator) {
-      this._validator = validator;
-    };
-
-    this.initialize = function() {
-      alert(Popup.initialize);
+      throw e;
     }
+
+    if (!Array.isArray(strings)) {
+      return false;
+    }
+
+    if (!strings.every(function(item) {return typeof(item) === "string"})) {
+      return false;
+    }
+
+    return true;
   }
 
-  function SlideBlockPopup(domObject) {
-    Popup.call(this, domObject);
-
-  }
-
+  /**
+   * 
+   */
   var inputPopup, slideBlockPopup;
 
-  inputPopup = $('.input-popup');
-  $.extend(inputPopup, new InputPopup(inputPopup));
+  inputPopup = new InputPopup($('.input-popup'));
   inputPopup.initialize();
 
-  slideBlockPopup = $('.slide-block-popup');
-  $.extend(slideBlockPopup, new SlideBlockPopup(slideBlockPopup));
+  slideBlockPopup = new SlideBlockPopup($('.slide-block-popup'));
   slideBlockPopup.initialize();
 
   inputPopup.setSubmitHandler(function() {
@@ -78,18 +135,7 @@ $('document').ready(function() {
     });
   });
 
-  inputPopup.setValidator(function(value) {
-    try {
-      JSON.parse(value);
-    }
-    catch(e) {
-      if (e.name === 'SyntaxError') {
-        return false;
-      }
-      throw e;
-    }
-    return true;
-  });
+  inputPopup.setValidator(stringsArrayValidator);
 
   inputPopup.open();
   inputPopup.initialize();
