@@ -2,6 +2,8 @@ body {
 	margin: 0;
 	background: #000000;
 	font-family: "Arial";
+	font-size: 15px;
+	color: #ffffff;
 }
 
 button {
@@ -13,11 +15,26 @@ button {
 	border: none;
 }
 
+.field__label {
+	text-align: left;
+	margin-bottom: 3px;
+}
+
+.field__input {
+	margin-right: 2px;
+}
+
+.field__button {
+	color: #ffffff;
+	border-bottom: dashed 1px #ffffff;
+}
+
 .popup-background {
 	text-align: center;
 }
 
 .popup {
+	position: relative;
 	display: inline-block;
 	margin: 200px auto;
 	background: #333333;
@@ -43,7 +60,7 @@ button {
 	height: 200px;
 }
 
-.popup__button {
+.popup__ok-button {
 	color: #ffffff;
 	background: #009900;
 	padding: 5px;
@@ -51,7 +68,54 @@ button {
 	margin-top: 10px;
 }
 
-.popup__button:hover {
+.popup__ok-button:hover {
 	background: #99ff99;
 	color: #009900;
+}
+
+.popup__cross-button {
+	color: #ffffff;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.popup__cross-button:after {
+	content: "\274c";
+}
+
+.slide-block-popup__content-wrapper {
+	overflow-y: auto;
+	max-height: 300px;
+	width: 365px;
+}
+
+.slide-block-popup__slide-block {
+	margin-bottom: 10px;
+}
+
+.slide-block-popup__slide-block:last-child {
+	margin-bottom: 0;
+}
+
+.slide-block-popup__slide-block:after {
+	display: table;
+	content: "";
+	clear: both;
+}
+
+.slide-block-popup__image-preview {
+	display: block;
+	width: 100px;
+	/*border: solid 1px #ffffff;*/
+	border-radius: 2px;
+}
+
+.slide-block-popup__slide-block-column {
+	float: left;
+	margin-right: 10px;
+}
+
+.slide-block-popup__slide-block-column:last-child {
+	margin-right: 0;
 }
