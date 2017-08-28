@@ -1,9 +1,15 @@
 $('document').ready(function() {
 
+  var
+    IMAGE_WIDTH = 500,
+    AUTO_SLIDING_DELAY = 7000;
+
   var BLOCKS = {
     popup: 'popup',
     popupBackground: 'popup-background',
-    slideBlockPopup: 'slide-block-popup'
+    slideBlockPopup: 'slide-block-popup',
+    inputPopup: 'input-popup',
+    carousel: 'carousel'
   };
 
   function bem() {
@@ -160,8 +166,16 @@ $('document').ready(function() {
     return this._comment;
   };
 
+  SlideBlock.prototype._handleDelete = function() {
+    console.log("No delete handler specified for this slideBlock")
+  }
+
+  SlideBlock.prototype.setDeleteHandler = function(handler) {
+    this._handleDelete = handler;
+  }
+
   SlideBlock.prototype.initialize = function() {
-    var self, block, $input;
+    var self, block, $input, $deleteButton;
     
     self = this;
     block = 'slide-block-popup';
@@ -174,6 +188,13 @@ $('document').ready(function() {
     $input.change(function(event) {
       self._comment = event.target.value;
     });
+
+    $deleteButton = $('<button></button>')
+      .addClass(bem(block, 'field-button'))
+      .html('Удалить');
+
+    $deleteButton.unbind('click');
+    $deleteButton.click(this._handleDelete);
 
     this._$object = $('<div></div>')
       .addClass(bem(block, 'slide-block'))
@@ -198,11 +219,7 @@ $('document').ready(function() {
                   .html('Комментарий')
               )
               .append($input)
-              .append(
-                $('<button></button>')
-                  .addClass(bem(block, 'field-button'))
-                  .html('Удалить')
-              )
+              .append($deleteButton)
           )
       );
   };
@@ -226,7 +243,11 @@ $('document').ready(function() {
     var slideBlock = new SlideBlock(imageURL);
 
     slideBlock.initialize();
+    slideBlock.setDeleteHandler(function(){
+      this.deleteSlideBlock(this._slideBlocks.length)
+    }.bind(this));
     slideBlock.appendTo(this._$contentWrapper);
+
     this._slideBlocks.push(slideBlock);
   };
 
@@ -236,9 +257,24 @@ $('document').ready(function() {
     }
   };
 
+  SlideBlockPopup.prototype.initSlideBlocks = function(imageURLs) {
+    this._slideBlocks = [];
+    this.addSlideBlocks(imageURLs);
+  }
+
   SlideBlockPopup.prototype.getSlideBlocks = function() {
     return this._slideBlocks;
   };
+
+  SlideBlockPopup.prototype.deleteSlideBlock = function(id) {
+    console.log('deleted');
+    this._slideBlocks.splice(id, 1);
+    this._$object
+      .find(bemSelector(BLOCKS.slideBlockPopup, 'content-wrapper'))
+      .children()
+      .eq(id, 1)
+      .remove()
+  }
 
   SlideBlockPopup.prototype.initialize = function() {
     Popup.prototype.initialize.apply(this, arguments);
@@ -247,6 +283,120 @@ $('document').ready(function() {
       bemSelector(BLOCKS.slideBlockPopup, 'content-wrapper')
     );
   };
+
+  function Carousel($object, slideBlocks) {
+    this._slideBlocks = slideBlocks || [];
+    this._$object = $object;
+    this._currentSlideIndex = 0;
+  }
+
+  Carousel.prototype.getPreviousSlideIndex = function() {
+    return (this._slideBlocks.length + this._currentSlideIndex - 1) % this._slideBlocks.length;
+  }
+
+  Carousel.prototype.getNextSlideIndex = function() {
+    return (this._currentSlideIndex + 1) % this._slideBlocks.length;
+  }
+
+  Carousel.prototype.setSlideBlocks = function(slideBlocks) {
+    this._slideBlocks = slideBlocks;
+
+    if(slideBlocks.length > 0) {
+      this._$object
+        .find(bemSelector(BLOCKS.carousel, 'current-slide') + ' ' + bemSelector(BLOCKS.carousel, 'image-wrapper'))
+        .replaceWith(this.renderContent(0));
+    }
+  }
+
+  Carousel.prototype.slideLeft = function() {
+    var $content;
+
+    if ($(':animated').length) {
+      return false;
+    }
+
+    $content = this.renderContent(this.getPreviousSlideIndex());
+
+    this._$object
+      .find(bemSelector(BLOCKS.carousel, 'new-slide'))
+      .css({'left': -IMAGE_WIDTH})
+      .find(bemSelector(BLOCKS.carousel, 'image-wrapper'))
+      .replaceWith($content);
+
+    this._$object
+      .find(bemSelector(BLOCKS.carousel, 'slide'))
+      .animate({left: '+='+IMAGE_WIDTH})
+      .toggleClass(
+        bem(BLOCKS.carousel, 'current-slide') + ' '+ bem(BLOCKS.carousel, 'new-slide')
+      );
+
+    this._currentSlideIndex = this.getPreviousSlideIndex();
+  }
+
+  Carousel.prototype.slideRight = function() {
+    var $content;
+
+    if ($(':animated').length) {
+      return false;
+    }
+
+    $content = this.renderContent(this.getNextSlideIndex());
+
+    this._$object
+      .find(bemSelector(BLOCKS.carousel, 'new-slide'))
+      .css({'left': IMAGE_WIDTH})
+      .find(bemSelector(BLOCKS.carousel, 'image-wrapper'))
+      .replaceWith($content);
+
+    this._$object
+      .find(bemSelector(BLOCKS.carousel, 'slide'))
+      .animate({left: '-='+IMAGE_WIDTH})
+      .toggleClass(
+        bem(BLOCKS.carousel, 'current-slide') + ' '+ bem(BLOCKS.carousel, 'new-slide')
+      );
+
+    this._currentSlideIndex = this.getNextSlideIndex();
+  }
+
+  Carousel.prototype.renderContent = function(slideIndex) {
+    var $content, slideBlock;
+
+    slideBlock = this._slideBlocks[slideIndex];
+    
+    $content = $('<div></div>')
+      .addClass(bem(BLOCKS.carousel, 'image-wrapper'))
+      .append(
+        $('<img/>')
+          .addClass(bem(BLOCKS.carousel, 'image'))
+          .prop({'src': slideBlock.getImageURL()})
+      )
+      .append(
+        $('<div></div>')
+          .addClass(bem(BLOCKS.carousel, 'caption'))
+          .html(slideBlock.getComment())
+      );
+
+    return $content;
+  }
+
+  Carousel.prototype.initialize = function() {
+    if (this._slideBlocks && this._slideBlocks.length > 0) {
+      this._$object
+        .find(bemSelector(BLOCKS.carousel, 'current-slide')+bemSelector(BLOCKS.carousel, 'image-wrapper'))
+        .replaceWith(this.renderContent(0));
+    }
+
+    this._$object.find(bemSelector(BLOCKS.carousel, 'left-arrow')).unbind('click');
+    this._$object.find(bemSelector(BLOCKS.carousel, 'right-arrow')).unbind('click');
+    this._$object.find(bemSelector(BLOCKS.carousel, 'left-arrow')).click(this.slideLeft.bind(this));
+    this._$object.find(bemSelector(BLOCKS.carousel, 'right-arrow')).click(this.slideRight.bind(this));
+
+    this._interval = setInterval(function() {
+      if (this._slideBlocks.length > 1) {
+        this.slideRight();
+      }
+    }.bind(this), AUTO_SLIDING_DELAY);
+  }
 
   function stringsArrayValidator(value) {
     var strings;
@@ -277,11 +427,14 @@ $('document').ready(function() {
    */
   var inputPopup, slideBlockPopup;
 
-  inputPopup = new InputPopup($('.input-popup'));
+  inputPopup = new InputPopup($(bemSelector(BLOCKS.inputPopup)));
   inputPopup.initialize();
 
-  slideBlockPopup = new SlideBlockPopup($('.slide-block-popup'));
+  slideBlockPopup = new SlideBlockPopup($(bemSelector(BLOCKS.slideBlockPopup)));
   slideBlockPopup.initialize();
+
+  carousel = new Carousel($(bemSelector(BLOCKS.carousel)));
+  carousel.initialize();
 
   inputPopup.setValidator(stringsArrayValidator);
 
@@ -304,11 +457,8 @@ $('document').ready(function() {
   slideBlockPopup.setSubmitHandler(function() {
     var slideBlocks = slideBlockPopup.getSlideBlocks();
 
-    for (var i=0; i<slideBlocks.length; i++) {
-      console.log(slideBlocks[i].getImageURL(), slideBlocks[i].getComment());
-    }
-
     slideBlockPopup.close();
+    carousel.setSlideBlocks(slideBlocks);
   });
 
 });
