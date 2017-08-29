@@ -188,15 +188,15 @@ $('document').ready(function() {
   };
 
   SlideBlock.prototype._handleDelete = function() {
-    console.log("No delete handler specified for this slideBlock")
-  }
+    console.log("No delete handler specified for this slideBlock");
+  };
 
   SlideBlock.prototype.setDeleteHandler = function(handler) {
     this._handleDelete = handler;
 
     this._$deleteButton.unbind('click');
     this._$deleteButton.click(this._handleDelete);
-  }
+  };
 
   SlideBlock.prototype.initialize = function() {
     var self, block;
@@ -264,9 +264,9 @@ $('document').ready(function() {
   SlideBlockPopup.prototype.constructor = SlideBlockPopup;
 
   SlideBlockPopup.prototype.addSlideBlock = function(imageURL) {
-    var slideBlock, id
+    var slideBlock, id;
 
-    id = this._slideBlocks.length
+    id = this._slideBlocks.length;
 
     slideBlock = new SlideBlock(imageURL, id);
     slideBlock.initialize();
@@ -289,7 +289,7 @@ $('document').ready(function() {
   SlideBlockPopup.prototype.initSlideBlocks = function(imageURLs) {
     this._slideBlocks = [];
     this.addSlideBlocks(imageURLs);
-  }
+  };
 
   SlideBlockPopup.prototype.getSlideBlocks = function() {
     return this._slideBlocks;
@@ -301,7 +301,7 @@ $('document').ready(function() {
     this._$contentWrapper
       .find('.'+id)
       .remove();
-  }
+  };
 
   SlideBlockPopup.prototype.initialize = function() {
     Popup.prototype.initialize.apply(this, arguments);
@@ -326,11 +326,11 @@ $('document').ready(function() {
 
   Carousel.prototype.getPreviousSlideIndex = function() {
     return (this._slideBlocks.length + this._currentSlideIndex - 1) % this._slideBlocks.length;
-  }
+  };
 
   Carousel.prototype.getNextSlideIndex = function() {
     return (this._currentSlideIndex + 1) % this._slideBlocks.length;
-  }
+  };
 
   Carousel.prototype.setSlideBlocks = function(slideBlocks) {
     this._slideBlocks = slideBlocks.filter(function(item) { return item !== undefined; });
@@ -340,7 +340,7 @@ $('document').ready(function() {
         .find(bemSelector(BLOCKS.carousel, 'current-slide') + ' ' + bemSelector(BLOCKS.carousel, 'image-wrapper'))
         .replaceWith(this.renderContent(0));
     }
-  }
+  };
 
   Carousel.prototype.slideLeft = function() {
     var $content;
@@ -367,7 +367,7 @@ $('document').ready(function() {
       );
 
     this._currentSlideIndex = this.getPreviousSlideIndex();
-  }
+  };
 
   Carousel.prototype.slideRight = function() {
     var $content;
@@ -394,7 +394,7 @@ $('document').ready(function() {
       );
 
     this._currentSlideIndex = this.getNextSlideIndex();
-  }
+  };
 
   Carousel.prototype.renderContent = function(slideIndex) {
     var $content, slideBlock, comment;
@@ -417,13 +417,13 @@ $('document').ready(function() {
       );
 
     return $content;
-  }
+  };
 
   Carousel.prototype._handleInterval = function() {
     if (this._slideBlocks.length > 1) {
       this.slideRight();
     }
-  }
+  };
 
   Carousel.prototype.initialize = function() {
     if (this._slideBlocks && this._slideBlocks.length > 0) {
@@ -434,7 +434,7 @@ $('document').ready(function() {
 
     this._$slides = this._$object.find(bemSelector(BLOCKS.carousel, 'slide'));
     this._$leftArrow = this._$object.find(bemSelector(BLOCKS.carousel, 'left-arrow'));
-    this._$rightArrow = this._$object.find(bemSelector(BLOCKS.carousel, 'right-arrow'))
+    this._$rightArrow = this._$object.find(bemSelector(BLOCKS.carousel, 'right-arrow'));
 
     this._$leftArrow.unbind('click');
     this._$leftArrow.click(this.slideLeft.bind(this));
@@ -443,7 +443,7 @@ $('document').ready(function() {
     this._$rightArrow.click(this.slideRight.bind(this));
 
     this._interval = setInterval(this._handleInterval.bind(this), AUTO_SLIDING_DELAY);
-  }
+  };
 
   /**
    * Validates string to array of strings
