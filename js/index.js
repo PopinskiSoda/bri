@@ -401,7 +401,6 @@ $('document').ready(function() {
 
     slideBlock = this._slideBlocks[slideIndex];
     comment = slideBlock.getComment();
-    console.log(comment);
     
     $content = $('<div></div>')
       .addClass(bem(BLOCKS.carousel, 'image-wrapper'))
