@@ -12,6 +12,17 @@ $('document').ready(function() {
     carousel: 'carousel'
   };
 
+  /**
+   * BEM Helper. Could also take object with keys-values as argument
+   *
+   * @param {string} block
+   * @param {string} element
+   * @param {string} modifier
+   *
+   * [@param {object} object that contains block, element and modifier properties]
+   * 
+   * @return {string} BEM className
+   */
   function bem() {
     var
       block, element, modifier,
@@ -40,16 +51,18 @@ $('document').ready(function() {
   }
 
   /**
-   * [Popup description]
-   * @param {[type]} $object [description]
+   * Base popup class
+   * @param {[type]} $object
    */
   function Popup($object) {
     this._$object = $object;
     this._$popupBackground = null;
+    this._$okButton = null;
+    this._$crossButton = null;
   }
 
   Popup.prototype.open = function() {
-    $(bemSelector(BLOCKS.popupBackground)).removeClass(bem({
+    this._$popupBackground.removeClass(bem({
       block: BLOCKS.popupBackground,
       modifier: 'hidden'
     }));
@@ -61,7 +74,7 @@ $('document').ready(function() {
   };
 
   Popup.prototype.close = function() {
-    $(bemSelector(BLOCKS.popupBackground)).addClass(bem({
+    this._$popupBackground.addClass(bem({
       block: BLOCKS.popupBackground,
       modifier: 'hidden'
     }));
@@ -78,26 +91,31 @@ $('document').ready(function() {
 
   Popup.prototype.setSubmitHandler = function(handler) {
     this._handleSubmit = handler;
-    this._$object.find('.popup__ok-button').unbind('click');
-    this._$object.find('.popup__ok-button').click(this._handleSubmit.bind(this));
+    this._$okButton.unbind('click');
+    this._$okButton.click(this._handleSubmit.bind(this));
   };
 
   Popup.prototype.initialize = function() {
-    this._$object.find('.popup__cross-button').unbind('click');
-    this._$object.find('.popup__ok-button').unbind('click');
-    this._$object.find('.popup__cross-button').click(this.close.bind(this));
-    this._$object.find('.popup__ok-button').click(this._handleSubmit.bind(this));
-    this._$popupBackground = $('.popup-background');
+    this._$okButton = this._$object.find(bemSelector(BLOCKS.popup, 'ok-button'));
+    this._$crossButton = this._$object.find(bemSelector(BLOCKS.popup, 'cross-button'));
+    this._$popupBackground = $(bemSelector(BLOCKS.popupBackground));
+
+    this._$crossButton.unbind('click');
+    this._$crossButton.click(this.close.bind(this));
+
+    this._$okButton.unbind('click');
+    this._$okButton.click(this._handleSubmit.bind(this));
   };
 
   /**
-   * [InputPopup description]
-   * @param {[type]} $object [description]
+   * Popup for reading an array of strings 
+   * @param {jQuery object} $object
    */
   function InputPopup($object) {
     Popup.apply(this, arguments);
     this._errorMessage = 'Неверный ввод';
     this._value = '';
+    this._$textarea = null;
   }
 
   InputPopup.prototype = Object.create(Popup.prototype);
@@ -132,25 +150,28 @@ $('document').ready(function() {
   InputPopup.prototype.initialize = function() {
     Popup.prototype.initialize.apply(this, arguments);
 
-    var self, $textarea;
+    var self = this;
+    
+    this._$textarea = this._$object.find(bemSelector(BLOCKS.popup, 'textarea'));
 
-    self = this;
-    $textarea = this._$object.find('.popup__textarea');
-
-    this._value = $textarea.val();
-    $textarea.unbind('change');
-    $textarea.change(function(event) {
+    this._value = this._$textarea.val();
+    this._$textarea.unbind('change');
+    this._$textarea.change(function(event) {
       self._value = event.target.value;
     });
   };
 
   /**
-   * [SlideBlock description]
-   * @param {[type]} $parent [description]
+   * Contains information about specific slide
+   * @param {string} imageURL   URL of slide image
+   * @param {string} id         id of item in list
    */
-  function SlideBlock(imageURL) {
+  function SlideBlock(imageURL, id) {
     this._$object = null;
+    this._$input = null;
+    this._$deleteButton = null;
     this._imageURL = imageURL;
+    this._id = id;
     this._comment = '';
   }
 
@@ -172,32 +193,35 @@ $('document').ready(function() {
 
   SlideBlock.prototype.setDeleteHandler = function(handler) {
     this._handleDelete = handler;
+
+    this._$deleteButton.unbind('click');
+    this._$deleteButton.click(this._handleDelete);
   }
 
   SlideBlock.prototype.initialize = function() {
-    var self, block, $input, $deleteButton;
+    var self, block;
     
     self = this;
-    block = 'slide-block-popup';
+    block = BLOCKS.slideBlockPopup;
 
-    $input = $('<input/>')
+    this._$input = $('<input/>')
       .addClass(bem(block, 'field-input'))
       .attr({type: 'text'});
 
-    $input.unbind('change');
-    $input.change(function(event) {
+    this._$input.unbind('change');
+    this._$input.change(function(event) {
       self._comment = event.target.value;
     });
 
-    $deleteButton = $('<button></button>')
+    this._$deleteButton = $('<button></button>')
       .addClass(bem(block, 'field-button'))
       .html('Удалить');
 
-    $deleteButton.unbind('click');
-    $deleteButton.click(this._handleDelete);
+    this._$deleteButton.unbind('click');
+    this._$deleteButton.click(this._handleDelete);
 
     this._$object = $('<div></div>')
-      .addClass(bem(block, 'slide-block'))
+      .addClass(bem(block, 'slide-block') + ' ' + this._id)
       .append(
         $('<div></div>')
           .addClass(bem(block, 'slide-block-column'))
@@ -218,15 +242,15 @@ $('document').ready(function() {
                   .addClass(bem(block, 'field-label'))
                   .html('Комментарий')
               )
-              .append($input)
-              .append($deleteButton)
+              .append(this._$input)
+              .append(this._$deleteButton)
           )
       );
   };
 
   /**
-   * [SlideBlockPopup description]
-   * @param {[type]} $object [description]
+   * Popup for editing and deletion of slideBlocks
+   * @param {jQuery object} $object
    */
   function SlideBlockPopup($object) {
     Popup.apply(this, arguments);
@@ -240,12 +264,17 @@ $('document').ready(function() {
   SlideBlockPopup.prototype.constructor = SlideBlockPopup;
 
   SlideBlockPopup.prototype.addSlideBlock = function(imageURL) {
-    var slideBlock = new SlideBlock(imageURL);
+    var slideBlock, id
 
+    id = this._slideBlocks.length
+
+    slideBlock = new SlideBlock(imageURL, id);
     slideBlock.initialize();
+
     slideBlock.setDeleteHandler(function(){
-      this.deleteSlideBlock(this._slideBlocks.length)
+      this.deleteSlideBlock(id);
     }.bind(this));
+
     slideBlock.appendTo(this._$contentWrapper);
 
     this._slideBlocks.push(slideBlock);
@@ -267,13 +296,11 @@ $('document').ready(function() {
   };
 
   SlideBlockPopup.prototype.deleteSlideBlock = function(id) {
-    console.log('deleted');
-    this._slideBlocks.splice(id, 1);
-    this._$object
-      .find(bemSelector(BLOCKS.slideBlockPopup, 'content-wrapper'))
-      .children()
-      .eq(id, 1)
-      .remove()
+    delete this._slideBlocks[id];
+    
+    this._$contentWrapper
+      .find('.'+id)
+      .remove();
   }
 
   SlideBlockPopup.prototype.initialize = function() {
@@ -284,10 +311,17 @@ $('document').ready(function() {
     );
   };
 
+  /**
+   * Simple jQuery carousel
+   * @param {jQuery object} $object  jQuery carousel object
+   * @param {array} slideBlocks      array of slideBlock objects
+   */
   function Carousel($object, slideBlocks) {
-    this._slideBlocks = slideBlocks || [];
     this._$object = $object;
+    this._$slides = null;
+    this._slideBlocks = slideBlocks ? slideBlocks.filter(function(item) { return item !== undefined; }) : [];
     this._currentSlideIndex = 0;
+    this._interval = null;
   }
 
   Carousel.prototype.getPreviousSlideIndex = function() {
@@ -299,7 +333,7 @@ $('document').ready(function() {
   }
 
   Carousel.prototype.setSlideBlocks = function(slideBlocks) {
-    this._slideBlocks = slideBlocks;
+    this._slideBlocks = slideBlocks.filter(function(item) { return item !== undefined; });
 
     if(slideBlocks.length > 0) {
       this._$object
@@ -315,6 +349,9 @@ $('document').ready(function() {
       return false;
     }
 
+    clearInterval(this._interval);
+    this._interval = setInterval(this._handleInterval.bind(this), AUTO_SLIDING_DELAY);
+
     $content = this.renderContent(this.getPreviousSlideIndex());
 
     this._$object
@@ -323,8 +360,7 @@ $('document').ready(function() {
       .find(bemSelector(BLOCKS.carousel, 'image-wrapper'))
       .replaceWith($content);
 
-    this._$object
-      .find(bemSelector(BLOCKS.carousel, 'slide'))
+    this._$slides
       .animate({left: '+='+IMAGE_WIDTH})
       .toggleClass(
         bem(BLOCKS.carousel, 'current-slide') + ' '+ bem(BLOCKS.carousel, 'new-slide')
@@ -340,6 +376,9 @@ $('document').ready(function() {
       return false;
     }
 
+    clearInterval(this._interval);
+    this._interval = setInterval(this._handleInterval.bind(this), AUTO_SLIDING_DELAY);
+
     $content = this.renderContent(this.getNextSlideIndex());
 
     this._$object
@@ -348,8 +387,7 @@ $('document').ready(function() {
       .find(bemSelector(BLOCKS.carousel, 'image-wrapper'))
       .replaceWith($content);
 
-    this._$object
-      .find(bemSelector(BLOCKS.carousel, 'slide'))
+    this._$slides
       .animate({left: '-='+IMAGE_WIDTH})
       .toggleClass(
         bem(BLOCKS.carousel, 'current-slide') + ' '+ bem(BLOCKS.carousel, 'new-slide')
@@ -359,9 +397,11 @@ $('document').ready(function() {
   }
 
   Carousel.prototype.renderContent = function(slideIndex) {
-    var $content, slideBlock;
+    var $content, slideBlock, comment;
 
     slideBlock = this._slideBlocks[slideIndex];
+    comment = slideBlock.getComment();
+    console.log(comment);
     
     $content = $('<div></div>')
       .addClass(bem(BLOCKS.carousel, 'image-wrapper'))
@@ -373,10 +413,17 @@ $('document').ready(function() {
       .append(
         $('<div></div>')
           .addClass(bem(BLOCKS.carousel, 'caption'))
-          .html(slideBlock.getComment())
+          .addClass(comment ? '' : bem(BLOCKS.carousel, 'caption', 'hidden'))
+          .html(comment)
       );
 
     return $content;
+  }
+
+  Carousel.prototype._handleInterval = function() {
+    if (this._slideBlocks.length > 1) {
+      this.slideRight();
+    }
   }
 
   Carousel.prototype.initialize = function() {
@@ -386,18 +433,24 @@ $('document').ready(function() {
         .replaceWith(this.renderContent(0));
     }
 
-    this._$object.find(bemSelector(BLOCKS.carousel, 'left-arrow')).unbind('click');
-    this._$object.find(bemSelector(BLOCKS.carousel, 'right-arrow')).unbind('click');
-    this._$object.find(bemSelector(BLOCKS.carousel, 'left-arrow')).click(this.slideLeft.bind(this));
-    this._$object.find(bemSelector(BLOCKS.carousel, 'right-arrow')).click(this.slideRight.bind(this));
+    this._$slides = this._$object.find(bemSelector(BLOCKS.carousel, 'slide'));
+    this._$leftArrow = this._$object.find(bemSelector(BLOCKS.carousel, 'left-arrow'));
+    this._$rightArrow = this._$object.find(bemSelector(BLOCKS.carousel, 'right-arrow'))
 
-    this._interval = setInterval(function() {
-      if (this._slideBlocks.length > 1) {
-        this.slideRight();
-      }
-    }.bind(this), AUTO_SLIDING_DELAY);
+    this._$leftArrow.unbind('click');
+    this._$leftArrow.click(this.slideLeft.bind(this));
+
+    this._$rightArrow.unbind('click');
+    this._$rightArrow.click(this.slideRight.bind(this));
+
+    this._interval = setInterval(this._handleInterval.bind(this), AUTO_SLIDING_DELAY);
   }
 
+  /**
+   * Validates string to array of strings
+   * @param  {string} value [description]
+   * @return {boolean}
+   */
   function stringsArrayValidator(value) {
     var strings;
 
@@ -423,8 +476,9 @@ $('document').ready(function() {
   }
 
   /**
-   * 
+   * Simple jQuery carousel
    */
+  
   var inputPopup, slideBlockPopup;
 
   inputPopup = new InputPopup($(bemSelector(BLOCKS.inputPopup)));
