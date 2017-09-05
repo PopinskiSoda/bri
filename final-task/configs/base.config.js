@@ -17,7 +17,7 @@ module.exports = {
     // main_page: ['./app/pages/main'],
     // admin_panel: ['./app/pages/admin_panel']
   // },
-  entry: './app.js',
+  entry: ['./app.js', './app.haml'],
   resolve: {
     // можно использовать require без указания расширения
     extensions: ['.js'],
@@ -26,7 +26,7 @@ module.exports = {
     // еще одно улучшение для require: из любого файла можно вызвать
     // require('libs/some.lib')
     alias: {
-      libs: path.join(__dirname, 'libs')
+      Blocks: path.join(__dirname, '..', 'blocks')
     }
   },
   module: {
@@ -46,7 +46,7 @@ module.exports = {
 
       // автоматическая загрузка jquery при
       // первом обращении к переменным $ или
-      { test: require.resolve('jquery'), loader: 'expose?$!expose?jQuery' }
+      // { test: require.resolve('jquery'), loader: 'expose?$!expose?jQuery' }
     ],
   }
 }
