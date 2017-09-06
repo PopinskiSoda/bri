@@ -1,6 +1,6 @@
 import Template from './index.handlebars';
 
-Template({
+export const t = Template({
   offers: [
     {
       imageSrc: '',

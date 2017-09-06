@@ -59,13 +59,13 @@ module.exports = {
 
       {
         test: /\.haml$/,
-        // loader: ExtractTextPlugin.extract("haml-loader?bundle=1")
-        loader: "!haml-loader?bundle=1"
+        loader: ExtractTextPlugin.extract("haml-loader")
       },
 
       {
         test: /\.js$/,
         exclude: /node_modules/,
+        enforce: "post",
         loader: "jshint-loader",
         options: {
           forin: true,
@@ -87,7 +87,7 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
-    new ExtractTextPlugin("index.html")
+    new ExtractTextPlugin("../index.html")
   ]
   // plugins: [
   //   // плагин нужен для генерация файла-манифеста, который будет использован

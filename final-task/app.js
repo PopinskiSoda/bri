@@ -1,4 +1,4 @@
 import OffersBar from 'Blocks/offers-bar';
 import $ from 'jquery';
 
-console.log($('body'));
+// console.log(t);
