@@ -1,7 +1,40 @@
-$block: 'offers-bar';
+$block: "offer-card";
 
 .#{$block} {
 	width: 220px;
 	border: solid 1px #ebebeb;
 	border-radius: 8px;
+	background: #ffffff;
+	position: relative;
+
+	&__image {
+		max-width: 100%;
+	}
+
+	&__title {
+		font-size: 16px;
+		color: #000000;
+		font-weight: bold;
+	}
+
+	&__attribute {
+		font-size: 15px;
+		opacity: 0.6;
+	}
+
+	&__counter {
+		font-size: 15px; // ?????
+		color: #82848A
+	}
+
+	&__hint {
+		position: absolute;
+		font-family: "PFAgoraSansPro";
+		font-size: 6px;
+		color: #ffffff;
+	}
+
+	&:hover {
+		border-color: #abc9e8;
+	}
 }

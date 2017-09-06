@@ -26,14 +26,14 @@ module.exports = {
   // },
   module: {
     loaders: [
-      { test: /\.css$/, loader: 'style!css?sourceMap' },
+      { test: /\.css$/, loader: 'style-loader!css-loader?sourceMap' },
 
       // нужно дополнительно применить плагин resolve-url,
       // чтобы логично работали относительные пути к изображениям
       // внутри *.scss файлов
       {
         test: /\.scss$/,
-        loader: 'style!css?sourceMap!resolve-url!sass?sourceMap'
+        loader: 'style-loader!css-loader?sourceMap!resolve-url-loader!sass-loader?sourceMap'
       },
 
       // изображения

@@ -1,3 +1,11 @@
 import Template from './index.handlebars';
 
-console.log(Template({src: 'asdasd'}));
+export default class OfferCard {
+  constructor(offer) {
+    this._offer = offer;
+  }
+
+  render() {
+    return Template(this._offer);
+  }
+}

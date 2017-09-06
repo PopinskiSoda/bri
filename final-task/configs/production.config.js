@@ -28,10 +28,10 @@ module.exports = {
         )
       },
       { test: /\.(png|jpg|gif)$/, loader: 'url?limit=8192' },
-      {
-        test: /\.(ttf|eot|svg|woff(2)?)(\?.+)?$/,
-        loader: 'file'
-      },
+      // {
+      //   test: /\.(ttf|eot|svg|woff(2)?)(\?.+)?$/,
+      //   loader: 'file'
+      // },
     ]
   },
   plugins: [

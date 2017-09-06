@@ -17,7 +17,7 @@ module.exports = {
     // main_page: ['./app/pages/main'],
     // admin_panel: ['./app/pages/admin_panel']
   // },
-  entry: ['./app.js', './app.haml'],
+  entry: ['./app.js', './app.scss', './app.haml'],
   resolve: {
     // можно использовать require без указания расширения
     extensions: ['.js'],
