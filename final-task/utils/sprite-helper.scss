@@ -1,0 +1,19 @@
+$spriteGrid: 31px;
+
+@mixin sprite($x, $y) {
+	background: url(Images/sprites/icons.png);
+	background-position: (-$x * $spriteGrid) (-$y * $spriteGrid);
+}
+
+.icon { width: 31px; height: 31px; display: inline-block; };
+.icon:hover { cursor: pointer; };
+
+.icon-lamp   { @include sprite(0, 0) };
+.icon-heart  { @include sprite(1, 0) };
+.icon-plus   { @include sprite(2, 0) };
+.icon-bubble { @include sprite(3, 0) };
+
+.icon-lamp:hover   { @include sprite(0, 1) };
+.icon-heart:hover  { @include sprite(1, 1) };
+.icon-plus:hover   { @include sprite(2, 1) };
+.icon-bubble:hover { @include sprite(3, 1) };

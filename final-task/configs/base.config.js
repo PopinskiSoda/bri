@@ -26,7 +26,9 @@ module.exports = {
     // еще одно улучшение для require: из любого файла можно вызвать
     // require('libs/some.lib')
     alias: {
-      Blocks: path.join(__dirname, '..', 'blocks')
+      Blocks: path.join(__dirname, '..', 'blocks'),
+      Utils: path.join(__dirname, '..', 'utils'),
+      Images: path.join(__dirname, '..', 'images')
     }
   },
   module: {

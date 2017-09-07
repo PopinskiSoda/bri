@@ -39,7 +39,7 @@ module.exports = {
       // изображения
       {
         test: /\.(png|jpg|gif)$/,
-        loader: 'url?name=[path][name].[ext]&limit=8192'
+        loader: 'url-loader?name=[path][name].[ext]&limit=8192'
       },
 
       // // шрифты

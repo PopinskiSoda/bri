@@ -1,4 +1,7 @@
+@import "Utils/sprite-helper";
+
 $block: "offer-card";
+$hintHeight: 23px;
 
 .#{$block} {
 	width: 220px;
@@ -6,9 +9,29 @@ $block: "offer-card";
 	border-radius: 8px;
 	background: #ffffff;
 	position: relative;
+	overflow: hidden;
+
+	&__image-wrapper {
+		position: relative;
+	}
 
 	&__image {
 		max-width: 100%;
+	}
+
+	&__image-overlay {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: linear-gradient(
+			to bottom,
+			rgba(255,255,255,1) 0%,
+			rgba(255,255,255,0.9) 40%,
+			rgba(255,255,255,0) 100%
+		);
+		display: none;
 	}
 
 	&__title {
@@ -29,12 +52,55 @@ $block: "offer-card";
 
 	&__hint {
 		position: absolute;
-		font-family: "PFAgoraSansPro";
-		font-size: 6px;
+		top: 0;
+		width: 100%;
+		height: $hintHeight;
+		line-height: $hintHeight;
+		text-align: center;
+		vertical-align: middle;
+		font-family: "PFAgoraSansPro";		//?????
+		// font-size: 6px;				//??????
+		font-size: 15px;
 		color: #ffffff;
+		display: none;
+		background-color: #abc9e8;
+	}
+
+	&__buttons-wrapper {
+		position: absolute;
+		top: $hintHeight;
+		display: none;
+		padding-top: 7px;
+	}
+
+	&__icon {
+		margin-right: 19px;
+
+		&:first-child{
+			margin-left: 13px;
+		}
+
+		&:last-child{
+			margin-right: 0;
+		}
 	}
 
 	&:hover {
 		border-color: #abc9e8;
+		box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.48); 
+
+		.#{$block} {
+			&__hint {
+				display: block;
+			}
+
+			&__buttons-wrapper {
+				display: block;
+			}
+
+			&__image-overlay {
+				display: block;
+			}
+		}
 	}
 }
