@@ -4,12 +4,28 @@ $block: "offer-card";
 $hintHeight: 23px;
 
 .#{$block} {
+	// display: inline-block;
+	float: left;
 	width: 220px;
+	margin-right: 18px;
+	margin-bottom: 16px;
 	border: solid 1px #ebebeb;
 	border-radius: 8px;
 	background: #ffffff;
 	position: relative;
 	overflow: hidden;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	&:first-child {
+		height: 400px;
+	}
+
+	// &:nth-child(4n+1) {
+	//    clear: both;
+	// }
 
 	&__image-wrapper {
 		position: relative;

@@ -1,0 +1,17 @@
+$block: 'offer-popup';
+
+.#{$block} {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+
+	background-color: #ffffff;
+	width: 810px;
+	height: 800px;
+	z-index: 100;
+	border-radius: 3px;
+	box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.46);
+}

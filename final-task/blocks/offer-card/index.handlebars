@@ -18,7 +18,19 @@
 		<div class="offer-card__attribute">{{location}}</div>
 	</div>
 	<div>
-		<span class="offer-card__counter">{{likedAmount}}</span>
-		<span class="offer-card__counter">{{addedAmount}}</span>
+		{{#if likedAmount}}
+			<span class="offer-card__counter">{{likedAmount}}</span>
+		{{/if}}
+		{{#if likedAmount}}
+			<span class="offer-card__counter">{{commentAmount}}</span>
+		{{/if}}
+		{{#if likedAmount}}
+			<span class="offer-card__counter">{{reviewAmount}}</span>
+		{{/if}}
+		{{#if likedAmount}}
+			<span class="offer-card__counter">{{addedAmount}}</span>
+		{{/if}}
 	</div>
+	{{!-- {{#bem-helper}}kek{{/bem-helper}} --}}
+	{{!-- <div {{#bem}}{block: 1}{{/bem}}></div> --}}
 </div>

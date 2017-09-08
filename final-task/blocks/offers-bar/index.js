@@ -36,7 +36,6 @@ export default class OffersBar {
   }
 
   render() {
-    console.log(this._offers);
     return Template({
       offers: this._offers
     });

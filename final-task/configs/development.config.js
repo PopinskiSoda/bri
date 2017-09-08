@@ -53,6 +53,9 @@ module.exports = {
         query: {
           partialDirs: [
             path.join(__dirname, '..', 'blocks')
+          ],
+          helperDirs: [
+            path.join(__dirname, '..', 'utils')
           ]
         }
       },
