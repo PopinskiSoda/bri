@@ -66,7 +66,8 @@ $hintHeight: 23px;
 		color: #82848A
 	}
 
-	&__hint {
+	&__popup-button {
+		cursor: pointer;
 		position: absolute;
 		top: 0;
 		width: 100%;
@@ -106,7 +107,7 @@ $hintHeight: 23px;
 		box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.48); 
 
 		.#{$block} {
-			&__hint {
+			&__popup-button {
 				display: block;
 			}
 

@@ -1,9 +1,20 @@
+@import "~Utils/custom-fonts";
+
 @import "~Blocks/offer-card/index";
 @import "~Blocks/offers-bar/index";
 @import "~Blocks/offer-popup/index";
 @import "~Blocks/popup-background/index";
+@import "~Blocks/button/index";
+@import "~Blocks/avatar/index";
+@import "~Blocks/user-card/index";
 
 body {
 	font-family: "Arial";
 	margin: 0;
+}
+
+button {
+	border: none;
+	padding: 0;
+	background: none;
 }

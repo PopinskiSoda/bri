@@ -28,7 +28,8 @@ module.exports = {
     alias: {
       Blocks: path.join(__dirname, '..', 'blocks'),
       Utils: path.join(__dirname, '..', 'utils'),
-      Images: path.join(__dirname, '..', 'images')
+      Images: path.join(__dirname, '..', 'images'),
+      Fonts: path.join(__dirname, '..', 'fonts')
     }
   },
   module: {

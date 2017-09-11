@@ -43,10 +43,10 @@ module.exports = {
       },
 
       // // шрифты
-      // {
-      //   test: /\.(ttf|eot|svg|woff(2)?)(\?.+)?$/,
-      //   loader: 'file?name=[path][name].[ext]'
-      // },
+      {
+        test: /\.ttf$/,
+        loader: 'file-loader?name=[path][name].[ext]&limit=8192'
+      },
 
       {
         test: /\.handlebars$/, loader: "handlebars-loader",

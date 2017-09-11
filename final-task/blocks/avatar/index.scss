@@ -1,0 +1,35 @@
+$block: 'avatar';
+
+@mixin avatarSize($diameter, $padding) {
+	.#{$block}__image {
+		height: $diameter;
+		width: $diameter;
+	}
+
+	$wrapperDiameter: $diameter + $padding*2;
+	height: $wrapperDiameter;
+	width: $wrapperDiameter;
+}
+
+.#{$block} {
+	position: relative;
+	border: 1px solid #bdbdbf;
+	border-radius: 50%;
+
+	&__image {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+
+		border-radius: 50%;
+	}
+
+	&--small { @include avatarSize(26px, 1px); }
+
+	&--medium { @include avatarSize(44px, 2px); }
+
+	&--large { @include avatarSize(66px, 4px); }
+}

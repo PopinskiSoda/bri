@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 const OFFERS = [
   {
-    imageSrc: 'http://wallpaper-gallery.net/images/image/image-3.jpg',
+    imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
     title: 'Попугай',
     category: 'Зверь',
     timespan: 'Актуально',
@@ -15,7 +15,7 @@ const OFFERS = [
     addedAmount: 1
   },
   {
-    imageSrc: 'http://wallpaper-gallery.net/images/image/image-3.jpg',
+    imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
     title: '3',
     category: '4',
     timespan: '5',
@@ -24,7 +24,7 @@ const OFFERS = [
     addedAmount: 0
   },
   {
-    imageSrc: 'http://wallpaper-gallery.net/images/image/image-3.jpg',
+    imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
     title: '3',
     category: '4',
     timespan: '5',
@@ -33,7 +33,7 @@ const OFFERS = [
     addedAmount: 0
   },
   {
-    imageSrc: 'http://wallpaper-gallery.net/images/image/image-3.jpg',
+    imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
     title: '3',
     category: '4',
     timespan: '5',
@@ -42,7 +42,7 @@ const OFFERS = [
     addedAmount: 0
   },
   {
-    imageSrc: 'http://wallpaper-gallery.net/images/image/image-3.jpg',
+    imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
     title: 'Попугай',
     category: 'Зверь',
     timespan: 'Актуально',
@@ -51,7 +51,7 @@ const OFFERS = [
     addedAmount: 1
   },
   {
-    imageSrc: 'http://wallpaper-gallery.net/images/image/image-3.jpg',
+    imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
     title: '3',
     category: '4',
     timespan: '5',
@@ -60,7 +60,7 @@ const OFFERS = [
     addedAmount: 0
   },
   {
-    imageSrc: 'http://wallpaper-gallery.net/images/image/image-3.jpg',
+    imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
     title: '3',
     category: '4',
     timespan: '5',
@@ -69,7 +69,7 @@ const OFFERS = [
     addedAmount: 0
   },
   {
-    imageSrc: 'http://wallpaper-gallery.net/images/image/image-3.jpg',
+    imageURL: 'http://i.imgur.com/2czseQm.gif',
     title: '3',
     category: '4',
     timespan: '5',
@@ -85,7 +85,11 @@ var offersBar = new OffersBar(OFFERS);
 var offerCard = new OfferСard(OFFERS[0]);
 
 // console.log(offerCard.render());
-var offerPopup = new OfferPopup();
+var offerPopup = new OfferPopup({
+  firstName: 'Rare',
+  lastName: 'Parrot',
+  imageURL: 'http://i.imgur.com/2czseQm.gif'}
+);
 var popupBackground = new PopupBackground();
 
 $('body')

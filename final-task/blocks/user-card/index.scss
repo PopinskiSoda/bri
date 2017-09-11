@@ -1,0 +1,12 @@
+$block: 'user-card';
+
+.#{$block} {
+	&__full-name {
+		font-family: "PFAgoraSansPro";
+		color: #8473ac;
+	}
+
+	&__caption {
+
+	}
+}

@@ -10,8 +10,19 @@ $block: 'offer-popup';
 
 	background-color: #ffffff;
 	width: 810px;
-	height: 800px;
+	// height: 800px;
 	z-index: 100;
 	border-radius: 3px;
 	box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.46);
+
+	&__header {
+		height: 142px;
+		// width: 100%;
+	}
+
+	&__offer {
+		width: 642px;
+		height: 464px;
+		background-color: grey;
+	}
 }

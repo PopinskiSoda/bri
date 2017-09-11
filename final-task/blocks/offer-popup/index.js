@@ -1,11 +1,11 @@
 import Template from './index.handlebars';
 
 export default class OfferPopup {
-  // constructor() {
-
-  // }
+  constructor(user) {
+    this._user = user;
+  }
   // 
   render() {
-    return Template({});
+    return Template({user: this._user});
   }
 }
