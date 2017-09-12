@@ -86,10 +86,31 @@ var offerCard = new OfferСard(OFFERS[0]);
 
 // console.log(offerCard.render());
 var offerPopup = new OfferPopup({
-  firstName: 'Rare',
-  lastName: 'Parrot',
-  imageURL: 'http://i.imgur.com/2czseQm.gif'}
-);
+  user: {
+    firstName: 'Rare',
+    lastName: 'Parrot',
+    imageURL: 'http://i.imgur.com/2czseQm.gif'
+  },
+  imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
+  comments: [
+    {
+      user: {
+        firstName: 'Rare',
+        lastName: 'Parrot',
+        imageURL: 'http://i.imgur.com/2czseQm.gif'
+      },
+      text: 'Действие происходит в Зоне:'
+    },
+    {
+      user: {
+        firstName: 'Rare',
+        lastName: 'Parrot',
+        imageURL: 'http://i.imgur.com/2czseQm.gif'
+      },
+      text: 'Как-то в бар приходит Плоть, а в баре очередь, ну она встаёт за последним сталкером и ждёт.'
+    }
+  ]
+});
 var popupBackground = new PopupBackground();
 
 $('body')

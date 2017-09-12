@@ -6,7 +6,6 @@ $spriteGrid: 31px;
 }
 
 .icon { width: 31px; height: 31px; display: inline-block; };
-.icon:hover { cursor: pointer; };
 
 .icon-lamp   { @include sprite(0, 0) };
 .icon-heart  { @include sprite(1, 0) };
@@ -17,3 +16,9 @@ $spriteGrid: 31px;
 .icon-heart:hover  { @include sprite(1, 1) };
 .icon-plus:hover   { @include sprite(2, 1) };
 .icon-bubble:hover { @include sprite(3, 1) };
+
+.icon-implemented {
+	@include sprite(4, 0)
+	width: 24px;
+	height: 26px;
+};

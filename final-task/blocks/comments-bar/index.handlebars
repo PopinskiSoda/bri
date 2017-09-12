@@ -1,0 +1,14 @@
+<div class="comments-bar">
+	{{#each comments}}
+		<div class="comments-bar__comment">
+			{{>avatar/index
+				size="medium"
+				imageURL=this.user.imageURL
+				classes="comments-bar__comment-avatar"
+			}}
+			<div class="comments-bar__comment-text">
+				{{this.text}}
+			</div>
+		</div>
+	{{/each}}
+</div>

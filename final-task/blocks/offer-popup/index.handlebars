@@ -1,13 +1,42 @@
 <div class="offer-popup">
-	<div class="offer-popup__header">
-		{{!-- <button class="button button--purple">Добавить в друзья</button>
-		<button class="button button--white">Добавить в друзья</button>
-		<button class="button button--close">Закрыть</button> --}}
-		{{!-- {{>avatar/index size="large" imageURL="http://i.imgur.com/2czseQm.gif"}} --}}
-		{{>user-card/index}}
+	<div class="offer-popup__row">
+		<div class="offer-popup__column offer-popup__column--no-separator">
+			{{>user-card/index
+				user=this.user
+				classes="offer-popup__user-card"
+			}}
+		</div>
+		<div class="offer-popup__column offer-popup__column--small-padding offer-popup__column--no-separator">
+			<button class="button button--purple offer-popup__add-friend-button">Добавить в друзья</button>
+		</div>
 	</div>
-	<div class="offer-popup__content">
-		<div class="offer-popup__offer"></div>
-		<div class="offer-popup__buttons"></div>
+	<div class="offer-popup__row">
+		<div class="offer-popup__column">
+			<h2 class="offer-popup__header">Отпуск с семьей на море</h2>
+			<div class="offer-popup__caption">Отдых и путешествия</div>
+			<div class="offer-popup__image-wrapper">
+				<img class="offer-popup__image" src="{{imageURL}}">
+				<div class="offer-popup__image-overlay">
+					<div class="offer-popup__implemented-label">
+						<div class="offer-popup__implemented-caption">Реализовано</div>
+						<div class="offer-popup__implemented-icon icon icon-implemented"></div>
+					</div>
+				</div>
+			</div>
+			<div class="offer-popup__text">
+			</div>
+		</div>
+		<div class="offer-popup__column offer-popup__column--small-padding">
+			<div class="offer-popup__buttons-group">
+				<button class="button button--white button--block">Добавить к себе</button>
+				<button class="button button--white button--block">Мне нравится</button>
+				<button class="button button--white button--block">Комментировать</button>
+			</div>
+		</div>
+	</div>
+	<div class="offer-popup__row">
+		{{>comments-bar/index
+			comments=this.comments
+		}}
 	</div>
 </div>

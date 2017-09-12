@@ -1,0 +1,24 @@
+$block: "comments-bar";
+
+.#{$block} {
+	background-color: #f1f1f1;
+
+	&__comment {
+		border-bottom: 1px solid #d8d8d8;
+		font-size: 12px;
+		color: #6d6d6d;
+		width: 100%;
+
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	&__comment-avatar {
+		float: left;
+	}
+
+	&__comment-text {
+		float: left;
+	}
+}

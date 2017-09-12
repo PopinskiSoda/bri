@@ -36,4 +36,14 @@ $block: 'button';
 			content: "\274C";
 		}
 	}
+
+	&--block {
+		display: block;
+		margin-bottom: 16px;
+		min-width: 125px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }

@@ -7,9 +7,14 @@
 @import "~Blocks/button/index";
 @import "~Blocks/avatar/index";
 @import "~Blocks/user-card/index";
+@import "~Blocks/comments-bar/index";
 
 body {
 	font-family: "Arial";
+	margin: 0;
+}
+
+h2 {
 	margin: 0;
 }
 

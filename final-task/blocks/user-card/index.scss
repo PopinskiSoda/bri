@@ -1,12 +1,32 @@
 $block: 'user-card';
 
 .#{$block} {
+
+	&__column {
+		float: left;
+		margin-right: 7px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
 	&__full-name {
+		font-size: 15px;
 		font-family: "PFAgoraSansPro";
 		color: #8473ac;
+		margin-top: 20px;
 	}
 
 	&__caption {
+		color: #82848a;
+		font-size: 11px;
+		font-style: italic;
+	}
 
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
 	}
 }
