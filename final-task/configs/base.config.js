@@ -29,7 +29,8 @@ module.exports = {
       Blocks: path.join(__dirname, '..', 'blocks'),
       Utils: path.join(__dirname, '..', 'utils'),
       Images: path.join(__dirname, '..', 'images'),
-      Fonts: path.join(__dirname, '..', 'fonts')
+      Fonts: path.join(__dirname, '..', 'fonts'),
+      Logic: path.join(__dirname, '..', 'logic')
     }
   },
   module: {

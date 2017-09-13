@@ -37,6 +37,24 @@
 	<div class="offer-popup__row">
 		{{>comments-bar/index
 			comments=this.comments
+			modifier="popup"
 		}}
 	</div>
+	<div class="offer-popup__row">
+		<div class="offer-popup__column">
+			{{>users-group/index
+				users=addedUsers
+				title="добавили к себе"
+			}}
+		</div>
+	</div>
+	<div class="offer-popup__row">
+		<div class="offer-popup__column">
+			{{>users-group/index
+				users=likedUsers
+				title="нравится"
+			}}
+		</div>
+	</div>
+	<button class="button button--close offer-popup__button-close">Закрыть</button>
 </div>

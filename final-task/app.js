@@ -69,7 +69,7 @@ const OFFERS = [
     addedAmount: 0
   },
   {
-    imageURL: 'http://i.imgur.com/2czseQm.gif',
+    imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
     title: '3',
     category: '4',
     timespan: '5',
@@ -109,14 +109,43 @@ var offerPopup = new OfferPopup({
       },
       text: 'Как-то в бар приходит Плоть, а в баре очередь, ну она встаёт за последним сталкером и ждёт.'
     }
+  ],
+  likedUsers: [
+    {
+      firstName: 'Rare',
+      lastName: 'Parrot',
+      imageURL: 'http://i.imgur.com/2czseQm.gif'
+    },
+    {
+      firstName: 'Rare',
+      lastName: 'Parrot',
+      imageURL: 'http://i.imgur.com/2czseQm.gif'
+    },
+    {
+      firstName: 'Rare',
+      lastName: 'Parrot',
+      imageURL: 'http://i.imgur.com/2czseQm.gif'
+    },
+  ],
+  addedUsers: [
+    {
+      firstName: 'Rare',
+      lastName: 'Parrot',
+      imageURL: 'http://i.imgur.com/2czseQm.gif'
+    },
+    {
+      firstName: 'Rare',
+      lastName: 'Parrot',
+      imageURL: 'http://i.imgur.com/2czseQm.gif'
+    }
   ]
 });
 var popupBackground = new PopupBackground();
 
 $('body')
-  .append(offersBar.render())
-  .append(popupBackground.render())
-  .append(offerPopup.render());
+  .append(offersBar.render());
+  // .append(popupBackground.render())
+  // .append(offerPopup.render());
 
 // $('.grid').masonry({
 //   itemSelector: '.item',

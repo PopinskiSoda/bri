@@ -1,14 +1,22 @@
-<div class="comments-bar">
+<div class="comments-bar comments-bar--{{modifier}}">
 	{{#each comments}}
 		<div class="comments-bar__comment">
 			{{>avatar/index
 				size="medium"
-				imageURL=this.user.imageURL
-				classes="comments-bar__comment-avatar"
+				imageURL=user.imageURL
+				classes="comments-bar__avatar"
 			}}
 			<div class="comments-bar__comment-text">
-				{{this.text}}
+				{{text}}
 			</div>
 		</div>
 	{{/each}}
+	<div class="comments-bar__textarea-wrapper">
+		{{>avatar/index
+			size="medium"
+			imageURL="#"
+			classes="comments-bar__avatar"
+		}}
+		<textarea class="comments-bar__textarea" placeholder="Комментировать"></textarea>
+	</div>
 </div>

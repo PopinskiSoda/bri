@@ -2,23 +2,66 @@ $block: "comments-bar";
 
 .#{$block} {
 	background-color: #f1f1f1;
+	$paddingLeft: 40px;
+	$textMarginLeft: 32px;
 
 	&__comment {
 		border-bottom: 1px solid #d8d8d8;
-		font-size: 12px;
-		color: #6d6d6d;
 		width: 100%;
+		box-sizing: border-box;
 
 		content: "";
 		display: table;
 		clear: both;
 	}
 
-	&__comment-avatar {
+	&__avatar {
 		float: left;
 	}
 
 	&__comment-text {
 		float: left;
+	}
+
+	&__textarea {
+		resize: none;
+		border: 1px solid #cdcdcd;
+		font-size: 14px;
+		font-family: "PFAgoraSansPro";
+
+		&::placeholder {
+			color: #cacaca;
+		}
+	}
+
+	&--popup {
+
+		.#{$block} {
+			
+			&__comment {
+				padding: 17px 0 6px $paddingLeft;
+			}
+
+			&__comment-text {
+				font-size: 12px;
+				color: #6d6d6d;
+				width: 554px;
+				margin: 4px 0 16px $textMarginLeft;
+			}
+
+			&__textarea-wrapper {
+				padding: 20px 0 18px $paddingLeft;
+			}
+
+			&__textarea {
+				width: 647px;
+				height: 51px;
+				padding: 8px 10px;
+				box-sizing: border-box;
+				margin-left: $textMarginLeft;
+				vertical-align: bottom;
+			}
+		}
+
 	}
 }

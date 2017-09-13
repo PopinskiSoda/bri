@@ -10,7 +10,6 @@ $block: 'offer-popup';
 
 	background-color: #ffffff;
 	width: 810px;
-	height: 1080px;
 	z-index: 100;
 	border-radius: 3px;
 	box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.46);
@@ -124,5 +123,11 @@ $block: 'offer-popup';
 
 	&__buttons-group {
 		margin-top: 70px;
+	}
+
+	&__button-close {
+		position: absolute;
+		top: 10px;
+		right: 12px;
 	}
 }
