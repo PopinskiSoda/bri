@@ -5,7 +5,7 @@ $block: 'button';
 
 	&--purple {
 		// font-size: 5px;
-		// font-family: "PFAgoraSansPro";
+		font-family: "PFAgoraSansPro";
 		background: url('Images/sprites/repeat-x.png') 0 0 repeat-x;
 		height: 25px;
 		color: #fff;
@@ -16,7 +16,7 @@ $block: 'button';
 
 	&--white {
 		// font-size: 5px;
-		// font-family: "PFAgoraSansPro";
+		font-family: "PFAgoraSansPro";
 		background: url('Images/sprites/repeat-x.png') 0 -27px repeat-x;
 		border: 1px solid #cbcbcb;
 		border-top-color: #d3d3d3;

@@ -130,4 +130,8 @@ $block: 'offer-popup';
 		top: 10px;
 		right: 12px;
 	}
+
+	&--hidden {
+		display: none;
+	}
 }

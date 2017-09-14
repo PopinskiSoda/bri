@@ -2,6 +2,7 @@ import OffersBar from 'Blocks/offers-bar';
 import OfferСard from 'Blocks/offer-card';
 import OfferPopup from 'Blocks/offer-popup';
 import PopupBackground from 'Blocks/popup-background';
+import PopupBase from 'Logic/popup-base';
 import $ from 'jquery';
 
 const OFFERS = [
@@ -85,7 +86,7 @@ var offersBar = new OffersBar(OFFERS);
 var offerCard = new OfferСard(OFFERS[0]);
 
 // console.log(offerCard.render());
-var offerPopup = new OfferPopup({
+var offer = {
   user: {
     firstName: 'Rare',
     lastName: 'Parrot',
@@ -139,18 +140,13 @@ var offerPopup = new OfferPopup({
       imageURL: 'http://i.imgur.com/2czseQm.gif'
     }
   ]
-});
-var popupBackground = new PopupBackground();
+};
 
-$('body')
-  .append(offersBar.render());
-  // .append(popupBackground.render())
-  // .append(offerPopup.render());
+var popupBackground = new PopupBackground($('.popup-background'));
+var offerPopup = new OfferPopup($('.offer-popup'));
 
-// $('.grid').masonry({
-//   itemSelector: '.item',
-//   columnWidth: '222px'
-// });
-  // $('<div>')
-  //   .addClass('offers-bar')
-  //   .append(offerCard.render())
+PopupBase.setPopupBackground(popupBackground);
+
+offerPopup.setOffer(offer);
+offerPopup.render();
+offerPopup.open();

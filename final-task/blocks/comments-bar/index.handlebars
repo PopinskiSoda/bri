@@ -14,9 +14,13 @@
 	<div class="comments-bar__textarea-wrapper">
 		{{>avatar/index
 			size="medium"
-			imageURL="#"
+			imageURL=user.imageURL
 			classes="comments-bar__avatar"
 		}}
-		<textarea class="comments-bar__textarea" placeholder="Комментировать"></textarea>
+		<textarea
+			class="comments-bar__textarea"
+			placeholder="Комментировать"
+			maxlength="{{maxLength}}"
+		></textarea>
 	</div>
 </div>

@@ -6,6 +6,4 @@ export default class OfferJS {
     this._likedUsers = options.likedUsers || [];
     this._addedUsers = options.addedUsers || [];
   }
-
-  
 }
