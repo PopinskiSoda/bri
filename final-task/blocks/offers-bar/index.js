@@ -1,24 +1,12 @@
 import Template from './index.handlebars';
-
-// export default function(){
-//   console.log(Template({
-//     offers: [
-//       {
-//         imageSrc: '',
-//         title: '',
-//         category: '',
-//         timespan: '',
-//         location: '',
-//         likedAmount: 0,
-//         addedAmount: 0
-//       }
-//     ]
-//   }));
-// }
+import $ from 'jquery';
+import OfferCard from 'Blocks/offer-card';
 
 export default class OffersBar {
-  constructor(offers) {
-    this._offers = offers || [];
+  constructor($obj, options) {
+    this._$obj = $obj;
+    this._offers = options.offers || [];
+    this._offerPopup = options.offerPopup || null;
   }
 
   addOffer(offer) {
@@ -36,8 +24,15 @@ export default class OffersBar {
   }
 
   render() {
-    return Template({
-      offers: this._offers
-    });
+    this._$obj.empty();
+
+    console.log(this._offers);
+
+    for(let i=0; i<this._offers.length; i++) {
+      let offerCard = new OfferCard(this._offers[i], this._offerPopup);
+
+      offerCard.render();
+      offerCard.appendTo(this._$obj);
+    }
   }
 }

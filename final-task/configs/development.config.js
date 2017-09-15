@@ -90,7 +90,7 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
-    new ExtractTextPlugin("../index.html")
+    new ExtractTextPlugin("./index.html")
   ]
   // plugins: [
   //   // плагин нужен для генерация файла-манифеста, который будет использован

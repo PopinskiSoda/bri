@@ -28,13 +28,16 @@ $block: 'button';
 
 	&--close {
 		font-size: 14px;
-		// font-family: "Arial";
 		color: rgba(0, 0, 0, 0.6);
 
 		&:after {
 			margin-left: 5px;
 			content: "\274C";
 		}
+	}
+
+	&--icon {
+		
 	}
 
 	&--block {

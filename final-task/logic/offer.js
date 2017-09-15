@@ -1,9 +1,19 @@
-export default class OfferJS {
+export default class Offer {
   constructor(options) {
-    this._user = options.user;
-    this._imageUrl = options.imageUrl || 'http://tpk-1.ru/wp-content/themes/basic/images/no_photo.png';
-    this._comments = options.comments || [];
-    this._likedUsers = options.likedUsers || [];
-    this._addedUsers = options.addedUsers || [];
+    this.title = options.title || null;
+    this.category = options.category || null;
+
+    this.user = options.user;
+    this.imageURL = options.imageURL || 'http://tpk-1.ru/wp-content/themes/basic/images/no_photo.png';
+    this.text = options.text || '';
+
+    this.comments = options.comments || [];
+    this.likedUsers = options.likedUsers || [];
+    this.addedUsers = options.addedUsers || [];
+
+    this.likedAmount = this.likedUsers.length;
+    this.addedAmount = this.addedUsers.length;
+    this.timespan = options.timespan || null;
+    this.location = options.location || null;
   }
 }

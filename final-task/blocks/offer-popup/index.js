@@ -17,6 +17,7 @@ export default class OfferPopup extends PopupBase {
   }
 
   open() {
+    console.log(this);
     super.open();
     this._$obj.removeClass('offer-popup--hidden');
   }
@@ -35,6 +36,8 @@ export default class OfferPopup extends PopupBase {
   }
 
   renderCommentsBar() {
+    // var $newCommentsBar = CommentsBar.render();
+    // this._$commentsBar ;
   }
 
   _init() {

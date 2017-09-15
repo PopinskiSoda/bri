@@ -11,9 +11,9 @@
 		</div>
 	</div>
 	<div class="offer-popup__row">
-		<div class="offer-popup__column">
-			<h2 class="offer-popup__header">Отпуск с семьей на море</h2>
-			<div class="offer-popup__caption">Отдых и путешествия</div>
+		<div class="offer-popup__column offer-popup__column--bottom-padding">
+			<h2 class="offer-popup__header">{{title}}</h2>
+			<div class="offer-popup__caption">{{category}}</div>
 			<div class="offer-popup__image-wrapper">
 				<img class="offer-popup__image" src="{{imageURL}}">
 				<div class="offer-popup__image-overlay">
@@ -23,8 +23,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="offer-popup__text">
-			</div>
+			{{#if text}}
+				<div class="offer-popup__text">{{text}}</div>
+			{{/if}}
 		</div>
 		<div class="offer-popup__column offer-popup__column--small-padding">
 			<div class="offer-popup__buttons-group">

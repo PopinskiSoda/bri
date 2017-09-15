@@ -4,7 +4,6 @@ $block: "offer-card";
 $hintHeight: 23px;
 
 .#{$block} {
-	// display: inline-block;
 	float: left;
 	width: 220px;
 	margin-right: 18px;
@@ -15,7 +14,10 @@ $hintHeight: 23px;
 	position: relative;
 	overflow: hidden;
 
-	&:last-child {
+	// &:last-child {
+	// 	margin-right: 0;
+	// }
+	&:nth-child(4n) {
 		margin-right: 0;
 	}
 
@@ -82,7 +84,7 @@ $hintHeight: 23px;
 		padding-top: 7px;
 	}
 
-	&__icon {
+	&__icon-button {
 		margin-right: 19px;
 
 		&:first-child{

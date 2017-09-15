@@ -2,11 +2,11 @@ $block: 'offer-popup';
 
 .#{$block} {
 	position: absolute;
-	top: 30px;
+	// top: 30px;
 	right: 0;
 	// bottom: 0;
 	left: 0;
-	margin: 0 auto;
+	margin: 52px auto 68px;
 
 	background-color: #ffffff;
 	width: 810px;
@@ -41,6 +41,10 @@ $block: 'offer-popup';
 
 		&--small-padding {
 			padding: 0 21px;
+		}
+
+		&--bottom-padding {
+			padding-bottom: 35px;
 		}
 
 		&:first-child, &--no-separator {
@@ -81,6 +85,7 @@ $block: 'offer-popup';
 		position: relative;
 		width: $maxOfferWidth;
 		margin-top: 4px;
+		text-align: center;
 	}
 
 	&__image {
@@ -96,7 +101,7 @@ $block: 'offer-popup';
 		background: linear-gradient(
 			to top,
 			rgba(255,255,255,1) 0%,
-			rgba(255,255,255,0.9) 30%,
+			rgba(255,255,255,0.9) 20%,
 			rgba(255,255,255,0) 100%
 		);
 	}
@@ -116,7 +121,6 @@ $block: 'offer-popup';
 
 	&__text {
 		margin-top: 30px;
-		padding-bottom: 35px;
 		font-size: 14px;
 		max-width: $maxOfferWidth;
 	}
