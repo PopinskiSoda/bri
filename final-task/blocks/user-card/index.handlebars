@@ -1,13 +1,13 @@
-<div class="user-card {{classes}}">
+<div class="user-card user-card--{{size}} {{classes}}">
 	<div class="user-card__column">
 		{{>	avatar/index 
 				imageURL=user.imageURL
-				size="large"
+				size=size
 				classes='user-card__avatar'
 		}}
 	</div>
 	<div class="user-card__column">
 		<div class="user-card__full-name">{{user.firstName}} {{user.lastName}}</div>
-		<div class="user-card__caption">kek</div>
+		<div class="user-card__caption">{{caption}}</div>
 	</div>
 </div>

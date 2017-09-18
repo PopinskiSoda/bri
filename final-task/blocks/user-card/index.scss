@@ -12,16 +12,37 @@ $block: 'user-card';
 	}
 
 	&__full-name {
-		font-size: 15px;
 		font-family: "PFAgoraSansPro";
 		color: #8473ac;
-		margin-top: 20px;
 	}
 
 	&__caption {
 		color: #82848a;
-		font-size: 11px;
 		font-style: italic;
+	}
+
+	&--large {
+
+		.#{$block}__full-name {
+			font-size: 15px;
+			margin-top: 20px;
+		}
+
+		.#{$block}__caption {
+			font-size: 11px;
+		}
+	}
+
+	&--small {
+
+		.#{$block}__full-name {
+			font-size: 12px;	// ?
+			margin-top: 1px;
+		}
+
+		.#{$block}__caption {
+			font-size: 11px;	// ?
+		}
 	}
 
 	&:after {

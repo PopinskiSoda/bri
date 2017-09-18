@@ -55,7 +55,8 @@ module.exports = {
             path.join(__dirname, '..', 'blocks')
           ],
           helperDirs: [
-            path.join(__dirname, '..', 'utils')
+            // path.join(__dirname, '..', 'utils')
+            path.join(__dirname, '..', 'blocks')
           ]
         }
       },

@@ -6,10 +6,12 @@ import CommentsBar from 'Blocks/comments-bar';
 export default class OfferPopup extends PopupBase {
   constructor($obj, offer) {
     super();
+
     this._$obj = $obj;
     this._$closeButton = null;
-    this._$commentsBar = null;
+
     this._offer = offer || null;
+    this._commentsBar = null;
   }
 
   setOffer(offer) {
@@ -17,7 +19,6 @@ export default class OfferPopup extends PopupBase {
   }
 
   open() {
-    console.log(this);
     super.open();
     this._$obj.removeClass('offer-popup--hidden');
   }
@@ -36,13 +37,22 @@ export default class OfferPopup extends PopupBase {
   }
 
   renderCommentsBar() {
-    // var $newCommentsBar = CommentsBar.render();
-    // this._$commentsBar ;
+    this._commentsBar.render({
+      modifier: 'popup'
+    });
+  }
+
+  renderComments() {
+    this._commentsBar.renderComments();
   }
 
   _init() {
+    var $commentsBar = this._$obj.find('.comments-bar');
+
+    this._commentsBar = new CommentsBar($commentsBar);
+    this._commentsBar.render();
+
     this._$closeButton = this._$obj.find('.button--close');
     this._$closeButton.click(this.close.bind(this));
-    this._$commentsBar = this._$obj.find('.comments-bar');
   }
 }

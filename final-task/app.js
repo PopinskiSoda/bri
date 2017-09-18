@@ -14,12 +14,32 @@ const OFFERS = [
     },
     title: 'Отпуск с семьей на море',
     category: 'Отдых и путешествия',
+    timespan: 'Отдых и путешествия',
+    location: 'Отдых и путешествия',
     imageURL: 'https://i.pinimg.com/originals/87/9d/55/879d5517eb7c548f247c2cee5174e0e4.jpg',
     text: `Действие происходит в Зоне: Как-то в бар приходит Плоть, а в баре очередь, ну она встаёт за последним сталкером и ждёт. Спустя пару минут заходит долговец и спрашивает:
 -Кто крайний?
 Плоть отвечает, что она.
 Бармен поперхнулся и умер.`,
     comments: [
+      {
+        user: {
+          firstName: 'Rare',
+          lastName: 'Parrot',
+          imageURL: '../images/avatars/1.jpg'
+        },
+        text: 'Действие происходит в Зоне:'
+      },
+      {
+        user: {
+          firstName: 'Rare',
+          lastName: 'Parrot',
+          imageURL: '../images/avatars/2.jpg'
+        },
+        text: 'Как-то в бар приходит Плоть, а в баре очередь, ну она встаёт за последним сталкером и ждёт.'
+      }
+    ],
+    reviews: [
       {
         user: {
           firstName: 'Rare',
@@ -73,6 +93,10 @@ const OFFERS = [
       lastName: 'Parrot',
       imageURL: 'http://i.imgur.com/2czseQm.gif'
     },
+    title: 'Отпуск с семьей на море',
+    category: 'Отдых и путешествия',
+    timespan: 'Отдых и путешествия',
+    location: 'Отдых и путешествия',
     imageURL: 'https://nashzeleniymir.ru/wp-content/uploads/2016/03/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B9.jpg',
     comments: [
       {

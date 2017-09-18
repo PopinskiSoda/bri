@@ -19,13 +19,15 @@
 			<div class="icon icon-bubble"></div>
 		</button>
 	</div>
-	<h2 class="offer-card__title">{{title}}</h2>
-	<div>
+	<div class="offer-card__row offer-card__row--title">
+		<h2 class="offer-card__title">{{title}}</h2>
+	</div>
+	<div class="offer-card__row offer-card__row--attributes">
 		<div class="offer-card__attribute">{{category}}</div>
-		<div class="offer-card__attribute">{{timeSpan}}</div>
+		<div class="offer-card__attribute">{{timespan}}</div>
 		<div class="offer-card__attribute">{{location}}</div>
 	</div>
-	<div>
+	<div class="offer-card__row offer-card__row--counters">
 		{{#if likedAmount}}
 			<span class="offer-card__counter">{{likedAmount}} нравится</span>
 		{{/if}}
@@ -39,5 +41,12 @@
 			<span class="offer-card__counter">{{addedAmount}} добавили себе</span>
 		{{/if}}
 	</div>
-	{{>user-card/index}}
+	{{>user-card/index
+		size="small"
+		classes="offer-card__user-card"
+		caption="предлагает"
+	}}
+	{{>comments-bar/index
+		modifier="card"
+	}}
 </div>

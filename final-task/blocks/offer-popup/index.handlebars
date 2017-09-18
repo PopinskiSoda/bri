@@ -4,6 +4,8 @@
 			{{>user-card/index
 				user=this.user
 				classes="offer-popup__user-card"
+				size="large"
+				caption="Нуждается в этом"
 			}}
 		</div>
 		<div class="offer-popup__column offer-popup__column--small-padding offer-popup__column--no-separator">
@@ -37,7 +39,7 @@
 	</div>
 	<div class="offer-popup__row">
 		{{>comments-bar/index
-			comments=this.comments
+			comments=this.reviews
 			modifier="popup"
 			maxLength=500
 		}}

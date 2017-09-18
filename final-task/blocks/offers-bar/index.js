@@ -26,8 +26,6 @@ export default class OffersBar {
   render() {
     this._$obj.empty();
 
-    console.log(this._offers);
-
     for(let i=0; i<this._offers.length; i++) {
       let offerCard = new OfferCard(this._offers[i], this._offerPopup);
 
