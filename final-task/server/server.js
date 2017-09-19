@@ -3,22 +3,58 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const ROOT_DIR = '../public';
+
+
+app.use(express.static(ROOT_DIR));
 app.use(bodyParser.json());
+// app.use(function(req, res, next) {
+//   res.setHeader("Content-Type", "application/json");
+//   return next();
+// });
 
 const PORT = 3000;
-var offers = [];
+
+const MAX_COMMENTS_PER_RESPONCE = 5;
+const MAX_REVIEWS_PER_RESPONCE = 3;
+
+var offers = [{id: 1, comments:[], reviews:[]}];
+
+function getOfferById(id) {
+  return offers.find(function(offer) {
+    return offer.id == id;
+  });
+}
+
+function getTopReviews(offer) {
+  return offer.reviews.slice(-MAX_REVIEWS_PER_RESPONCE);
+}
+
+function getTopComments(offer) {
+  return offer.comments.slice(-MAX_COMMENTS_PER_RESPONCE);
+}
 
 app.route('/api/comments')
     .get(function(req, res) {
-      let offer = offers[req.offerId];
-      res.send(offer.comments);
+      let offer = getOfferById(req.query.offerId);
+
+      res.status(200).json(getTopComments(offer));
     })
-    .put(function(req, res) {
-      let offer = offers[req.offerId];
-      offer.comments.push(req)
+    .post(function(req, res) {
+      let offer = getOfferById(req.body.offerId);
+      
+      offer.comments.push(req.body.comment);
+      
+      // console.log('--------------');
+      // // console.log(offers);
+      // // console.log(offer);
+      // console.log(offer.comments);
+      // console.log('--------------');
+
+      res.status(200).json(getTopComments(offer));
     })
     .delete(function(req, res) {
-      let offer = offers[req.offerId];
+      let offer = getOfferById(req.body.offerId);
       offer.comments.filter(function(comment) {
         comment.id !== req.commentId;
       });
@@ -26,12 +62,11 @@ app.route('/api/comments')
 
 app.route('/api/offers')
     .get(function(req, res) {
-      res.send(offers);
+      res.json(offers);
     })
-    .put(function(req, res) {
+    .post(function(req, res) {
       offers.push(req.body);
-      console.log(offers);
-      res.sendStatus(200);
+      res.json(200);
     })
     .delete(function(req, res) {
       offers = offers.filter(function(offer) {
@@ -41,15 +76,15 @@ app.route('/api/offers')
 
 app.route('/api/reviews')
     .get(function(req, res) {
-      let offer = offers[req.offerId]
-      res.send(offer.reviews);
+      let offer = getOfferById(req.body.offerId);
+      res.json(offer.reviews);
     })
-    .put(function(req, res) {
-      let offer = offers[req.offerId]
-      offer.reviews.push(req)
+    .post(function(req, res) {
+      let offer = getOfferById(req.body.offerId);
+      offer.reviews.push(req.body.review);
     })
     .delete(function(req, res) {
-      let offer = offers[req.offerId]
+      let offer = getOfferById(req.body.offerId);
       offer.reviews.filter(function(review) {
         review.id !== req.reviewId;
       });

@@ -30,7 +30,8 @@ module.exports = {
       Utils: path.join(__dirname, '..', 'utils'),
       Images: path.join(__dirname, '..', 'images'),
       Fonts: path.join(__dirname, '..', 'fonts'),
-      Logic: path.join(__dirname, '..', 'logic')
+      Logic: path.join(__dirname, '..', 'logic'),
+      Configs: path.join(__dirname, '..', 'configs')
     }
   },
   module: {

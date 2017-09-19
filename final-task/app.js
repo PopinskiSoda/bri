@@ -324,16 +324,19 @@ var offer = {
   ]
 };
 
-var popupBackground = new PopupBackground($('.popup-background'));
-var offerPopup = new OfferPopup($('.offer-popup'));
-var offersBar = new OffersBar($('.offers-bar'), {
-  offers: OFFERS,
-  offerPopup: offerPopup
+$(document).ready(function() {
+
+  var popupBackground = new PopupBackground($('.popup-background'));
+  var offerPopup = new OfferPopup($('.offer-popup'));
+  var offersBar = new OffersBar($('.offers-bar'), {
+    offers: OFFERS,
+    offerPopup: offerPopup
+  });
+
+  PopupBase.setPopupBackground(popupBackground);
+
+  offersBar.render();
+  // offerPopup.setOffer(offer);
+  // offerPopup.open();
+  // offerPopup.render();
 });
-
-PopupBase.setPopupBackground(popupBackground);
-
-offersBar.render();
-// offerPopup.setOffer(offer);
-// offerPopup.open();
-// offerPopup.render();
