@@ -1,9 +1,9 @@
-import {addComment, getComments} from 'Logic/ajax-client/comments';
+import {addReview, getReviews} from 'logic/ajax-client/reviews';
 import Template from './index.handlebars';
 import $ from 'jquery';
-import PopupBase from 'Logic/popup-base';
-import Comment from 'Logic/comment';
-import CommentsBar from 'Blocks/comments-bar';
+import PopupBase from 'logic/popup-base';
+import Comment from 'logic/comment';
+import CommentsBar from 'blocks/comments-bar';
 
 export default class OfferPopup extends PopupBase {
   constructor($obj, offer) {
@@ -15,11 +15,10 @@ export default class OfferPopup extends PopupBase {
     this._offer = offer || null;
     this._commentsBar = null;
 
-    this._addComment = this._addComment.bind(this);
-    this._handleAddCommentSuccess = this._handleAddCommentSuccess.bind(this);
-    this._handleGetCommentsSuccess = this._handleGetCommentsSuccess.bind(this);
+    this._addReview = this._addReview.bind(this);
+    this._handleAddReviewSuccess = this._handleAddReviewSuccess.bind(this);
+    this._handleGetReviewsSuccess = this._handleGetReviewsSuccess.bind(this);
     this.close = this.close.bind(this);
-    this.renderComments = this.renderComments.bind(this);
   }
 
   setOffer(offer) {
@@ -52,37 +51,37 @@ export default class OfferPopup extends PopupBase {
     this._commentsBar.renderComments();
   }
 
-  _handleAddCommentSuccess(newComments) {
-    this._commentsBar.setComments(newComments);
+  _handleAddReviewSuccess(newReviews) {
+    this._commentsBar.setComments(newReviews);
     this._commentsBar.renderComments();
   }
 
-  _handleGetCommentsSuccess(newComments) {
+  _handleGetReviewsSuccess(newReviews) {
     var $commentsBar = this._$obj.find('.comments-bar');
 
     this._commentsBar = new CommentsBar($commentsBar, {
       modifier: 'popup',
-      onSubmit: this._addComment,
-      comments: newComments
+      onSubmit: this._addReview,
+      comments: newReviews
     });
     this._commentsBar.render();
   }
 
-  _addComment(newCommentText) {
-    let comment = new Comment({
-      text: newCommentText
+  _addReview(newReviewText) {
+    let review = new Comment({
+      text: newReviewText
     });
-    addComment({
-      comment,
-      offerId: 1,
-      onSuccess: this._handleAddCommentSuccess
+    addReview({
+      review,
+      offerId: this._offer.id,
+      onSuccess: this._handleAddReviewSuccess
     });
   }
 
   _init() {
-    getComments({
-      offerId: 1,
-      onSuccess: this._handleGetCommentsSuccess
+    getReviews({
+      offerId: this._offer.id,
+      onSuccess: this._handleGetReviewsSuccess
     });
 
     this._$closeButton = this._$obj.find('.button--close');

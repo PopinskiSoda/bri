@@ -2,6 +2,8 @@ import CommentsBarTemplate from './index.handlebars';
 import CommentsTemplate from './comments.handlebars';
 import $ from 'jquery';
 
+const ENTER_KEY_CODE = 13;
+
 export default class CommentsBar {
   constructor($obj, options) {
     this._$obj = $obj;
@@ -14,7 +16,15 @@ export default class CommentsBar {
 
     this._onSubmit = options && options.onSubmit || null;
 
-    this._handleOnEnter = this._handleOnEnter.bind(this);
+    this._handleKeyPress = this._handleKeyPress.bind(this);
+  }
+
+  hide() {
+    this._$obj.addClass('comments-bar--hidden');
+  }
+
+  show() {
+    this._$obj.removeClass('comments-bar--hidden');
   }
 
   setComments(comments) {
@@ -40,16 +50,17 @@ export default class CommentsBar {
     this._$comments = $newComments;
   }
 
-  // addComment() {
-  //   this._comments.push({text: "text"});
-  //   this.renderComments();
-  // }
+  _handleKeyPress(e) {
+    if (e.which == ENTER_KEY_CODE) {
+      e.preventDefault();
 
-  _handleOnEnter(e) {
-    if (e.which == 13) {
-      if(this._onSubmit) {
+      if (this._onSubmit) {
         let newCommentText = this._$textarea.val();
-        this._onSubmit(newCommentText);
+
+        if(newCommentText.trim() !== '') {
+          this._onSubmit(newCommentText);
+          this._$textarea.val('');
+        }
       }
     }
   }
@@ -58,6 +69,6 @@ export default class CommentsBar {
     this._$comments = this._$obj.find('.comments-bar__comments');
     this._$textarea = this._$obj.find('.comments-bar__textarea');
 
-    this._$textarea.keypress(this._handleOnEnter);
+    this._$textarea.keypress(this._handleKeyPress);
   }
 }

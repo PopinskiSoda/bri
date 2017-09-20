@@ -1,26 +1,26 @@
 import $ from 'jquery';
-import {API_URL} from 'Configs/constants';
+import {API_URL} from 'configs/constants';
 import REQUEST_HEADERS from './request-headers';
 
-const commentsURL = `${API_URL}/comments`;
+const commentsURLstr = `${API_URL}/comments`;
 
 export function getComments(options) {
   const {onSuccess, offerId} = options;
+  const commentsURL = options.commentsURL || commentsURLstr;
 
   $.ajax(Object.assign({
     url: commentsURL,
     type: 'GET',
-    success: options.onSuccess,
+    success: onSuccess,
     data: {
-      offerId: options.offerId
+      offerId
     }
   }, REQUEST_HEADERS));
 }
 
 export function addComment(options) {
   const {onSuccess, comment, offerId} = options;
-
-  console.log(comment);
+  const commentsURL = options.commentsURL || commentsURLstr;
 
   $.ajax(Object.assign({
     url: commentsURL,
@@ -28,15 +28,18 @@ export function addComment(options) {
     success: onSuccess,
     data: JSON.stringify({
       comment: {
-        text: comment.getText(),
-        user: comment.getUser()
+        text: comment.text,
+        user: comment.user
       },
       offerId
     })
   }, REQUEST_HEADERS));
 }
 
-export function deleteComment(offerId, commentId, onSuccess) {
+export function deleteComment(options) {
+  const {onSuccess, offerId, id} = options;
+  const commentsURL = options.commentsURL || commentsURLstr;
+
   $.ajax({
     url: commentsURL,
     type: 'DELETE',

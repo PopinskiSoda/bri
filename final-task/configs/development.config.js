@@ -2,6 +2,7 @@ const webpack = require('webpack');
 // const AssetsPlugin = require('assets-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   // debug: true,
@@ -39,7 +40,7 @@ module.exports = {
       // изображения
       {
         test: /\.(png|jpg|gif)$/,
-        loader: 'url-loader?name=[path][name].[ext]&limit=8192'
+        loader: 'file-loader?name=[path][name].[ext]&limit=8192'
       },
 
       // // шрифты
@@ -91,7 +92,13 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
-    new ExtractTextPlugin("./index.html")
+    new ExtractTextPlugin("./index.html"),
+    new CopyWebpackPlugin([
+      {
+        from: './images',
+        to: './images'
+      }
+    ])
   ]
   // plugins: [
   //   // плагин нужен для генерация файла-манифеста, который будет использован

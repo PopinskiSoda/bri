@@ -1,24 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
-const app = express();
+const cookieParser = require('cookie-parser');
+const fs = require('fs');
 
 const ROOT_DIR = '../public';
-
-
-app.use(express.static(ROOT_DIR));
-app.use(bodyParser.json());
-// app.use(function(req, res, next) {
-//   res.setHeader("Content-Type", "application/json");
-//   return next();
-// });
+const OFFERS_FILENAME = './offers.json';
 
 const PORT = 3000;
 
 const MAX_COMMENTS_PER_RESPONCE = 5;
 const MAX_REVIEWS_PER_RESPONCE = 3;
 
-var offers = [{id: 1, comments:[], reviews:[]}];
+const app = express();
+
+app.use(express.static(ROOT_DIR));
+app.use(cookieParser());
+app.use(bodyParser.json());
+
+var offers = JSON.parse(fs.readFileSync(OFFERS_FILENAME, 'utf8'));
 
 function getOfferById(id) {
   return offers.find(function(offer) {
@@ -44,25 +43,38 @@ app.route('/api/comments')
       let offer = getOfferById(req.body.offerId);
       
       offer.comments.push(req.body.comment);
-      
-      // console.log('--------------');
-      // // console.log(offers);
-      // // console.log(offer);
-      // console.log(offer.comments);
-      // console.log('--------------');
 
       res.status(200).json(getTopComments(offer));
     })
     .delete(function(req, res) {
       let offer = getOfferById(req.body.offerId);
       offer.comments.filter(function(comment) {
-        comment.id !== req.commentId;
+        comment.id !== req.body.id;
+      });
+    });
+
+app.route('/api/reviews')
+    .get(function(req, res) {
+      let offer = getOfferById(req.query.offerId);
+
+      res.status(200).json(getTopReviews(offer));
+    })
+    .post(function(req, res) {
+      let offer = getOfferById(req.body.offerId);
+      offer.reviews.push(req.body.review);
+
+      res.status(200).json(getTopReviews(offer));
+    })
+    .delete(function(req, res) {
+      let offer = getOfferById(req.body.offerId);
+      offer.reviews.filter(function(review) {
+        review.id !== req.body.id;
       });
     });
 
 app.route('/api/offers')
     .get(function(req, res) {
-      res.json(offers);
+      res.status(200).json(offers);
     })
     .post(function(req, res) {
       offers.push(req.body);
@@ -70,25 +82,20 @@ app.route('/api/offers')
     })
     .delete(function(req, res) {
       offers = offers.filter(function(offer) {
-        offer.id !== req.id;
+        offer.id !== req.body.id;
       });
     });
 
-app.route('/api/reviews')
-    .get(function(req, res) {
-      let offer = getOfferById(req.body.offerId);
-      res.json(offer.reviews);
-    })
+app.route('/api/like')
     .post(function(req, res) {
       let offer = getOfferById(req.body.offerId);
-      offer.reviews.push(req.body.review);
-    })
-    .delete(function(req, res) {
-      let offer = getOfferById(req.body.offerId);
-      offer.reviews.filter(function(review) {
-        review.id !== req.reviewId;
-      });
+      offer.likedUsers.push({});
+      res.status(200).json(offer.likedUsers)
     });
+    // .get(function(req, res)) {
+    //   let offer = getOfferById(req.query.id);
+    //   res.status(200).json(offer.likedUsers)
+    // }
 
 app.listen(PORT, function() {
   console.log(`Listening on port ${PORT}`);

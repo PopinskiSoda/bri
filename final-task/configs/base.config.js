@@ -26,12 +26,12 @@ module.exports = {
     // еще одно улучшение для require: из любого файла можно вызвать
     // require('libs/some.lib')
     alias: {
-      Blocks: path.join(__dirname, '..', 'blocks'),
-      Utils: path.join(__dirname, '..', 'utils'),
-      Images: path.join(__dirname, '..', 'images'),
-      Fonts: path.join(__dirname, '..', 'fonts'),
-      Logic: path.join(__dirname, '..', 'logic'),
-      Configs: path.join(__dirname, '..', 'configs')
+      blocks: path.join(__dirname, '..', 'blocks'),
+      utils: path.join(__dirname, '..', 'utils'),
+      images: path.join(__dirname, '..', 'images'),
+      fonts: path.join(__dirname, '..', 'fonts'),
+      logic: path.join(__dirname, '..', 'logic'),
+      configs: path.join(__dirname, '..', 'configs')
     }
   },
   module: {

@@ -2,6 +2,7 @@ $block: "comments-bar";
 
 .#{$block} {
 	background-color: #f1f1f1;
+
 	$paddingLeft: 40px;
 	$textMarginLeft: 32px;
 
@@ -34,9 +35,15 @@ $block: "comments-bar";
 		}
 	}
 
+	&--hidden {
+		display: none;
+	}
+
 	&--popup {
 
 		.#{$block} {
+
+			$commentTextWidth: 647px;
 			
 			&__comment {
 				padding: 17px 0 6px $paddingLeft;
@@ -45,8 +52,9 @@ $block: "comments-bar";
 			&__comment-text {
 				font-size: 12px;
 				color: #6d6d6d;
-				width: 554px;
+				width: $commentTextWidth;
 				margin: 4px 0 16px $textMarginLeft;
+				overflow: hidden;
 			}
 
 			&__textarea-wrapper {
@@ -54,7 +62,7 @@ $block: "comments-bar";
 			}
 
 			&__textarea {
-				width: 647px;
+				width: $commentTextWidth;
 				height: 51px;
 				padding: 8px 10px;
 				box-sizing: border-box;

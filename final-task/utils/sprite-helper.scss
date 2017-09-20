@@ -1,7 +1,7 @@
 $spriteGrid: 31px;
 
 @mixin sprite($x, $y) {
-	background: url(Images/sprites/icons.png);
+	background: url(images/sprites/icons.png);
 	background-position: (-$x * $spriteGrid) (-$y * $spriteGrid);
 }
 

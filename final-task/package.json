@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^7.1.4",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
     "jquery": "^3.2.1"
   }
