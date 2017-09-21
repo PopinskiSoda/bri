@@ -1,4 +1,5 @@
-import {getComments, addComment} from 'logic/ajax-client/comments';
+import {getComments, addComment, likeOffer, addOffer} from 'logic/ajax-client';
+import {getCurrentUser} from 'logic/auth';
 import Template from './index.handlebars';
 import CommentsBar from 'blocks/comments-bar';
 import Comment from 'logic/comment';
@@ -7,17 +8,29 @@ import $ from 'jquery';
 export default class OfferCard {
   constructor($obj, options) {
     this._$obj = $obj;
+    this._$commentsBar = null;
+
+    this._$reviewButton = null;
+    this._$likeButton = null;
+    this._$addButton = null;
+    this._$commentButton = null;
+    this._$popupButton = null;
 
     this._offer = options.offer || null;
     this._offerPopup = options.offerPopup || null;
     this._commentsBar = null;
     this._handleCommentsButton = options.handleCommentsButton;
 
-    this._addComment = this._addComment.bind(this);
     this._handlePopupButton = this._handlePopupButton.bind(this);
-    // this._handleCommentsButton = this._handleCommentsButton.bind(this);
+    this._handleLikeButton = this._handleLikeButton.bind(this);
+    this._handleAddButton = this._handleAddButton.bind(this);
+    this._handleCommentsButton = this._handleCommentsButton.bind(this);
+
+    this._addComment = this._addComment.bind(this);
     this._handleGetCommentsSuccess = this._handleGetCommentsSuccess.bind(this);
     this._handleAddCommentSuccess = this._handleAddCommentSuccess.bind(this);
+    this._handleLikeOfferSuccess = this._handleLikeOfferSuccess.bind(this);
+    this._handleAddOfferSuccess = this._handleAddOfferSuccess.bind(this);
   }
 
   appendTo($parent) {
@@ -25,7 +38,10 @@ export default class OfferCard {
   }
 
   render() {
-    var $newObj = $(Template(this._offer));
+    var offer = this._offer;
+    var $newObj = $(Template(Object.assign(offer, {
+      currentUser: getCurrentUser()
+    })));
 
     if (this._$obj) {
       this._$obj.replaceWith($newObj);
@@ -56,9 +72,9 @@ export default class OfferCard {
     this._offerPopup.open();
   }
 
-  // _handleCommentsButton() {
-  //   this._commentsBar.hide();
-  // }
+  _handleCommentsButton() {
+    this._commentsBar.hide();
+  }
 
   _handleAddCommentSuccess(newComments) {
     this._commentsBar.setComments(newComments);
@@ -66,15 +82,35 @@ export default class OfferCard {
   }
 
   _handleGetCommentsSuccess(newComments) {
-    var $commentsBar = this._$obj.find('.comments-bar');
-
-    this._commentsBar = new CommentsBar($commentsBar, {
+    this._commentsBar = new CommentsBar(this._$commentsBar, {
       modifier: 'card',
       onSubmit: this._addComment,
       comments: newComments
     });
     this._commentsBar.render();
     this._commentsBar.hide();
+  }
+
+  _handleLikeButton() {
+    likeOffer({
+      id: this._offer.id,
+      onSuccess: this._handleLikeOfferSuccess
+    });
+  }
+
+  _handleLikeOfferSuccess() {
+    this._$likeButton.prop({disabled: true});
+  }
+
+  _handleAddButton() {
+    addOffer({
+      id: this._offer.id,
+      onSuccess: this._handleAddOfferSuccess
+    });
+  }
+
+  _handleAddOfferSuccess() {
+    this._$addButton.prop({disabled: true});
   }
 
   _addComment(newCommentText) {
@@ -97,17 +133,22 @@ export default class OfferCard {
       onSuccess: this._handleGetCommentsSuccess
     });
 
-    this._$obj.find('.offer-card__review-button').click(function(e) {console.log("review");});
+    this._$commentsBar = this._$obj.find('.comments-bar');
 
-    this._$obj.find('.offer-card__like-button').click(function(e) {console.log("like");});
+    this._$reviewButton = this._$obj.find('.offer-card__review-button');
+    this._$likeButton = this._$obj.find('.offer-card__like-button');
+    this._$addButton = this._$obj.find('.offer-card__add-button');
+    this._$commentButton = this._$obj.find('.offer-card__comment-button');
+    this._$popupButton = this._$obj.find('.offer-card__popup-button');
 
-    this._$obj.find('.offer-card__add-button').click(function(e) {console.log("add");});
+    this._$popupButton.click(this._handlePopupButton);
+    this._$reviewButton.click(function(e) {console.log("review");});
+    this._$likeButton.click(this._handleLikeButton);
+    this._$addButton.click(this._handleAddButton);
 
-    this._$obj.find('.offer-card__comment-button').click(function(e) {
+    this._$commentButton.click(function(e) {
       let commentsBar = self._commentsBar;
       self._handleCommentsButton(commentsBar);
     });
-
-    this._$obj.find('.offer-card__popup-button').click(this._handlePopupButton);
   }
 }

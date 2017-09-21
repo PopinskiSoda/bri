@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import {API_URL} from 'configs/constants';
-import REQUEST_HEADERS from './request-headers';
+import REQUEST_HEADERS from '../request-headers';
 
 const offerURL = `${API_URL}/offers`;
 

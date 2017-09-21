@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import {API_URL} from 'configs/constants';
-import REQUEST_HEADERS from './request-headers';
-import {getComments, addComment, deleteComment} from './comments';
+import REQUEST_HEADERS from '../request-headers';
+import {getComments, deleteComment} from './comments';
 
 const reviewsURL = `${API_URL}/reviews`;
 

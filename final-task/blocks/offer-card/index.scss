@@ -77,6 +77,8 @@ $hintHeight: 23px;
 		&:last-child {
 			margin-right: 0;
 		}
+
+		white-space: pre;
 	}
 
 	// &__counter {
@@ -114,12 +116,19 @@ $hintHeight: 23px;
 	&__icon-button {
 		margin-right: 19px;
 
-		&:first-child{
+		&:first-child {
 			margin-left: 13px;
 		}
 
-		&:last-child{
+		&:last-child {
 			margin-right: 0;
+		}
+
+		&:disabled {
+			.icon {
+				@extend .icon--purple;
+			}
+			cursor: default;
 		}
 	}
 

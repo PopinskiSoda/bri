@@ -1,5 +1,6 @@
 import CommentsBarTemplate from './index.handlebars';
 import CommentsTemplate from './comments.handlebars';
+import {getCurrentUser} from 'logic/auth';
 import $ from 'jquery';
 
 const ENTER_KEY_CODE = 13;
@@ -11,7 +12,6 @@ export default class CommentsBar {
     this._$textarea = null;
 
     this._comments = options && options.comments || [];
-    this._user = options && options.user || null;
     this._modifier = options && options.modifier || null;
 
     this._onSubmit = options && options.onSubmit || null;
@@ -34,7 +34,7 @@ export default class CommentsBar {
   render(options) {
     var $newObj = $(CommentsBarTemplate({
       comments: this._comments,
-      user: this._user,
+      user: getCurrentUser(),
       modifier: this._modifier
     }));
 
