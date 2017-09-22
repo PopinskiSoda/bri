@@ -7,7 +7,8 @@ import $ from 'jquery';
 
 export default class OfferCard {
   constructor($obj, options) {
-    this._$obj = $obj;
+    this._$obj = $obj || $('<div>').addClass('offer-card');
+    
     this._$commentsBar = null;
 
     this._$reviewButton = null;

@@ -1,0 +1,13 @@
+<div class="comments-bar__comment">
+	{{>avatar/index
+		size="medium"
+		imageURL=user.imageURL
+		classes="comments-bar__avatar"
+	}}
+	<div class="comments-bar__comment-text">
+		{{text}}
+	</div>
+	<button class="button button--cross comments-bar__button-delete">
+		Удалить
+	</button>
+</div>

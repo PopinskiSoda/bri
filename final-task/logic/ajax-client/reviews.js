@@ -29,5 +29,5 @@ export function addReview(options) {
 
 export function deleteReview(options) {
   let newOptions = Object.assign(options, {commentsURL: reviewsURL});
-  getComments(newOptions);
+  deleteComment(newOptions);
 }

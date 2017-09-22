@@ -18,5 +18,7 @@ export default class Offer {
     this.addedAmount = this.addedUsers.length;
     this.timespan = options.timespan || null;
     this.location = options.location || null;
+
+    this.implemented = options.implemented || false;
   }
 }

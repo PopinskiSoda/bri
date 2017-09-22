@@ -1,7 +1,9 @@
 <div class="comments-bar comments-bar--{{modifier}}">
-	{{>comments-bar/comments
-		comments
-	}}
+	<div class="comments-bar__comments">
+		{{#each comments}}
+			{{>comments-bar/comment}}
+		{{/each}}
+	</div>
 	<div class="comments-bar__textarea-wrapper">
 			{{>avatar/index
 				size="medium"

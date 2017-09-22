@@ -1,4 +1,4 @@
-import {addReview, getReviews} from 'logic/ajax-client/reviews';
+import {addReview, getReviews, deleteReview} from 'logic/ajax-client/reviews';
 import Template from './index.handlebars';
 import $ from 'jquery';
 import PopupBase from 'logic/popup-base';
@@ -9,15 +9,18 @@ export default class OfferPopup extends PopupBase {
   constructor($obj, offer) {
     super();
 
-    this._$obj = $obj;
+    this._$obj = $obj || $('<div>').addClass('offer-popup');
+
     this._$closeButton = null;
 
     this._offer = offer || null;
     this._commentsBar = null;
 
     this._addReview = this._addReview.bind(this);
+    this._deleteReview = this._deleteReview.bind(this);
     this._handleAddReviewSuccess = this._handleAddReviewSuccess.bind(this);
     this._handleGetReviewsSuccess = this._handleGetReviewsSuccess.bind(this);
+    this._handleDeleteReviewSuccess = this._handleDeleteReviewSuccess.bind(this);
     this.close = this.close.bind(this);
   }
 
@@ -62,9 +65,14 @@ export default class OfferPopup extends PopupBase {
     this._commentsBar = new CommentsBar($commentsBar, {
       modifier: 'popup',
       onSubmit: this._addReview,
+      onCommentDelete: this._deleteReview,
       comments: newReviews
     });
     this._commentsBar.render();
+  }
+
+  _handleDeleteReviewSuccess(newReviews) {
+    this._handleAddReviewSuccess(newReviews);
   }
 
   _addReview(newReviewText) {
@@ -78,13 +86,21 @@ export default class OfferPopup extends PopupBase {
     });
   }
 
+  _deleteReview(id) {
+    deleteReview({
+      id,
+      offerId: this._offer.id,
+      onSuccess: this._handleDeleteReviewSuccess
+    });
+  }
+
   _init() {
     getReviews({
       offerId: this._offer.id,
       onSuccess: this._handleGetReviewsSuccess
     });
 
-    this._$closeButton = this._$obj.find('.button--close');
+    this._$closeButton = this._$obj.find('.offer-popup__button-close');
     this._$closeButton.click(this.close);
   }
 }

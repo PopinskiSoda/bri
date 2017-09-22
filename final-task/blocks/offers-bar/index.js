@@ -5,7 +5,7 @@ import OfferCard from 'blocks/offer-card';
 
 export default class OffersBar {
   constructor($obj, options) {
-    this._$obj = $obj;
+    this._$obj = $obj || $('<div>').addClass('offers-bar');
 
     this._offers = options && options.offers || [];
     this._offerPopup = options && options.offerPopup || null;

@@ -3,7 +3,7 @@ import Template from './index.handlebars';
 export default class PopupBackground {
   
   constructor($obj) {
-    this._$obj = $obj;
+    this._$obj = $obj || $('<div>').addClass('popup-background');
   }
 
   show() {

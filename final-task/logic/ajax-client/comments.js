@@ -40,9 +40,13 @@ export function deleteComment(options) {
   const {onSuccess, offerId, id} = options;
   const commentsURL = options.commentsURL || commentsURLstr;
 
-  $.ajax({
+  $.ajax(Object.assign({
     url: commentsURL,
     type: 'DELETE',
-    success: onSuccess
-  });
+    success: onSuccess,
+    data: JSON.stringify({
+      offerId,
+      id
+    })
+  }, REQUEST_HEADERS));
 }

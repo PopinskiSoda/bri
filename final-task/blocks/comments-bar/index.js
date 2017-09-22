@@ -1,5 +1,5 @@
-import CommentsBarTemplate from './index.handlebars';
-import CommentsTemplate from './comments.handlebars';
+import Template from './index.handlebars';
+import CommentsBarComment from './comment.js';
 import {getCurrentUser} from 'logic/auth';
 import $ from 'jquery';
 
@@ -7,7 +7,8 @@ const ENTER_KEY_CODE = 13;
 
 export default class CommentsBar {
   constructor($obj, options) {
-    this._$obj = $obj;
+    this._$obj = $obj || $('<div>').addClass('comments-bar');
+
     this._$comments = null;
     this._$textarea = null;
 
@@ -15,6 +16,7 @@ export default class CommentsBar {
     this._modifier = options && options.modifier || null;
 
     this._onSubmit = options && options.onSubmit || null;
+    this._onCommentDelete = options && options.onCommentDelete || null;
 
     this._handleKeyPress = this._handleKeyPress.bind(this);
   }
@@ -32,7 +34,7 @@ export default class CommentsBar {
   }
 
   render(options) {
-    var $newObj = $(CommentsBarTemplate({
+    var $newObj = $(Template({
       comments: this._comments,
       user: getCurrentUser(),
       modifier: this._modifier
@@ -43,11 +45,22 @@ export default class CommentsBar {
     this._init();
   }
 
-  renderComments() {
-    var $newComments = $(CommentsTemplate(this._comments));
+  renderComment(comment) {
+    let commentsBarComment = new CommentsBarComment({
+      comment,
+      onCommentDelete: this._onCommentDelete
+    });
+    commentsBarComment.render();
 
-    this._$comments.replaceWith($newComments);
-    this._$comments = $newComments;
+    commentsBarComment.appendTo(this._$comments);
+  }
+
+  renderComments() {
+    this._$comments.empty();
+
+    for (let i=0; i<this._comments.length; i++) {
+      this.renderComment(this._comments[i]);
+    }
   }
 
   _handleKeyPress(e) {

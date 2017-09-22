@@ -18,12 +18,14 @@
 			<div class="offer-popup__caption">{{category}}</div>
 			<div class="offer-popup__image-wrapper">
 				<img class="offer-popup__image" src="{{imageURL}}">
-				<div class="offer-popup__image-overlay">
-					<div class="offer-popup__implemented-label">
-						<div class="offer-popup__implemented-caption">Реализовано</div>
-						<div class="offer-popup__implemented-icon icon icon--implemented"></div>
+				{{#if implemented}}
+					<div class="offer-popup__image-overlay">
+						<div class="offer-popup__implemented-label">
+							<div class="offer-popup__implemented-caption">Реализовано</div>
+							<div class="offer-popup__implemented-icon icon icon--implemented"></div>
+						</div>
 					</div>
-				</div>
+				{{/if}}
 			</div>
 			{{#if text}}
 				<div class="offer-popup__text">{{text}}</div>
@@ -34,6 +36,7 @@
 				<button class="button button--white button--block">Добавить к себе</button>
 				<button class="button button--white button--block">Мне нравится</button>
 				<button class="button button--white button--block">Комментировать</button>
+				<button class="button button--white button--block">Удалить</button>
 			</div>
 		</div>
 	</div>
@@ -60,5 +63,5 @@
 			}}
 		</div>
 	</div>
-	<button class="button button--close offer-popup__button-close">Закрыть</button>
+	<button class="button button--cross offer-popup__button-close">Закрыть</button>
 </div>
