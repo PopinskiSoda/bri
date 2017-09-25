@@ -1,22 +1,43 @@
 import $ from 'jquery';
 import {API_URL} from 'configs/constants';
 import REQUEST_HEADERS from '../request-headers';
+import {callHandlers} from './ajax-utils';
 import {getComments, deleteComment} from './comments';
 
 const reviewsURL = `${API_URL}/reviews`;
 
+var
+  getReviewsSuccessHandlers = [],
+  addReviewSuccessHandlers = [],
+  deleteReviewSuccessHandlers = [];
+
+export function getReviewsSuccessRegister(handler, offerId) {
+  getReviewsSuccessHandlers.push({handler, offerId});
+}
+
+export function addReviewSuccessRegister(handler, offerId) {
+  addReviewSuccessHandlers.push({handler, offerId});
+}
+
+export function deleteReviewSuccessRegister(handler, offerId) {
+  deleteReviewSuccessHandlers.push({handler, offerId});
+}
+
 export function getReviews(options) {
-  let newOptions = Object.assign(options, {commentsURL: reviewsURL});
+  let newOptions = Object.assign(options, {
+    commentsURL: reviewsURL,
+    success: callHandlers(getReviewsSuccessHandlers, options.offerId)
+  });
   getComments(newOptions);
 }
 
 export function addReview(options) {
-  const {onSuccess, review, offerId} = options;
+  const {review, offerId} = options;
   
   $.ajax(Object.assign({
     url: reviewsURL,
     type: 'POST',
-    success: onSuccess,
+    success: callHandlers(addReviewSuccessHandlers), offerId,
     data: JSON.stringify({
       review: {
         text: review.text,
@@ -28,6 +49,9 @@ export function addReview(options) {
 }
 
 export function deleteReview(options) {
-  let newOptions = Object.assign(options, {commentsURL: reviewsURL});
+  let newOptions = Object.assign(options, {
+    commentsURL: reviewsURL,
+    success: callHandlers(deleteReviewSuccessHandlers, offerId)
+  });
   deleteComment(newOptions);
 }

@@ -9,7 +9,12 @@ import {
   getReviews,
   deleteReview,
   addOffer,
-  likeOffer
+  likeOffer,
+  addReviewSuccessRegister,
+  deleteReviewSuccessRegister,
+  getReviewsSuccessRegister,
+  likeOfferSuccessRegister,
+  addOfferSuccessRegister
 } from 'logic/ajax-client';
 
 export default class OfferPopup extends PopupBase {
@@ -29,10 +34,6 @@ export default class OfferPopup extends PopupBase {
     this._offer = options.offer || null;
     this._commentsBar = null;
 
-    this._onDeleteOffer = options.onDeleteOffer || null;
-    this._onAddOffer = options.onAddOffer || null;
-    this._onLikeOffer = options.onLikeOffer || null;
-
     this._addReview = this._addReview.bind(this);
     this._deleteReview = this._deleteReview.bind(this);
     
@@ -48,18 +49,6 @@ export default class OfferPopup extends PopupBase {
 
   setOffer(offer) {
     this._offer = offer;
-  }
-
-  setOnDeleteOffer(handler) {
-    this._onDeleteOffer = handler;
-  }
-
-  setOnAddOffer(handler) {
-    this._onAddOffer = handler;
-  }
-
-  setOnLikeOffer(handler) {
-    this._onLikeOffer = handler;
   }
 
   open() {
@@ -87,6 +76,22 @@ export default class OfferPopup extends PopupBase {
   renderComments() {
     this._commentsBar.renderComments();
   }
+
+  // renderLikedUsers() {
+  //   var $newObj = $(UsersGroupTemplate(this._offer.likedUsers));
+
+  //   this._$obj.replaceWith($newObj);
+  //   this._$obj = $newObj;
+  //   this._init();
+  // }
+
+  // renderAddedUsers() {
+  //   var $newObj = $(UsersGroupTemplate(this._offer.addedUsers));
+
+  //   this._$obj.replaceWith($newObj);
+  //   this._$obj = $newObj;
+  //   this._init();
+  // }
 
   _handleAddReviewSuccess(newReviews) {
     this._commentsBar.setComments(newReviews);
@@ -116,7 +121,6 @@ export default class OfferPopup extends PopupBase {
     addReview({
       review,
       offerId: this._offer.id,
-      onSuccess: this._handleAddReviewSuccess
     });
   }
 
@@ -124,7 +128,6 @@ export default class OfferPopup extends PopupBase {
     deleteReview({
       id,
       offerId: this._offer.id,
-      onSuccess: this._handleDeleteReviewSuccess
     });
   }
 
@@ -139,22 +142,23 @@ export default class OfferPopup extends PopupBase {
 
   _handleAddButton() {
     addOffer({
-      id: this._offer.id,
-      onSuccess: this._onAddOffer
+      id: this._offer.id
     });
   }
 
   _handleLikeButton() {
     likeOffer({
-      id: this._offer.id,
-      onSuccess: this._onLikeOffer
+      id: this._offer.id
     });
   }
 
   _init() {
+    getReviewsSuccessRegister(this._handleGetReviewsSuccess);
+    addReviewSuccessRegister(this._handleAddReviewSuccess);
+    deleteReviewSuccessRegister(this._handleDeleteReviewSuccess);
+    
     getReviews({
-      offerId: this._offer.id,
-      onSuccess: this._handleGetReviewsSuccess
+      offerId: this._offer.id
     });
 
     this._$likedUsers = this._$obj.find('.offer-popup__liked-users');

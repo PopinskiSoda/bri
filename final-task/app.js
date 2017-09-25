@@ -13,10 +13,7 @@ $(document).ready(function() {
       
       var popupBackground = new PopupBackground($('.popup-background'));
       var offerPopup = new OfferPopup({
-        $obj: $('.offer-popup'),
-        onDeleteOffer: function(id) {
-          offersBar.deleteOffer(id);
-        }
+        $obj: $('.offer-popup')
       });
       var offersBar = new OffersBar($('.offers-bar'), {
         offerPopup

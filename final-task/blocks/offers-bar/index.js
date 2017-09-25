@@ -1,7 +1,11 @@
-import {getOffers, deleteOffer} from 'logic/ajax-client/offers';
 import Template from './index.handlebars';
 import $ from 'jquery';
 import OfferCard from 'blocks/offer-card';
+import {
+  getOffers,
+  getOffersSuccessRegister,
+  deleteOfferSuccessRegister
+} from 'logic/ajax-client/offers';
 
 export default class OffersBar {
   constructor($obj, options) {
@@ -28,13 +32,6 @@ export default class OffersBar {
     this._offerCards.push(offerCard);
 
     return offerCard;
-  }
-
-  deleteOffer(id) {
-    deleteOffer({
-      id,
-      onSuccess: this._handleDeleteOfferSuccess
-    });
   }
 
   _handleDeleteOfferSuccess(newOffers) {
@@ -66,7 +63,7 @@ export default class OffersBar {
       let offerCard = this._offerCards[i];
       offerCard.hideCommentsBar();
     }
-
+    
     targetCommentsBar.show();
   }
 
@@ -76,8 +73,8 @@ export default class OffersBar {
   }
 
   _init() {
-    getOffers({
-      onSuccess: this._handleGetOffersSuccess
-    });
+    getOffersSuccessRegister(this._handleGetOffersSuccess);
+    deleteOfferSuccessRegister(this._handleDeleteOfferSuccess);
+    getOffers();
   }
 }

@@ -35,16 +35,16 @@
 	</div>
 	<div class="offer-card__row offer-card__row--counters">
 		{{#if likedUsers.length}}
-			<span class="offer-card__counter">{{likedUsers.length}} нравится</span>
+			<span class="offer-card__counter"><span class="offer-card__liked-amount">{{likedUsers.length}}</span> нравится</span>
 		{{/if}}
 		{{#if comments.length}}
-			<span class="offer-card__counter">{{comments.length}} комментария</span>
+			<span class="offer-card__counter"><span class="offer-card__comments-amount">{{comments.length}}</span> комментария</span>
 		{{/if}}
 		{{#if reviews.length}}
-			<span class="offer-card__counter">{{reviews.length}} отзыва</span>
+			<span class="offer-card__counter"><span class="offer-card__reviews-amount">{{reviews.length}}</span> отзыва</span>
 		{{/if}}
 		{{#if addedUsers.length}}
-			<span class="offer-card__counter">{{addedUsers.length}} добавили себе</span>
+			<span class="offer-card__counter"><span class="offer-card__added-amount">{{addedUsers.length}}</span> добавили себе</span>
 		{{/if}}
 	</div>
 	{{>user-card/index

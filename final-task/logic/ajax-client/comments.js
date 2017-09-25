@@ -1,17 +1,37 @@
 import $ from 'jquery';
 import {API_URL} from 'configs/constants';
 import REQUEST_HEADERS from '../request-headers';
+import {callHandlers} from './ajax-utils';
 
 const commentsURLstr = `${API_URL}/comments`;
 
+var
+  getCommentsSuccessHandlers = [],
+  addCommentSuccessHandlers = [],
+  deleteCommentSuccessHandlers = [];
+
+var offers = {};
+
+export function getCommentsSuccessRegister(handler, offerId) {
+  getCommentsSuccessHandlers.push({handler, offerId});
+}
+
+export function addCommentSuccessRegister(handler, offerId) {
+  addCommentSuccessHandlers.push({handler, offerId});
+}
+
+export function deleteCommentSuccessRegister(handler, offerId) {
+  deleteCommentSuccessHandlers.push({handler, offerId});
+}
+
 export function getComments(options) {
-  const {onSuccess, offerId} = options;
+  const {offerId} = options;
   const commentsURL = options.commentsURL || commentsURLstr;
 
   $.ajax(Object.assign({
     url: commentsURL,
     type: 'GET',
-    success: onSuccess,
+    success: callHandlers(getCommentsSuccessHandlers, offerId),
     data: {
       offerId
     }
@@ -19,13 +39,13 @@ export function getComments(options) {
 }
 
 export function addComment(options) {
-  const {onSuccess, comment, offerId} = options;
+  const {comment, offerId} = options;
   const commentsURL = options.commentsURL || commentsURLstr;
 
   $.ajax(Object.assign({
     url: commentsURL,
     type: 'POST',
-    success: onSuccess,
+    success: callHandlers(addCommentSuccessHandlers, offerId),
     data: JSON.stringify({
       comment: {
         text: comment.text,
@@ -37,13 +57,13 @@ export function addComment(options) {
 }
 
 export function deleteComment(options) {
-  const {onSuccess, offerId, id} = options;
+  const {offerId, id} = options;
   const commentsURL = options.commentsURL || commentsURLstr;
 
   $.ajax(Object.assign({
     url: commentsURL,
     type: 'DELETE',
-    success: onSuccess,
+    success: callHandlers(deleteCommentSuccessHandlers, offerId),
     data: JSON.stringify({
       offerId,
       id
