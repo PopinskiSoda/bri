@@ -1,4 +1,4 @@
-import {getOffers} from 'logic/ajax-client/offers';
+import {getOffers, deleteOffer} from 'logic/ajax-client/offers';
 import Template from './index.handlebars';
 import $ from 'jquery';
 import OfferCard from 'blocks/offer-card';
@@ -13,14 +13,7 @@ export default class OffersBar {
 
     this._handleCommentsButton = this._handleCommentsButton.bind(this);
     this._handleGetOffersSuccess = this._handleGetOffersSuccess.bind(this);
-  }
-
-  addOffer(offer) {
-    this._offers.push(offer);
-  }
-  
-  setOffers(offers) {
-    this._offers = offers;
+    this._handleDeleteOfferSuccess = this._handleDeleteOfferSuccess.bind(this);
   }
 
   addOfferCard(offer) {
@@ -35,6 +28,18 @@ export default class OffersBar {
     this._offerCards.push(offerCard);
 
     return offerCard;
+  }
+
+  deleteOffer(id) {
+    deleteOffer({
+      id,
+      onSuccess: this._handleDeleteOfferSuccess
+    });
+  }
+
+  _handleDeleteOfferSuccess(newOffers) {
+    this._offers = newOffers;
+    this.renderOfferCards();
   }
 
   renderOfferCard(offer) {

@@ -12,9 +12,14 @@ $(document).ready(function() {
     onSuccess: function(user) {
       
       var popupBackground = new PopupBackground($('.popup-background'));
-      var offerPopup = new OfferPopup($('.offer-popup'));
+      var offerPopup = new OfferPopup({
+        $obj: $('.offer-popup'),
+        onDeleteOffer: function(id) {
+          offersBar.deleteOffer(id);
+        }
+      });
       var offersBar = new OffersBar($('.offers-bar'), {
-        offerPopup: offerPopup
+        offerPopup
       });
 
       PopupBase.setPopupBackground(popupBackground);

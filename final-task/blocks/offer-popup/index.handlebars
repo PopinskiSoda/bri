@@ -33,10 +33,10 @@
 		</div>
 		<div class="offer-popup__column offer-popup__column--small-padding">
 			<div class="offer-popup__buttons-group">
-				<button class="button button--white button--block">Добавить к себе</button>
-				<button class="button button--white button--block">Мне нравится</button>
-				<button class="button button--white button--block">Комментировать</button>
-				<button class="button button--white button--block">Удалить</button>
+				<button class="button button--white button--block offer-popup__add-button">Добавить к себе</button>
+				<button class="button button--white button--block offer-popup__like-button">Мне нравится</button>
+				<button class="button button--white button--block offer-popup__comment-button">Комментировать</button>
+				<button class="button button--white button--block offer-popup__delete-offer-button">Удалить</button>
 			</div>
 		</div>
 	</div>
@@ -52,6 +52,7 @@
 			{{>users-group/index
 				users=addedUsers
 				title="добавили к себе"
+				classes="offer-popup__added-users"
 			}}
 		</div>
 	</div>
@@ -60,8 +61,9 @@
 			{{>users-group/index
 				users=likedUsers
 				title="нравится"
+				classes="offer-popup__liked-users"
 			}}
 		</div>
 	</div>
-	<button class="button button--cross offer-popup__button-close">Закрыть</button>
+	<button class="button button--cross offer-popup__close-button">Закрыть</button>
 </div>

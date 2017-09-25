@@ -15,11 +15,12 @@ export function getOffers(options) {
 }
 
 export function deleteOffer(options) {
-  const {onSuccess, offerId, id} = options;
+  const {onSuccess, id} = options;
 
-  $.ajax({
+  $.ajax(Object.assign({
     url: offerURL,
     type: 'DELETE',
-    success: onSuccess
-  });
+    success: onSuccess,
+    data: JSON.stringify({id})
+  }, REQUEST_HEADERS));
 }
