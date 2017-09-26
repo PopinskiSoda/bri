@@ -9,8 +9,8 @@ var
   getOffersSuccessHandlers = [],
   deleteOfferSuccessHandlers = [];
 
-export function getOffersSuccessRegister(handler) {
-  getOffersSuccessHandlers.push({handler});
+export function getOffersSuccessRegister(handler, offerId) {
+  getOffersSuccessHandlers.push({handler, offerId});
 }
 
 export function deleteOfferSuccessRegister(handler, offerId) {
@@ -31,7 +31,7 @@ export function deleteOffer(options) {
   $.ajax(Object.assign({
     url: offerURL,
     type: 'DELETE',
-    success: callHandlers(deleteOfferSuccessHandlers, offerId),
+    success: callHandlers(deleteOfferSuccessHandlers, id),
     data: JSON.stringify({id})
   }, REQUEST_HEADERS));
 }

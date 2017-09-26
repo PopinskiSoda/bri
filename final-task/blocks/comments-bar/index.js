@@ -23,13 +23,11 @@ export default class CommentsBar {
 
   hide() {
     this._$obj.addClass('comments-bar--hidden');
-    // console.log('hide', this._$obj);
   }
 
   show() {
     this._$obj.removeClass('comments-bar--hidden');
     this.render();
-    // console.log('show', this._$obj);
   }
 
   setComments(comments) {

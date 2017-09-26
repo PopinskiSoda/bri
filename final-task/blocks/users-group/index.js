@@ -1,19 +1,25 @@
 import Template from './index.handlebars';
+import $ from 'jquery';
 
 export default class UsersGroup {
-  export default class UserCard {
-    constructor(users) {
-      this._users = users;
-    }
 
-    setUsers(users) {
-      this._users = users;
-    }
+  constructor(options) {
+    this._$obj = options.$obj || $('<div>').addClass('users-group');
+    this._users = options.users || [];
+    this._title = options.title || '';
+  }
 
-    render() {
-      return Template({
-        users: this._users
-      });
-    }
+  setUsers(users) {
+    this._users = users;
+  }
+
+  render() {
+    var $newObj = $(Template({
+      users: this._users,
+      title: this._title
+    }));
+
+    this._$obj.replaceWith($newObj);
+    this._$obj = $newObj;
   }
 }

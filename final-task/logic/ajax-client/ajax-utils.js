@@ -3,8 +3,8 @@ export function callHandlers(handlers, offerId) {
     var filteredHandlers;
 
     if (offerId !== undefined) {
-      filteredHandlers = handlers.filter(function(obj) {
-        return obj.offerId === offerId;
+      filteredHandlers = handlers.filter(function(obj) {                // Хотим вызвать все хэндлеры кроме тех
+        return obj.offerId === offerId || obj.offerId === undefined;    // у которых другой id
       });
     }
     else {

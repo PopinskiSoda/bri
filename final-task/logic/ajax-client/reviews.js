@@ -51,7 +51,7 @@ export function addReview(options) {
 export function deleteReview(options) {
   let newOptions = Object.assign(options, {
     commentsURL: reviewsURL,
-    success: callHandlers(deleteReviewSuccessHandlers, offerId)
+    success: callHandlers(deleteReviewSuccessHandlers, options.offerId)
   });
   deleteComment(newOptions);
 }

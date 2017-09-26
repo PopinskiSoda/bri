@@ -6,18 +6,19 @@ import $ from 'jquery';
 import {
   getComments,
   addComment,
+  deleteComment,
   likeOffer,
   addOffer,
   getCommentsSuccessRegister,
   likeOfferSuccessRegister,
-  addOfferSuccessRegister
+  addOfferSuccessRegister,
+  addCommentSuccessRegister,
+  deleteCommentSuccessRegister
 } from 'logic/ajax-client';
 
 export default class OfferCard {
   constructor($obj, options) {
     this._$obj = $obj || $('<div>').addClass('offer-card');
-    
-    this._$commentsBar = null;
 
     this._$reviewButton = null;
     this._$likeButton = null;
@@ -41,8 +42,10 @@ export default class OfferCard {
     this._handleCommentsButton = this._handleCommentsButton.bind(this);
 
     this._addComment = this._addComment.bind(this);
+    this._deleteComment = this._deleteComment.bind(this);
+
     this._handleGetCommentsSuccess = this._handleGetCommentsSuccess.bind(this);
-    this._handleAddCommentSuccess = this._handleAddCommentSuccess.bind(this);
+    this._handleChangeCommentsSuccess = this._handleChangeCommentsSuccess.bind(this);
     this._handleLikeOfferSuccess = this._handleLikeOfferSuccess.bind(this);
     this._handleAddOfferSuccess = this._handleAddOfferSuccess.bind(this);
   }
@@ -80,21 +83,32 @@ export default class OfferCard {
     this._commentsBar.hide();
   }
 
+  _deleteComment(id) {
+    console.log(id, this._offer.id);
+    deleteComment({
+      id,
+      offerId: this._offer.id
+    });
+  }
+
   _handlePopupButton() {
     this._offerPopup.setOffer(this._offer);
     this._offerPopup.render();
     this._offerPopup.open();
   }
 
-  _handleAddCommentSuccess(newComments) {
+  _handleChangeCommentsSuccess(newComments) {
     this._commentsBar.setComments(newComments);
     this._commentsBar.renderComments();
   }
 
   _handleGetCommentsSuccess(newComments) {
-    this._commentsBar = new CommentsBar(this._$commentsBar, {
+    var $commentsBar = this._$obj.find('.comments-bar');
+
+    this._commentsBar = new CommentsBar($commentsBar, {
       modifier: 'card',
       onSubmit: this._addComment,
+      onCommentDelete: this._deleteComment,
       comments: newComments
     });
     this._commentsBar.render();
@@ -108,6 +122,7 @@ export default class OfferCard {
   }
 
   _handleLikeOfferSuccess(likedUsers) {
+    this._offer.likedUsers = likedUsers;
     this._$likeButton.prop({disabled: true});
     this._$likedAmount.html(this._offer.likedUsers.length);
   }
@@ -119,6 +134,7 @@ export default class OfferCard {
   }
 
   _handleAddOfferSuccess(addedUsers) {
+    this._offer.addedUsers = addedUsers;
     this._$addButton.prop({disabled: true});
     this._$addedAmount.html(this._offer.addedUsers.length);
   }
@@ -130,8 +146,7 @@ export default class OfferCard {
 
     addComment({
       comment,
-      offerId: this._offer.id,
-      onSuccess: this._handleAddCommentSuccess
+      offerId: this._offer.id
     });
   }
 
@@ -141,12 +156,12 @@ export default class OfferCard {
     likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offer.id);
     addOfferSuccessRegister(this._handleAddOfferSuccess, this._offer.id);
     getCommentsSuccessRegister(this._handleGetCommentsSuccess, this._offer.id);
+    addCommentSuccessRegister(this._handleChangeCommentsSuccess, this._offer.id);
+    deleteCommentSuccessRegister(this._handleChangeCommentsSuccess, this._offer.id);
 
     getComments({
       offerId: this._offer.id
     });
-
-    this._$commentsBar = this._$obj.find('.comments-bar');
 
     this._$reviewButton = this._$obj.find('.offer-card__review-button');
     this._$likeButton = this._$obj.find('.offer-card__like-button');

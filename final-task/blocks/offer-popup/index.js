@@ -1,15 +1,16 @@
 import OfferPopupTemplate from './index.handlebars';
-import UsersGroupTemplate from 'blocks/users-group/index.handlebars';
 import $ from 'jquery';
 import PopupBase from 'logic/popup-base';
 import Comment from 'logic/comment';
 import CommentsBar from 'blocks/comments-bar';
+import UsersGroup from 'blocks/users-group';
 import {
   addReview,
   getReviews,
   deleteReview,
   addOffer,
   likeOffer,
+  deleteOffer,
   addReviewSuccessRegister,
   deleteReviewSuccessRegister,
   getReviewsSuccessRegister,
@@ -23,8 +24,8 @@ export default class OfferPopup extends PopupBase {
 
     this._$obj = options.$obj || $('<div>').addClass('offer-popup');
 
-    this._$likedUsers = null;
-    this._$addedUsers = null;
+    this._likedUsersGroup = null;
+    this._addedUsersGroup = null;
 
     this._$closeButton = null;
     this._$deleteOfferButton = null;
@@ -37,9 +38,10 @@ export default class OfferPopup extends PopupBase {
     this._addReview = this._addReview.bind(this);
     this._deleteReview = this._deleteReview.bind(this);
     
-    this._handleAddReviewSuccess = this._handleAddReviewSuccess.bind(this);
+    this._handleChangeReviewsSuccess = this._handleChangeReviewsSuccess.bind(this);
     this._handleGetReviewsSuccess = this._handleGetReviewsSuccess.bind(this);
-    this._handleDeleteReviewSuccess = this._handleDeleteReviewSuccess.bind(this);
+    this._handleLikeOfferSuccess = this._handleLikeOfferSuccess.bind(this);
+    this._handleAddOfferSuccess = this._handleAddOfferSuccess.bind(this);
     
     this._handleDeleteOfferButton = this._handleDeleteOfferButton.bind(this);
     this._handleCloseButton = this._handleCloseButton.bind(this);
@@ -68,32 +70,20 @@ export default class OfferPopup extends PopupBase {
     this._$obj = $newObj;
     this._init();
   }
-
-  renderCommentsBar() {
-    this._commentsBar.render();
+  
+  _handleLikeOfferSuccess(newLikedUsers) {
+    this._$likeButton.prop({disabled: true});
+    this._likedUsersGroup.setUsers(newLikedUsers);
+    this._likedUsersGroup.render();
   }
 
-  renderComments() {
-    this._commentsBar.renderComments();
+  _handleAddOfferSuccess(newAddedUsers) {
+    this._$addButton.prop({disabled: true});
+    this._addedUsersGroup.setUsers(newAddedUsers);
+    this._addedUsersGroup.render();
   }
 
-  // renderLikedUsers() {
-  //   var $newObj = $(UsersGroupTemplate(this._offer.likedUsers));
-
-  //   this._$obj.replaceWith($newObj);
-  //   this._$obj = $newObj;
-  //   this._init();
-  // }
-
-  // renderAddedUsers() {
-  //   var $newObj = $(UsersGroupTemplate(this._offer.addedUsers));
-
-  //   this._$obj.replaceWith($newObj);
-  //   this._$obj = $newObj;
-  //   this._init();
-  // }
-
-  _handleAddReviewSuccess(newReviews) {
+  _handleChangeReviewsSuccess(newReviews) {
     this._commentsBar.setComments(newReviews);
     this._commentsBar.renderComments();
   }
@@ -108,10 +98,6 @@ export default class OfferPopup extends PopupBase {
       comments: newReviews
     });
     this._commentsBar.render();
-  }
-
-  _handleDeleteReviewSuccess(newReviews) {
-    this._handleAddReviewSuccess(newReviews);
   }
 
   _addReview(newReviewText) {
@@ -136,7 +122,9 @@ export default class OfferPopup extends PopupBase {
   }
 
   _handleDeleteOfferButton() {
-    this._onDeleteOffer(this._offer.id);
+    deleteOffer({
+      id: this._offer.id
+    });
     this.close();
   }
 
@@ -153,16 +141,27 @@ export default class OfferPopup extends PopupBase {
   }
 
   _init() {
-    getReviewsSuccessRegister(this._handleGetReviewsSuccess);
-    addReviewSuccessRegister(this._handleAddReviewSuccess);
-    deleteReviewSuccessRegister(this._handleDeleteReviewSuccess);
+    getReviewsSuccessRegister(this._handleGetReviewsSuccess, this._offer.id);
+    addReviewSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
+    deleteReviewSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
+    likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offer.id);
+    addOfferSuccessRegister(this._handleAddOfferSuccess, this._offer.id);
     
     getReviews({
       offerId: this._offer.id
     });
 
-    this._$likedUsers = this._$obj.find('.offer-popup__liked-users');
-    this._$addedUsers = this._$obj.find('.offer-popup__added-users');
+    var $likedUsers = this._$obj.find('.offer-popup__liked-users');
+    var $addedUsers = this._$obj.find('.offer-popup__added-users');
+
+    this._likedUsersGroup = new UsersGroup({
+      $obj: $likedUsers,
+      title: 'нравится'
+    });
+    this._addedUsersGroup = new UsersGroup({
+      $obj: $addedUsers,
+      title: 'добавили к себе'
+    });
 
     this._$closeButton = this._$obj.find('.offer-popup__close-button');
     this._$deleteOfferButton = this._$obj.find('.offer-popup__delete-offer-button');

@@ -25,13 +25,13 @@ export function deleteCommentSuccessRegister(handler, offerId) {
 }
 
 export function getComments(options) {
-  const {offerId} = options;
+  const {offerId, success} = options;
   const commentsURL = options.commentsURL || commentsURLstr;
 
   $.ajax(Object.assign({
     url: commentsURL,
     type: 'GET',
-    success: callHandlers(getCommentsSuccessHandlers, offerId),
+    success: options.success || callHandlers(getCommentsSuccessHandlers, offerId),
     data: {
       offerId
     }
@@ -57,13 +57,13 @@ export function addComment(options) {
 }
 
 export function deleteComment(options) {
-  const {offerId, id} = options;
+  const {offerId, id, success} = options;
   const commentsURL = options.commentsURL || commentsURLstr;
 
   $.ajax(Object.assign({
     url: commentsURL,
     type: 'DELETE',
-    success: callHandlers(deleteCommentSuccessHandlers, offerId),
+    success: options.success || callHandlers(deleteCommentSuccessHandlers, offerId),
     data: JSON.stringify({
       offerId,
       id

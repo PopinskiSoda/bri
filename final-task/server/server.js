@@ -85,7 +85,8 @@ app.route('/api/comments')
   })
   .delete(function(req, res) {
     let offer = getOfferById(req.body.offerId);
-    offer.comments = offer.comments.filter(function(comment) {
+    
+    let newComments = offer.comments.filter(function(comment) {
       return comment.id !== req.body.id;
     });
     res.status(200).json(getTopComments(offer));
