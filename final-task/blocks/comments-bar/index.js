@@ -13,7 +13,9 @@ export default class CommentsBar {
     this._$textarea = null;
 
     this._comments = options && options.comments || [];
-    this._modifier = options && options.modifier || null;
+    this._modifier = options && options.modifier || '';
+    this._avatarSize = options.avatarSize || 'medium';
+    this._maxLength = options.maxLength || 500;
 
     this._onSubmit = options && options.onSubmit || null;
     this._onCommentDelete = options && options.onCommentDelete || null;
@@ -34,11 +36,14 @@ export default class CommentsBar {
     this._comments = comments;
   }
 
-  render(options) {
+  render() {
     var $newObj = $(Template({
       comments: this._comments,
       user: getCurrentUser(),
-      modifier: this._modifier
+      modifier: this._modifier,
+      avatarSize: this._avatarSize,
+      maxLength: this._maxLength,
+      currentUser: getCurrentUser()
     }));
 
     this._$obj.replaceWith($newObj);
@@ -49,7 +54,8 @@ export default class CommentsBar {
   renderComment(comment) {
     let commentsBarComment = new CommentsBarComment({
       comment,
-      onCommentDelete: this._onCommentDelete
+      onCommentDelete: this._onCommentDelete,
+      avatarSize: this._avatarSize
     });
     commentsBarComment.render();
 

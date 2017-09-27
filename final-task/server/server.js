@@ -9,8 +9,8 @@ const USERS_FILENAME = path.join(__dirname, 'users.json');
 
 const PORT = 3000;
 
-const MAX_COMMENTS_PER_RESPONCE = 5;
-const MAX_REVIEWS_PER_RESPONCE = 3;
+const MAX_COMMENTS_PER_RESPONSE = 5;
+const MAX_REVIEWS_PER_RESPONSE = 3;
 
 const CURRENT_USER_ID = 1;
 
@@ -28,7 +28,7 @@ function getMaxId(array) {
   }));
 }
 
-function pushWithId(array, item) {
+function pushItemWithId(array, item) {
   var maxId = getMaxId(array);
   var newId = 0;
 
@@ -41,24 +41,26 @@ function pushWithId(array, item) {
   }));
 }
 
-function getOfferById(id) {
-  return offers.find(function(offer) {
-    return offer.id == id;
+function getItemById(array, id) {
+  return array.find(function(item) {
+    return item.id == id;
   });
 }
 
 function getUserById(id) {
-  return users.find(function(user) {
-    return user.id == id;
-  });
+  return getItemById(users, id);
+}
+
+function getOfferById(id) {
+  return getItemById(offers, id);
 }
 
 function getTopReviews(offer) {
-  return offer.reviews.slice(-MAX_REVIEWS_PER_RESPONCE);
+  return offer.reviews.slice(-MAX_REVIEWS_PER_RESPONSE);
 }
 
 function getTopComments(offer) {
-  return offer.comments.slice(-MAX_COMMENTS_PER_RESPONCE);
+  return offer.comments.slice(-MAX_COMMENTS_PER_RESPONSE);
 }
 
 function containsCurrentUser(array) {
@@ -77,7 +79,7 @@ app.route('/api/comments')
     let offer = getOfferById(req.body.offerId);
     let comment = req.body.comment
 
-    pushWithId(offer.comments, Object.assign(comment, {
+    pushItemWithId(offer.comments, Object.assign(comment, {
       user: getUserById(CURRENT_USER_ID)
     }));
 
@@ -86,7 +88,7 @@ app.route('/api/comments')
   .delete(function(req, res) {
     let offer = getOfferById(req.body.offerId);
     
-    let newComments = offer.comments.filter(function(comment) {
+    offer.comments = offer.comments.filter(function(comment) {
       return comment.id !== req.body.id;
     });
     res.status(200).json(getTopComments(offer));
@@ -102,7 +104,7 @@ app.route('/api/reviews')
     let offer = getOfferById(req.body.offerId);
     let review = req.body.review
 
-    pushWithId(offer.reviews, Object.assign(review, {
+    pushItemWithId(offer.reviews, Object.assign(review, {
       user: getUserById(CURRENT_USER_ID)
     }));
 

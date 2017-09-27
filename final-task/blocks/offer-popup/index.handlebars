@@ -36,7 +36,9 @@
 				<button class="button button--white button--block offer-popup__add-button">Добавить к себе</button>
 				<button class="button button--white button--block offer-popup__like-button">Мне нравится</button>
 				<button class="button button--white button--block offer-popup__comment-button">Комментировать</button>
-				<button class="button button--white button--block offer-popup__delete-offer-button">Удалить</button>
+				{{#is-delete-button}}
+					<button class="button button--white button--block offer-popup__delete-offer-button">Удалить</button>
+				{{/is-delete-button}}
 			</div>
 		</div>
 	</div>

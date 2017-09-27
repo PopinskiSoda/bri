@@ -18,7 +18,7 @@ $hintHeight: 23px;
 	background: #ffffff;
 
 	&__row {
-		padding-left: 17px;
+		padding-left: 15px;
 
 		&--title {
 			margin-top: 15px;
@@ -33,15 +33,17 @@ $hintHeight: 23px;
 		}
 	}
 
-	&:nth-child(4n) {
-		margin-right: 0;
-	}
-
 	&__image-wrapper {
 		position: relative;
+		min-height: 107px;
 	}
 
 	&__image {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
 		max-width: 100%;
 	}
 
@@ -66,7 +68,12 @@ $hintHeight: 23px;
 		font-weight: bold;
 	}
 
-	&__attribute, &__counter {
+	&__attribute {
+		font-size: 11px;
+		opacity: 0.6;
+	}
+
+	&__counter {
 		font-size: 11px;
 		opacity: 0.6;
 	}
@@ -80,11 +87,6 @@ $hintHeight: 23px;
 
 		white-space: pre;
 	}
-
-	// &__counter {
-	// 	font-size: 11px;
-	// 	color: #82848A
-	// }
 
 	&__popup-button {
 		cursor: pointer;
@@ -134,7 +136,7 @@ $hintHeight: 23px;
 
 	&__user-card {
 		background-color: #f1f1f1;
-		padding: 6px 17px 5px;
+		padding: 6px 13px 5px;
 		margin-top: 8px;
 	}
 

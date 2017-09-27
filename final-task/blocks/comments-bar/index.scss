@@ -84,12 +84,20 @@ $block: "comments-bar";
 
 	&--card {
 		
-		.#{$block}__comment-text {
-			font-size: 11px;
+		.#{$block} {
+
+			&__comment {
+				padding: 6px 13px 5px;
+			}
+
+			&__comment-text {
+				font-size: 11px;
+			}
+
+			&__button-delete {
+				font-size: 11px;
+			}
 		}
 
-		.#{$block}__button-delete {
-			font-size: 11px;
-		}
 	}
 }

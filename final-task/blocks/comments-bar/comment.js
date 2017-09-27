@@ -1,4 +1,5 @@
 import Template from './comment.handlebars';
+import {getCurrentUser} from 'logic/auth';
 import $ from 'jquery';
 
 export default class CommentsBarComment {
@@ -8,11 +9,15 @@ export default class CommentsBarComment {
     this._$deleteButton = null;
 
     this._comment = options.comment || null;
+    this._avatarSize = options.avatarSize || 'medium';
     this._onCommentDelete = options.onCommentDelete;
   }
 
   render(options) {
-    var $newObj = $(Template(this._comment));
+    var $newObj = $(Template(Object.assign(this._comment, {
+      avatarSize: this._avatarSize,
+      currentUser: getCurrentUser()
+    })));
 
     this._$obj.replaceWith($newObj);
     this._$obj = $newObj;

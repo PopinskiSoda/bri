@@ -44,7 +44,6 @@ export default class OfferCard {
     this._addComment = this._addComment.bind(this);
     this._deleteComment = this._deleteComment.bind(this);
 
-    this._handleGetCommentsSuccess = this._handleGetCommentsSuccess.bind(this);
     this._handleChangeCommentsSuccess = this._handleChangeCommentsSuccess.bind(this);
     this._handleLikeOfferSuccess = this._handleLikeOfferSuccess.bind(this);
     this._handleAddOfferSuccess = this._handleAddOfferSuccess.bind(this);
@@ -84,7 +83,6 @@ export default class OfferCard {
   }
 
   _deleteComment(id) {
-    console.log(id, this._offer.id);
     deleteComment({
       id,
       offerId: this._offer.id
@@ -100,19 +98,6 @@ export default class OfferCard {
   _handleChangeCommentsSuccess(newComments) {
     this._commentsBar.setComments(newComments);
     this._commentsBar.renderComments();
-  }
-
-  _handleGetCommentsSuccess(newComments) {
-    var $commentsBar = this._$obj.find('.comments-bar');
-
-    this._commentsBar = new CommentsBar($commentsBar, {
-      modifier: 'card',
-      onSubmit: this._addComment,
-      onCommentDelete: this._deleteComment,
-      comments: newComments
-    });
-    this._commentsBar.render();
-    this._commentsBar.hide();
   }
 
   _handleLikeButton() {
@@ -155,13 +140,25 @@ export default class OfferCard {
 
     likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offer.id);
     addOfferSuccessRegister(this._handleAddOfferSuccess, this._offer.id);
-    getCommentsSuccessRegister(this._handleGetCommentsSuccess, this._offer.id);
+    getCommentsSuccessRegister(this._handleChangeCommentsSuccess, this._offer.id);
     addCommentSuccessRegister(this._handleChangeCommentsSuccess, this._offer.id);
     deleteCommentSuccessRegister(this._handleChangeCommentsSuccess, this._offer.id);
 
     getComments({
       offerId: this._offer.id
     });
+
+    var $commentsBar = this._$obj.find('.comments-bar');
+
+    this._commentsBar = new CommentsBar($commentsBar, {
+      modifier: 'card',
+      onSubmit: this._addComment,
+      onCommentDelete: this._deleteComment,
+      avatarSize: 'small',
+      maxLength: 100
+    });
+    this._commentsBar.render();
+    this._commentsBar.hide();
 
     this._$reviewButton = this._$obj.find('.offer-card__review-button');
     this._$likeButton = this._$obj.find('.offer-card__like-button');

@@ -1,11 +1,13 @@
 <div class="comments-bar__comment">
 	{{>avatar/index
-		size="medium"
+		size=avatarSize
 		imageURL=user.imageURL
 		classes="comments-bar__avatar"
 	}}
 	<div class="comments-bar__comment-text">
 		{{text}}
 	</div>
-	<button class="button button--cross comments-bar__button-delete"></button>
+	{{#is-delete-button}}
+		<button class="button button--cross comments-bar__button-delete"></button>
+	{{/is-delete-button}}
 </div>

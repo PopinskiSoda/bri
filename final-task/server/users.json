@@ -1,66 +1,54 @@
 [
 	{
 		"id": 1,
-		"firstName": "Rare",
-		"lastName": "Parrot",
-		"imageURL": "./images/avatars/1.jpg"
-	},
-	{
-		"id": 2,
-		"firstName": "Rare",
-		"lastName": "Pigeon",
-		"imageURL": "./images/avatars/2.jpg"
-	},
-	{
-		"id": 3,
 		"firstName": "Иван",
 		"lastName": "Иванов",
 		"imageURL": "./images/avatars/3.jpg"
 	},
 	{
-		"id": 4,
+		"id": 2,
 		"firstName": "Збигнев",
 		"lastName": "Бжезинский",
 		"imageURL": "./images/avatars/4.jpg"
 	},
 	{
-		"id": 5,
+		"id": 3,
 		"firstName": "Декстер",
 		"lastName": "Морган",
 		"imageURL": "./images/avatars/5.jpg"
 	},
 	{
-		"id": 6,
+		"id": 4,
 		"firstName": "Марти",
 		"lastName": "Макфлай",
 		"imageURL": "./images/avatars/6.jpg"
 	},
 	{
-		"id": 7,
+		"id": 5,
 		"firstName": "Данди",
 		"lastName": "Крокодил",
 		"imageURL": "./images/avatars/7.jpg"
 	},
 	{
-		"id": 8,
+		"id": 6,
 		"firstName": "Арнольд",
 		"lastName": "Шварценеггер",
 		"imageURL": "./images/avatars/8.jpg"
 	},
 	{
-		"id": 9,
+		"id": 7,
 		"firstName": "Луи",
 		"lastName": "Де Фюнес",
 		"imageURL": "./images/avatars/9.jpg"
 	},
 	{
-		"id": 10,
+		"id": 8,
 		"firstName": "Клинт",
 		"lastName": "Иствуд",
 		"imageURL": "./images/avatars/10.jpg"
 	},
 	{
-		"id": 11,
+		"id": 9,
 		"firstName": "Уилл",
 		"lastName": "Смит",
 		"imageURL": "./images/avatars/11.jpg"

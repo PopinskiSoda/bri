@@ -5,36 +5,17 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  // debug: true,
-  // outputPathinfo: true,
-  // включаем source map
   devtool: 'eval-source-map',
-  // displayErrorDetails: true,
   stats: {
     errorDetails: true
   },
-  // output: {
-  //   // фикс для правильного отображения source map у Vue JS компонентов
-  //   devtoolModuleFilenameTemplate: info => {
-  //     if (info.resource.match(/\.vue$/)) {
-  //       $filename = info.allLoaders.match(/type=script/)
-  //                 ? info.resourcePath : 'generated';
-  //     } else {
-  //       $filename = info.resourcePath;
-  //     }
-  //     return $filename;
-  //   },
-  // },
   module: {
     loaders: [
-      { test: /\.css$/, loader: 'style-loader!css-loader?sourceMap' },
+      { test: /\.css$/, loader: 'style-loader!css-loader?sourceMap!postcss-loader' },
 
-      // нужно дополнительно применить плагин resolve-url,
-      // чтобы логично работали относительные пути к изображениям
-      // внутри *.scss файлов
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader?sourceMap!resolve-url-loader!sass-loader?sourceMap'
+        loader: 'style-loader!css-loader?sourceMap!resolve-url-loader!sass-loader?sourceMap!postcss-loader'
       },
 
       // изображения
@@ -56,8 +37,8 @@ module.exports = {
             path.join(__dirname, '..', 'blocks')
           ],
           helperDirs: [
-            // path.join(__dirname, '..', 'utils')
-            path.join(__dirname, '..', 'blocks')
+            path.join(__dirname, '..', 'blocks'),
+            path.join(__dirname, '..', 'helpers')
           ]
         }
       },
@@ -100,9 +81,4 @@ module.exports = {
       }
     ])
   ]
-  // plugins: [
-  //   // плагин нужен для генерация файла-манифеста, который будет использован
-  //   // фреймворком для подключения js и css
-  //   new AssetsPlugin({ prettyPrint: true })
-  // ]
 };

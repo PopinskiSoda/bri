@@ -4,6 +4,7 @@ import PopupBase from 'logic/popup-base';
 import Comment from 'logic/comment';
 import CommentsBar from 'blocks/comments-bar';
 import UsersGroup from 'blocks/users-group';
+import {getCurrentUser} from 'logic/auth';
 import {
   addReview,
   getReviews,
@@ -39,7 +40,6 @@ export default class OfferPopup extends PopupBase {
     this._deleteReview = this._deleteReview.bind(this);
     
     this._handleChangeReviewsSuccess = this._handleChangeReviewsSuccess.bind(this);
-    this._handleGetReviewsSuccess = this._handleGetReviewsSuccess.bind(this);
     this._handleLikeOfferSuccess = this._handleLikeOfferSuccess.bind(this);
     this._handleAddOfferSuccess = this._handleAddOfferSuccess.bind(this);
     
@@ -64,7 +64,9 @@ export default class OfferPopup extends PopupBase {
   }
 
   render() {
-    var $newObj = $(OfferPopupTemplate(this._offer));
+    var $newObj = $(OfferPopupTemplate(Object.assign(this._offer, {
+      currentUser: getCurrentUser()
+    })));
 
     this._$obj.replaceWith($newObj);
     this._$obj = $newObj;
@@ -86,18 +88,6 @@ export default class OfferPopup extends PopupBase {
   _handleChangeReviewsSuccess(newReviews) {
     this._commentsBar.setComments(newReviews);
     this._commentsBar.renderComments();
-  }
-
-  _handleGetReviewsSuccess(newReviews) {
-    var $commentsBar = this._$obj.find('.comments-bar');
-
-    this._commentsBar = new CommentsBar($commentsBar, {
-      modifier: 'popup',
-      onSubmit: this._addReview,
-      onCommentDelete: this._deleteReview,
-      comments: newReviews
-    });
-    this._commentsBar.render();
   }
 
   _addReview(newReviewText) {
@@ -141,7 +131,7 @@ export default class OfferPopup extends PopupBase {
   }
 
   _init() {
-    getReviewsSuccessRegister(this._handleGetReviewsSuccess, this._offer.id);
+    getReviewsSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
     addReviewSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
     deleteReviewSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
     likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offer.id);
@@ -162,6 +152,17 @@ export default class OfferPopup extends PopupBase {
       $obj: $addedUsers,
       title: 'добавили к себе'
     });
+
+    var $commentsBar = this._$obj.find('.comments-bar');
+
+    this._commentsBar = new CommentsBar($commentsBar, {
+      modifier: 'popup',
+      onSubmit: this._addReview,
+      onCommentDelete: this._deleteReview,
+      avatarSize: 'medium',
+      maxLength: 500
+    });
+    this._commentsBar.render();
 
     this._$closeButton = this._$obj.find('.offer-popup__close-button');
     this._$deleteOfferButton = this._$obj.find('.offer-popup__delete-offer-button');
