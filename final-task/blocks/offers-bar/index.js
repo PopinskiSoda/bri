@@ -1,4 +1,3 @@
-import Template from './index.handlebars';
 import $ from 'jquery';
 import OfferCard from 'blocks/offer-card';
 import {
@@ -8,12 +7,19 @@ import {
 } from 'logic/ajax-client/offers';
 
 export default class OffersBar {
-  constructor($obj, options) {
-    this._$obj = $obj || $('<div>').addClass('offers-bar');
+  constructor(options) {
+    this._$obj = options.$obj || $('<div>').addClass('offers-bar');
 
-    this._offers = options && options.offers || [];
-    this._offerPopup = options && options.offerPopup || null;
+    this._offers = options.offers || [];
+    this._offerPopup = options.offerPopup || null;
     this._offerCards = [];
+    this._columnsAmount = options.columnsAmount || 4;
+
+    for (let i = 0; i < this._columnsAmount; i++) {
+      this._$obj.append(
+        $('<div>').addClass('offers-bar__column')
+      );
+    }
 
     this._handleCommentsButton = this._handleCommentsButton.bind(this);
     this._handleGetOffersSuccess = this._handleGetOffersSuccess.bind(this);
@@ -21,9 +27,7 @@ export default class OffersBar {
   }
 
   addOfferCard(offer) {
-    let $offerCard = $('<div>').addClass('offer-card');
-
-    let offerCard = new OfferCard($offerCard, {
+    var offerCard = new OfferCard({
       offer,
       offerPopup: this._offerPopup,
       handleCommentsButton: this._handleCommentsButton
@@ -39,18 +43,21 @@ export default class OffersBar {
     this.renderOfferCards();
   }
 
-  renderOfferCard(offer) {
-    let offerCard = this.addOfferCard(offer);
+  _renderOfferCard(offer, columnIndex) {
+    var offerCard = this.addOfferCard(offer);
+    var $column = this._$obj.children().eq(columnIndex);
+
+    console.log(this._$obj.children());
 
     offerCard.render();
-    offerCard.appendTo(this._$obj);
+    offerCard.appendTo($column);
   }
 
   renderOfferCards() {
-    this._$obj.empty();
+    this._$obj.children().empty();
 
     for(let i=0; i<this._offers.length; i++) {
-      this.renderOfferCard(this._offers[i]);
+      this._renderOfferCard(this._offers[i], i % this._columnsAmount);
     }
   }
 
@@ -65,6 +72,7 @@ export default class OffersBar {
     }
     
     targetCommentsBar.show();
+    targetCommentsBar.focus();
   }
 
   _handleGetOffersSuccess(offers) {

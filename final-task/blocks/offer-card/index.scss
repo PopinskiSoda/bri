@@ -4,16 +4,15 @@ $block: "offer-card";
 $hintHeight: 23px;
 
 .#{$block} {
-	float: left;
+	// float: left;
 	width: 220px;
 	position: relative;
 	overflow: hidden;
 
-	margin-right: 18px;
 	margin-bottom: 16px;
 
 	border: solid 1px #ebebeb;
-	border-radius: 8px;
+	border-radius: 9px;
 	
 	background: #ffffff;
 

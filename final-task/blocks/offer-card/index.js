@@ -17,8 +17,8 @@ import {
 } from 'logic/ajax-client';
 
 export default class OfferCard {
-  constructor($obj, options) {
-    this._$obj = $obj || $('<div>').addClass('offer-card');
+  constructor(options) {
+    this._$obj = options.$obj || $('<div>').addClass('offer-card');
 
     this._$reviewButton = null;
     this._$likeButton = null;
@@ -150,15 +150,15 @@ export default class OfferCard {
 
     var $commentsBar = this._$obj.find('.comments-bar');
 
-    this._commentsBar = new CommentsBar($commentsBar, {
+    this._commentsBar = new CommentsBar({
+      $obj: $commentsBar,
       modifier: 'card',
       onSubmit: this._addComment,
       onCommentDelete: this._deleteComment,
       avatarSize: 'small',
-      maxLength: 100
+      maxLength: 40
     });
     this._commentsBar.render();
-    this._commentsBar.hide();
 
     this._$reviewButton = this._$obj.find('.offer-card__review-button');
     this._$likeButton = this._$obj.find('.offer-card__like-button');

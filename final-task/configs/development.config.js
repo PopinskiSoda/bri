@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-// const AssetsPlugin = require('assets-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -18,13 +17,11 @@ module.exports = {
         loader: 'style-loader!css-loader?sourceMap!resolve-url-loader!sass-loader?sourceMap!postcss-loader'
       },
 
-      // изображения
       {
         test: /\.(png|jpg|gif)$/,
         loader: 'file-loader?name=[path][name].[ext]&limit=8192'
       },
 
-      // // шрифты
       {
         test: /\.ttf$/,
         loader: 'file-loader?name=[path][name].[ext]&limit=8192'

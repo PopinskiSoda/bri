@@ -47,6 +47,7 @@ export default class OfferPopup extends PopupBase {
     this._handleCloseButton = this._handleCloseButton.bind(this);
     this._handleAddButton = this._handleAddButton.bind(this);
     this._handleLikeButton = this._handleLikeButton.bind(this);
+    this._handleCommentButton = this._handleCommentButton.bind(this);
   }
 
   setOffer(offer) {
@@ -130,6 +131,11 @@ export default class OfferPopup extends PopupBase {
     });
   }
 
+  _handleCommentButton() {
+    this._commentsBar.show();
+    this._commentsBar.focus();
+  }
+
   _init() {
     getReviewsSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
     addReviewSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
@@ -155,7 +161,8 @@ export default class OfferPopup extends PopupBase {
 
     var $commentsBar = this._$obj.find('.comments-bar');
 
-    this._commentsBar = new CommentsBar($commentsBar, {
+    this._commentsBar = new CommentsBar({
+      $obj: $commentsBar,
       modifier: 'popup',
       onSubmit: this._addReview,
       onCommentDelete: this._deleteReview,
@@ -168,10 +175,12 @@ export default class OfferPopup extends PopupBase {
     this._$deleteOfferButton = this._$obj.find('.offer-popup__delete-offer-button');
     this._$addButton = this._$obj.find('.offer-popup__add-button');
     this._$likeButton = this._$obj.find('.offer-popup__like-button');
+    this._$commentButton = this._$obj.find('.offer-popup__comment-button');
 
     this._$deleteOfferButton.click(this._handleDeleteOfferButton);
     this._$closeButton.click(this._handleCloseButton);
     this._$addButton.click(this._handleAddButton);
     this._$likeButton.click(this._handleLikeButton);
+    this._$commentButton.click(this._handleCommentButton);
   }
 }

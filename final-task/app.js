@@ -11,11 +11,14 @@ $(document).ready(function() {
   loginKindOf({
     onSuccess: function(user) {
       
-      var popupBackground = new PopupBackground($('.popup-background'));
+      var popupBackground = new PopupBackground({
+        $obj: $('.popup-background')
+      });
       var offerPopup = new OfferPopup({
         $obj: $('.offer-popup')
       });
-      var offersBar = new OffersBar($('.offers-bar'), {
+      var offersBar = new OffersBar({
+        $obj: $('.offers-bar'),
         offerPopup
       });
 

@@ -3,4 +3,13 @@ $block: 'offers-bar';
 .#{$block} {
 	width: 960px;
 	margin: 20px auto;
+
+	&__column {
+		float: left;
+		margin-right: 18px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
 }

@@ -6,30 +6,37 @@ import $ from 'jquery';
 const ENTER_KEY_CODE = 13;
 
 export default class CommentsBar {
-  constructor($obj, options) {
-    this._$obj = $obj || $('<div>').addClass('comments-bar');
+  constructor(options) {
+    this._$obj = options.$obj || $('<div>').addClass('comments-bar');
 
     this._$comments = null;
     this._$textarea = null;
 
-    this._comments = options && options.comments || [];
-    this._modifier = options && options.modifier || '';
+    this._hidden = options.hidden || true;
+
+    this._comments = options.comments || [];
+    this._modifier = options.modifier || '';
     this._avatarSize = options.avatarSize || 'medium';
     this._maxLength = options.maxLength || 500;
 
-    this._onSubmit = options && options.onSubmit || null;
-    this._onCommentDelete = options && options.onCommentDelete || null;
+    this._onSubmit = options.onSubmit || null;
+    this._onCommentDelete = options.onCommentDelete || null;
 
     this._handleKeyPress = this._handleKeyPress.bind(this);
   }
 
   hide() {
+    this._hidden = true;
     this._$obj.addClass('comments-bar--hidden');
   }
 
   show() {
+    this._hidden = false;
     this._$obj.removeClass('comments-bar--hidden');
-    this.render();
+  }
+
+  focus() {
+    this._$textarea.focus();
   }
 
   setComments(comments) {
@@ -43,7 +50,8 @@ export default class CommentsBar {
       modifier: this._modifier,
       avatarSize: this._avatarSize,
       maxLength: this._maxLength,
-      currentUser: getCurrentUser()
+      currentUser: getCurrentUser(),
+      hidden: this._hidden
     }));
 
     this._$obj.replaceWith($newObj);
