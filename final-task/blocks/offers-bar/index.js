@@ -46,9 +46,7 @@ export default class OffersBar {
   _renderOfferCard(offer, columnIndex) {
     var offerCard = this.addOfferCard(offer);
     var $column = this._$obj.children().eq(columnIndex);
-
-    console.log(this._$obj.children());
-
+    
     offerCard.render();
     offerCard.appendTo($column);
   }

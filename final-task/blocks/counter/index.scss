@@ -1,0 +1,10 @@
+$block: 'counter';
+
+.#{$block} {
+
+  display: inline-block;
+
+  &--hidden {
+    display: none;
+  }
+}

@@ -1,4 +1,11 @@
 @font-face {
-	font-family: "PFAgoraSansPro";
-	src: url(fonts/PFAgoraSansPro/PFAgoraSansProRegular.ttf);
+  font-family: "PFAgoraSansPro";
+  src: url(fonts/pf-agora-sans-pro/pf-agora-sans-pro-regular.ttf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "PFAgoraSansPro";
+  src: url(fonts/pf-agora-sans-pro/pf-agora-sans-pro-xthin.ttf);
+  font-weight: 100;
 }

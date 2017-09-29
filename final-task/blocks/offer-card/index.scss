@@ -4,157 +4,164 @@ $block: "offer-card";
 $hintHeight: 23px;
 
 .#{$block} {
-	// float: left;
-	width: 220px;
-	position: relative;
-	overflow: hidden;
+  width: 220px;
+  position: relative;
+  overflow: hidden;
 
-	margin-bottom: 16px;
+  margin-bottom: 16px;
 
-	border: solid 1px #ebebeb;
-	border-radius: 9px;
-	
-	background: #ffffff;
+  border: solid 1px #ebebeb;
+  border-radius: 9px;
+  
+  background: #ffffff;
 
-	&__row {
-		padding-left: 15px;
+  &__row {
+    padding-left: 15px;
 
-		&--title {
-			margin-top: 15px;
-		}
+    &--title {
+      margin-top: 15px;
+    }
 
-		&--attributes {
-			margin-top: 17px;
-		}
+    &--attributes {
+      margin-top: 17px;
+    }
 
-		&--counters {
-			margin-top: 38px;
-		}
-	}
+    &--counters {
+      margin-top: 38px;
+    }
+  }
 
-	&__image-wrapper {
-		position: relative;
-		min-height: 107px;
-	}
+  &__image-wrapper {
+    position: relative;
+    min-height: 107px;
+  }
 
-	&__image {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		margin: auto;
-		max-width: 100%;
-	}
+  &__image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 100%;
+  }
 
-	&__image-overlay {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background: linear-gradient(
-			to bottom,
-			rgba(255,255,255,1) 0%,
-			rgba(255,255,255,0.9) 40%,
-			rgba(255,255,255,0) 100%
-		);
-		display: none;
-	}
+  &__image-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.9) 40%,
+      rgba(255,255,255,0) 100%
+    );
+    display: none;
+  }
 
-	&__title {
-		font-size: 12px;
-		color: #000000;
-		font-weight: bold;
-	}
+  &__title {
+    font-size: 12px;
+    color: #000000;
+    font-weight: bold;
+  }
 
-	&__attribute {
-		font-size: 11px;
-		opacity: 0.6;
-	}
+  &__attribute {
+    font-size: 11px;
+    opacity: 0.6;
+  }
 
-	&__counter {
-		font-size: 11px;
-		opacity: 0.6;
-	}
+  &__counters-group {
+    max-width: 160px;
+  }
 
-	&__counter {
-		margin-right: 7px;
+  .counter {
+    font-size: 11px;
+    opacity: 0.6;
+  }
 
-		&:last-child {
-			margin-right: 0;
-		}
+  .counter {
+    margin-right: 7px;
 
-		white-space: pre;
-	}
+    &:last-child {
+      margin-right: 0;
+    }
 
-	&__popup-button {
-		cursor: pointer;
-		position: absolute;
-		top: 0;
-		width: 100%;
-		height: $hintHeight;
-		line-height: $hintHeight;
-		text-align: center;
-		vertical-align: middle;
-		font-family: "PFAgoraSansPro";
-		font-size: 10px;
-		color: #ffffff;
-		display: none;
-		background-color: #abc9e8;
+    white-space: pre;
+  }
 
-		&:hover {
-			background-color: #e7afa8;
-		}
-	}
+  &__popup-button {
+    cursor: pointer;
 
-	&__buttons-wrapper {
-		position: absolute;
-		top: $hintHeight;
-		display: none;
-		padding-top: 7px;
-	}
+    position: absolute;
+    top: 0;
 
-	&__icon-button {
-		margin-right: 19px;
+    width: 100%;
+    height: $hintHeight;
+    line-height: $hintHeight;
+    text-align: center;
+    vertical-align: top;
 
-		&:first-child {
-			margin-left: 13px;
-		}
+    font-family: "PFAgoraSansPro";
+    font-size: 11px;
+    color: #ffffff;
 
-		&:last-child {
-			margin-right: 0;
-		}
+    background-color: #abc9e8;
+    display: none;
 
-		&:disabled {
-			.icon {
-				@extend .icon--purple;
-			}
-			cursor: default;
-		}
-	}
+    &:hover {
+      background-color: #e7afa8;
+    }
+  }
 
-	&__user-card {
-		background-color: #f1f1f1;
-		padding: 6px 13px 5px;
-		margin-top: 8px;
-	}
+  &__buttons-wrapper {
+    position: absolute;
+    top: $hintHeight;
+    display: none;
+    padding-top: 7px;
+  }
 
-	&:hover {
-		border-color: #abc9e8;
-		box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.48); 
+  &__icon-button {
+    margin-right: 19px;
 
-		.#{$block} {
-			&__popup-button {
-				display: block;
-			}
+    &:first-child {
+      margin-left: 13px;
+    }
 
-			&__buttons-wrapper {
-				display: block;
-			}
+    &:last-child {
+      margin-right: 0;
+    }
 
-			&__image-overlay {
-				display: block;
-			}
-		}
-	}
+    &:disabled {
+      .icon {
+        @extend .icon--purple;
+      }
+      cursor: default;
+    }
+  }
+
+  &__user-card {
+    background-color: #f1f1f1;
+    padding: 6px 13px 5px;
+    margin-top: 8px;
+  }
+
+  &:hover {
+    border-color: #abc9e8;
+    box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.48); 
+
+    .#{$block} {
+      &__popup-button {
+        display: block;
+      }
+
+      &__buttons-wrapper {
+        display: block;
+      }
+
+      &__image-overlay {
+        display: block;
+      }
+    }
+  }
 }

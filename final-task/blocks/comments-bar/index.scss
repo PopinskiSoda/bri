@@ -1,124 +1,124 @@
 $block: "comments-bar";
 
 .#{$block} {
-	background-color: #f1f1f1;
+  background-color: #f1f1f1;
 
-	$paddingLeft: 40px;
-	$textMarginLeft: 32px;
+  $paddingLeft: 40px;
+  $textMarginLeft: 32px;
 
-	&__comment {
-		position: relative;
+  &__comment {
+    position: relative;
 
-		border-bottom: 1px solid #d8d8d8;
-		width: 100%;
-		box-sizing: border-box;
+    border-bottom: 1px solid #d8d8d8;
+    width: 100%;
+    box-sizing: border-box;
 
-		content: "";
-		display: table;
-		clear: both;
-	}
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-	&__button-delete {
-		position: absolute;
-	}
+  &__button-delete {
+    position: absolute;
+  }
 
-	&__avatar {
-		float: left;
-	}
+  &__avatar {
+    float: left;
+  }
 
-	&__comment-text {
-		float: left;
-	}
+  &__comment-text {
+    float: left;
+  }
 
-	&__textarea {
-		resize: none;
-		border: 1px solid #cdcdcd;
-		font-size: 14px;
-		font-family: "PFAgoraSansPro";
-		box-sizing: border-box;
+  &__textarea {
+    resize: none;
+    border: 1px solid #cdcdcd;
+    font-size: 14px;
+    font-family: "PFAgoraSansPro";
+    box-sizing: border-box;
 
-		&::placeholder {
-			color: #cacaca;
-		}
-	}
+    &::placeholder {
+      color: #cacaca;
+    }
+  }
 
-	&--hidden {
-		display: none;
-	}
+  &--hidden {
+    display: none;
+  }
 
-	&--popup {
+  &--popup {
 
-		.#{$block} {
-			
-			&__comment {
-				padding: 17px 0 6px $paddingLeft;
-			}
+    .#{$block} {
+      
+      &__comment {
+        padding: 17px 0 6px $paddingLeft;
+      }
 
-			&__button-delete {
-				top: 10px;
-				right: 40px;
-				font-size: 12px;
-			}
+      &__button-delete {
+        top: 10px;
+        right: 40px;
+        font-size: 12px;
+      }
 
-			&__comment-text {
-				font-size: 12px;
-				color: #6d6d6d;
-				width: 555px;
-				margin: 4px 0 16px $textMarginLeft;
-				overflow: hidden;
-			}
+      &__comment-text {
+        font-size: 12px;
+        color: #6d6d6d;
+        width: 555px;
+        margin: 4px 0 16px $textMarginLeft;
+        overflow: hidden;
+      }
 
-			&__textarea-wrapper {
-				padding: 20px 0 18px $paddingLeft;
-			}
+      &__textarea-wrapper {
+        padding: 20px 0 18px $paddingLeft;
+      }
 
-			&__textarea {
-				width: 647px;
-				height: 51px;
-				padding: 8px 10px;
-				margin-left: $textMarginLeft;
-				vertical-align: bottom;
-			}
-		}
-	}
+      &__textarea {
+        width: 647px;
+        height: 51px;
+        padding: 8px 10px;
+        margin-left: $textMarginLeft;
+        vertical-align: bottom;
+      }
+    }
+  }
 
-	&--card {
-		
-		.#{$block} {
+  &--card {
+    
+    .#{$block} {
 
-			&__comment {
-				padding: 6px 13px 5px;
-			}
+      &__comment {
+        padding: 6px 13px 5px;
+      }
 
-			&__comment-text {
-				font-size: 11px;
-				line-height: 11px;
-				width: 145px;
-				height: 22px;
-				overflow: hidden;
-			}
+      &__comment-text {
+        font-size: 11px;
+        line-height: 11px;
+        width: 145px;
+        height: 22px;
+        overflow: hidden;
+      }
 
-			&__button-delete {
-				font-size: 11px;
-				right: 7px;
-				top: 5px;
-			}
+      &__button-delete {
+        font-size: 11px;
+        right: 7px;
+        top: 5px;
+      }
 
-			&__textarea {
-				height: 27px;
-				width: 153px;
-				padding: 6px 8px 5px;
-				font-size: 11px;
-			}
+      &__textarea {
+        height: 27px;
+        width: 153px;
+        padding: 6px 8px 5px;
+        font-size: 11px;
+      }
 
-			&__avatar {
-				margin-right: 13px;
-			}
+      &__avatar {
+        margin-right: 13px;
+      }
 
-			&__textarea-wrapper {
-				padding: 6px 10px 5px 13px;
-			}
-		}
+      &__textarea-wrapper {
+        padding: 6px 10px 5px 13px;
+      }
+    }
 
-	}
+  }
 }

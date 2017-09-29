@@ -24,6 +24,8 @@ export default class OfferPopup extends PopupBase {
     super();
 
     this._$obj = options.$obj || $('<div>').addClass('offer-popup');
+    this._offer = options.offer || null;
+    this._commentMaxLength = options.commentMaxLength || 500;
 
     this._likedUsersGroup = null;
     this._addedUsersGroup = null;
@@ -33,7 +35,6 @@ export default class OfferPopup extends PopupBase {
     this._$addButton = null;
     this._$likeButton = null;
 
-    this._offer = options.offer || null;
     this._commentsBar = null;
 
     this._addReview = this._addReview.bind(this);
@@ -86,8 +87,8 @@ export default class OfferPopup extends PopupBase {
     this._addedUsersGroup.render();
   }
 
-  _handleChangeReviewsSuccess(newReviews) {
-    this._commentsBar.setComments(newReviews);
+  _handleChangeReviewsSuccess(reviewsData) {
+    this._commentsBar.setComments(reviewsData.reviews);
     this._commentsBar.renderComments();
   }
 
@@ -167,7 +168,7 @@ export default class OfferPopup extends PopupBase {
       onSubmit: this._addReview,
       onCommentDelete: this._deleteReview,
       avatarSize: 'medium',
-      maxLength: 500
+      maxLength: this._commentMaxLength
     });
     this._commentsBar.render();
 

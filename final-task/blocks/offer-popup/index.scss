@@ -1,139 +1,141 @@
 $block: 'offer-popup';
 
 .#{$block} {
-	position: absolute;
-	right: 0;
-	left: 0;
-	margin: 52px auto 68px;
+  position: absolute;
+  top: 52px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  margin-bottom: 68px;
 
-	background-color: #ffffff;
-	width: 810px;
-	z-index: 100;
-	border-radius: 3px;
-	box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.46);
+  background-color: #ffffff;
+  width: 810px;
+  z-index: 100;
+  border-radius: 3px;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.46);
 
-	$maxOfferWidth: 570px;
+  $maxOfferWidth: 570px;
 
-	&__row {
-		border-bottom: 1px solid #e6e6e6;
+  &__row {
+    border-bottom: 1px solid #e6e6e6;
 
-		&:last-child, &--no-separator {
-			border-bottom: none;
-		}
+    &:last-child, &--no-separator {
+      border-bottom: none;
+    }
 
-		&:after {
-			content: "";
-			display: table;
-			clear: both;
-		}
-	}
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
 
-	&__column {
-		padding-left: 41px;
-		padding-right: 31px;
-		border-right: 1px solid #e6e6e6;
-		border-left: 1px solid #e6e6e6;
-		margin-left: -1px;
-		float: left;
-		height: 100%;
+  &__column {
+    padding-left: 41px;
+    padding-right: 31px;
+    border-right: 1px solid #e6e6e6;
+    border-left: 1px solid #e6e6e6;
+    margin-left: -1px;
+    float: left;
+    height: 100%;
 
-		&--small-padding {
-			padding: 0 21px;
-		}
+    &--small-padding {
+      padding: 0 21px;
+    }
 
-		&--bottom-padding {
-			padding-bottom: 35px;
-		}
+    &--bottom-padding {
+      padding-bottom: 35px;
+    }
 
-		&:first-child, &--no-separator {
-			border-left: none;
-			margin-left: none;
-		}
+    &:first-child, &--no-separator {
+      border-left: none;
+      margin-left: none;
+    }
 
-		&:last-child, &--no-separator {
-			border-right: none;
-		}
-	}
+    &:last-child, &--no-separator {
+      border-right: none;
+    }
+  }
 
-	&__user-card {
-		margin: 7px 0;
-	}
+  &__user-card {
+    margin: 7px 0;
+  }
 
-	&__add-friend-button {
-		margin-top: 35px;
-		margin-left: -4px;
-	}
+  &__add-friend-button {
+    margin-top: 35px;
+    margin-left: -4px;
+  }
 
-	&__header {
-		font-size: 24px;
-		font-family: "PFAgoraSansPro";
-		color: #000000;
-		margin-top: 20px;
-	}
+  &__header {
+    font-size: 24px;
+    font-family: "PFAgoraSansPro";
+    color: #000000;
+    margin-top: 20px;
+  }
 
-	&__caption {
-		margin-left: 2px;
-		margin-top: 2px;
-		font-size: 16px;
-		font-family: "PFAgoraSansPro";
-		color: #a3a3a3;
-	}
+  &__caption {
+    margin-left: 2px;
+    margin-top: 2px;
+    font-size: 16px;
+    font-family: "PFAgoraSansPro";
+    color: #a3a3a3;
+  }
 
-	&__image-wrapper {
-		position: relative;
-		width: $maxOfferWidth;
-		margin-top: 12px;
-		text-align: center;
-	}
+  &__image-wrapper {
+    position: relative;
+    width: $maxOfferWidth;
+    margin-top: 12px;
+    text-align: center;
+  }
 
-	&__image {
-		max-width: 100%;
-	}
+  &__image {
+    max-width: 100%;
+  }
 
-	&__image-overlay {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background: linear-gradient(
-			to top,
-			rgba(255,255,255,1) 0%,
-			rgba(255,255,255,0.9) 20%,
-			rgba(255,255,255,0) 100%
-		);
-	}
+  &__image-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to top,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.9) 20%,
+      rgba(255,255,255,0) 100%
+    );
+  }
 
-	&__implemented-label {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		margin: auto;
+  &__implemented-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 
-		font-size: 14px;
-		font-family: "PFAgoraSansPro";
-		color: #a3258f;
-		text-align: center;
-	}
+    font-size: 14px;
+    font-family: "PFAgoraSansPro";
+    color: #a3258f;
+    text-align: center;
+  }
 
-	&__text {
-		margin-top: 30px;
-		font-size: 14px;
-		max-width: $maxOfferWidth;
-	}
+  &__text {
+    margin-top: 30px;
+    font-size: 14px;
+    max-width: $maxOfferWidth;
+  }
 
-	&__buttons-group {
-		margin-top: 70px;
-	}
+  &__buttons-group {
+    margin-top: 70px;
+  }
 
-	&__close-button {
-		position: absolute;
-		top: 10px;
-		right: 12px;
-	}
+  &__close-button {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+  }
 
-	&--hidden {
-		display: none;
-	}
+  &--hidden {
+    display: none;
+  }
 }

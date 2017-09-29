@@ -2,67 +2,68 @@ $block: 'user-card';
 
 .#{$block} {
 
-	&__column {
-		float: left;
-		margin-right: 7px;
+  &__column {
+    float: left;
+    margin-right: 7px;
 
-		&:last-child {
-			margin-right: 0;
-		}
-	}
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 
-	&__full-name {
-		font-family: "PFAgoraSansPro";
-		color: #8473ac;
-	}
+  &__full-name {
+    font-family: "PFAgoraSansPro";
+    font-weight: lighter;
+    color: #8473ac;
+  }
 
-	&__caption {
-		color: #82848a;
-		font-style: italic;
-	}
+  &__caption {
+    color: #82848a;
+    font-style: italic;
+  }
 
-	&--large {
+  &--large {
 
-		.#{$block} {
+    .#{$block} {
 
-			&__column {
-				margin-right: 7px;
-			}
+      &__column {
+        margin-right: 7px;
+      }
 
-			&__full-name {
-				font-size: 15px;
-				margin-top: 20px;
-			}
+      &__full-name {
+        font-size: 22px;
+        margin-top: 15px;
+      }
 
-			&__caption {
-				font-size: 11px;
-			}
-		}
+      &__caption {
+        font-size: 14px;
+      }
+    }
 
-	}
+  }
 
-	&--small {
+  &--small {
 
-		.#{$block} {
+    .#{$block} {
 
-			&__column {
-				margin-right: 13px;
-			}
+      &__column {
+        margin-right: 13px;
+      }
 
-			&__full-name {
-				font-size: 12px;
-				margin-top: 1px;
-			}
+      &__full-name {
+        font-size: 12px;
+        margin-top: 1px;
+      }
 
-			&__caption {
-				font-size: 11px;
-			}
-		}
-	}
+      &__caption {
+        font-size: 11px;
+      }
+    }
+  }
 
-	&:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }

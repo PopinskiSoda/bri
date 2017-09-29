@@ -1,6 +1,7 @@
 import {getCurrentUser} from 'logic/auth';
 import Template from './index.handlebars';
 import CommentsBar from 'blocks/comments-bar';
+import CountersGroup from './counters-group';
 import Comment from 'logic/comment';
 import $ from 'jquery';
 import {
@@ -19,6 +20,9 @@ import {
 export default class OfferCard {
   constructor(options) {
     this._$obj = options.$obj || $('<div>').addClass('offer-card');
+    this._offer = options.offer || null;
+    this._offerPopup = options.offerPopup || null;
+    this._commentMaxLength = options.commentMaxLength || 40;
 
     this._$reviewButton = null;
     this._$likeButton = null;
@@ -31,9 +35,8 @@ export default class OfferCard {
     this._$commentsAmount = null;
     this._$reviewsAmount = null;
 
-    this._offer = options.offer || null;
-    this._offerPopup = options.offerPopup || null;
     this._commentsBar = null;
+    this._countersGroup = null;
     this._handleCommentsButton = options.handleCommentsButton;
 
     this._handlePopupButton = this._handlePopupButton.bind(this);
@@ -95,8 +98,8 @@ export default class OfferCard {
     this._offerPopup.open();
   }
 
-  _handleChangeCommentsSuccess(newComments) {
-    this._commentsBar.setComments(newComments);
+  _handleChangeCommentsSuccess(commentsData) {
+    this._commentsBar.setComments(commentsData.comments);
     this._commentsBar.renderComments();
   }
 
@@ -148,17 +151,25 @@ export default class OfferCard {
       offerId: this._offer.id
     });
 
-    var $commentsBar = this._$obj.find('.comments-bar');
-
     this._commentsBar = new CommentsBar({
-      $obj: $commentsBar,
+      $obj: this._$obj.find('.comments-bar'),
       modifier: 'card',
       onSubmit: this._addComment,
       onCommentDelete: this._deleteComment,
       avatarSize: 'small',
-      maxLength: 40
+      maxLength: this._commentMaxLength
     });
     this._commentsBar.render();
+
+    this._countersGroup = new CountersGroup({
+      $obj: this._$obj.find('.offer-card__counters-group'),
+      offerId: this._offer.id,
+      likedAmount: this._offer.likedUsers.length,
+      addedAmount: this._offer.addedUsers.length,
+      commentsAmount: this._offer.comments.length,
+      reviewsAmount: this._offer.reviews.length,
+    });
+    this._countersGroup.render();
 
     this._$reviewButton = this._$obj.find('.offer-card__review-button');
     this._$likeButton = this._$obj.find('.offer-card__like-button');

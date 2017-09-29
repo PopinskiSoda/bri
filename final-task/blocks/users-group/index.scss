@@ -1,22 +1,22 @@
 $block: "users-group";
 
 .#{$block} {
-	padding-top: 13px;
-	padding-bottom: 19px;
+  padding-top: 13px;
+  padding-bottom: 19px;
 
-	&__title{
-		font-size: 16px;
-		font-family: "PFAgoraSansPro";
-	}
+  &__title{
+    font-size: 16px;
+    font-family: "PFAgoraSansPro";
+  }
 
-	&__avatar {
-		display: inline-block;
-		vertical-align: bottom;
-		margin-top: 10px;
-		margin-right: 15px;
+  &__avatar {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-top: 10px;
+    margin-right: 15px;
 
-		&:last-child {
-			margin-right: 0;
-		}
-	}
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }

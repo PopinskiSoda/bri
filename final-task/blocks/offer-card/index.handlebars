@@ -34,18 +34,20 @@
 		<div class="offer-card__attribute">{{location}}</div>
 	</div>
 	<div class="offer-card__row offer-card__row--counters">
-		{{#if likedUsers.length}}
-			<span class="offer-card__counter"><span class="offer-card__liked-amount">{{likedUsers.length}}</span> нравится</span>
-		{{/if}}
-		{{#if comments.length}}
-			<span class="offer-card__counter"><span class="offer-card__comments-amount">{{comments.length}}</span> комментария</span>
-		{{/if}}
-		{{#if reviews.length}}
-			<span class="offer-card__counter"><span class="offer-card__reviews-amount">{{reviews.length}}</span> отзыва</span>
-		{{/if}}
-		{{#if addedUsers.length}}
-			<span class="offer-card__counter"><span class="offer-card__added-amount">{{addedUsers.length}}</span> добавили себе</span>
-		{{/if}}
+		<div class="offer-card__counters-group">
+			{{#if likedUsers.length}}
+				<span class="counter offer-card__liked-counter"><span class="amount">{{likedUsers.length}}</span> нравится</span>
+			{{/if}}
+			{{#if comments.length}}
+				<span class="counter offer-card__comments-counter"><span class="amount">{{comments.length}}</span> комментария</span>
+			{{/if}}
+			{{#if reviews.length}}
+				<span class="counter offer-card__reviews-counter"><span class="amount">{{reviews.length}}</span> отзыва</span>
+			{{/if}}
+			{{#if addedUsers.length}}
+				<span class="counter offer-card__added-counter"><span class="amount">{{addedUsers.length}}</span> добавили себе</span>
+			{{/if}}
+		</div>
 	</div>
 	{{>user-card/index
 		size="small"

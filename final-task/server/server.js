@@ -56,11 +56,17 @@ function getOfferById(id) {
 }
 
 function getTopReviews(offer) {
-  return offer.reviews.slice(-MAX_REVIEWS_PER_RESPONSE);
+  return {
+    reviews: offer.reviews.slice(-MAX_REVIEWS_PER_RESPONSE),
+    total: offer.reviews.length
+  };
 }
 
 function getTopComments(offer) {
-  return offer.comments.slice(-MAX_COMMENTS_PER_RESPONSE);
+  return {
+    comments: offer.comments.slice(-MAX_COMMENTS_PER_RESPONSE),
+    total: offer.comments.length
+  };
 }
 
 function containsCurrentUser(array) {

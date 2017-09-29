@@ -9,18 +9,19 @@
 @import "~blocks/user-card/index";
 @import "~blocks/comments-bar/index";
 @import "~blocks/users-group/index";
+@import "~blocks/counter/index";
 
 body {
-	font-family: "Arial";
-	margin: 0;
+  font-family: "Arial";
+  margin: 0;
 }
 
 h2 {
-	margin: 0;
+  margin: 0;
 }
 
 button {
-	border: none;
-	padding: 0;
-	background: none;
+  border: none;
+  padding: 0;
+  background: none;
 }

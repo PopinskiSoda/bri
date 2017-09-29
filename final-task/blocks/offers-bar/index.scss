@@ -1,15 +1,21 @@
 $block: 'offers-bar';
 
 .#{$block} {
-	width: 960px;
-	margin: 20px auto;
+  width: 960px;
+  margin: 20px auto;
 
-	&__column {
-		float: left;
-		margin-right: 18px;
+  &__column {
+    float: left;
+    margin-right: 18px;
 
-		&:last-child {
-			margin-right: 0;
-		}
-	}
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
