@@ -33,8 +33,6 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "masonry-layout": "^4.2.0",
-    "jquery-bridget": "^2.0.1",
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
     "jquery": "^3.2.1"
