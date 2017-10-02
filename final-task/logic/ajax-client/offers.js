@@ -17,6 +17,11 @@ export function deleteOfferSuccessRegister(handler, offerId) {
   deleteOfferSuccessHandlers.push({handler, offerId});
 }
 
+export function changeOffersSuccessRegister(handler, offerId) {
+  getOffersSuccessRegister(handler, offerId);
+  deleteOfferSuccessRegister(handler, offerId);
+}
+
 export function getOffers() {
   $.ajax(Object.assign({
     url: offerURL,

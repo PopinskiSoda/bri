@@ -12,15 +12,19 @@ $spriteGrid: 31px;
 .icon--plus   { @include sprite(2, 0) };
 .icon--bubble { @include sprite(3, 0) };
 
-.icon--purple {
+%icon--purple {
   &.icon--lamp   { @include sprite(0, 1) };
   &.icon--heart  { @include sprite(1, 1) };
   &.icon--plus   { @include sprite(2, 1) };
   &.icon--bubble { @include sprite(3, 1) };
 }
 
+.icon--purple {
+  @extend %icon--purple;
+}
+
 .icon:hover {
-  @extend .icon--purple;
+  @extend %icon--purple;
 };
 
 

@@ -4,18 +4,7 @@ import CommentsBar from 'blocks/comments-bar';
 import CountersGroup from './counters-group';
 import Comment from 'logic/comment';
 import $ from 'jquery';
-import {
-  getComments,
-  addComment,
-  deleteComment,
-  likeOffer,
-  addOffer,
-  getCommentsSuccessRegister,
-  likeOfferSuccessRegister,
-  addOfferSuccessRegister,
-  addCommentSuccessRegister,
-  deleteCommentSuccessRegister
-} from 'logic/ajax-client';
+import * as AjaxClient from 'logic/ajax-client';
 
 export default class OfferCard {
   constructor(options) {
@@ -86,7 +75,7 @@ export default class OfferCard {
   }
 
   _deleteComment(id) {
-    deleteComment({
+    AjaxClient.deleteComment({
       id,
       offerId: this._offer.id
     });
@@ -104,7 +93,7 @@ export default class OfferCard {
   }
 
   _handleLikeButton() {
-    likeOffer({
+    AjaxClient.likeOffer({
       id: this._offer.id
     });
   }
@@ -116,7 +105,7 @@ export default class OfferCard {
   }
 
   _handleAddButton() {
-    addOffer({
+    AjaxClient.addOffer({
       id: this._offer.id
     });
   }
@@ -132,7 +121,7 @@ export default class OfferCard {
       text: newCommentText
     });
 
-    addComment({
+    AjaxClient.addComment({
       comment,
       offerId: this._offer.id
     });
@@ -141,13 +130,11 @@ export default class OfferCard {
   _init() {
     const self = this;
 
-    likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offer.id);
-    addOfferSuccessRegister(this._handleAddOfferSuccess, this._offer.id);
-    getCommentsSuccessRegister(this._handleChangeCommentsSuccess, this._offer.id);
-    addCommentSuccessRegister(this._handleChangeCommentsSuccess, this._offer.id);
-    deleteCommentSuccessRegister(this._handleChangeCommentsSuccess, this._offer.id);
+    AjaxClient.likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offer.id);
+    AjaxClient.addOfferSuccessRegister(this._handleAddOfferSuccess, this._offer.id);
+    AjaxClient.changeCommentsSuccessRegister(this._handleChangeCommentsSuccess, this._offer.id);
 
-    getComments({
+    AjaxClient.getComments({
       offerId: this._offer.id
     });
 

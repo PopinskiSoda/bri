@@ -23,6 +23,12 @@ export function deleteReviewSuccessRegister(handler, offerId) {
   deleteReviewSuccessHandlers.push({handler, offerId});
 }
 
+export function changeReviewsSuccessRegister(handler, offerId) {
+  getReviewsSuccessRegister(handler, offerId);
+  addReviewSuccessRegister(handler, offerId);
+  deleteReviewSuccessRegister(handler, offerId);
+}
+
 export function getReviews(options) {
   let newOptions = Object.assign(options, {
     commentsURL: reviewsURL,

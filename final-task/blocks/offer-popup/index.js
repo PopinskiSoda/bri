@@ -5,19 +5,7 @@ import Comment from 'logic/comment';
 import CommentsBar from 'blocks/comments-bar';
 import UsersGroup from 'blocks/users-group';
 import {getCurrentUser} from 'logic/auth';
-import {
-  addReview,
-  getReviews,
-  deleteReview,
-  addOffer,
-  likeOffer,
-  deleteOffer,
-  addReviewSuccessRegister,
-  deleteReviewSuccessRegister,
-  getReviewsSuccessRegister,
-  likeOfferSuccessRegister,
-  addOfferSuccessRegister
-} from 'logic/ajax-client';
+import * as AjaxClient from 'logic/ajax-client';
 
 export default class OfferPopup extends PopupBase {
   constructor(options) {
@@ -96,14 +84,14 @@ export default class OfferPopup extends PopupBase {
     let review = new Comment({
       text: newReviewText
     });
-    addReview({
+    AjaxClient.addReview({
       review,
       offerId: this._offer.id,
     });
   }
 
   _deleteReview(id) {
-    deleteReview({
+    AjaxClient.deleteReview({
       id,
       offerId: this._offer.id,
     });
@@ -114,20 +102,20 @@ export default class OfferPopup extends PopupBase {
   }
 
   _handleDeleteOfferButton() {
-    deleteOffer({
+    AjaxClient.deleteOffer({
       id: this._offer.id
     });
     this.close();
   }
 
   _handleAddButton() {
-    addOffer({
+    AjaxClient.addOffer({
       id: this._offer.id
     });
   }
 
   _handleLikeButton() {
-    likeOffer({
+    AjaxClient.likeOffer({
       id: this._offer.id
     });
   }
@@ -138,13 +126,11 @@ export default class OfferPopup extends PopupBase {
   }
 
   _init() {
-    getReviewsSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
-    addReviewSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
-    deleteReviewSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
-    likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offer.id);
-    addOfferSuccessRegister(this._handleAddOfferSuccess, this._offer.id);
+    AjaxClient.changeReviewsSuccessRegister(this._handleChangeReviewsSuccess, this._offer.id);
+    AjaxClient.likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offer.id);
+    AjaxClient.addOfferSuccessRegister(this._handleAddOfferSuccess, this._offer.id);
     
-    getReviews({
+    AjaxClient.getReviews({
       offerId: this._offer.id
     });
 

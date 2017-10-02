@@ -1,10 +1,6 @@
 import $ from 'jquery';
 import OfferCard from 'blocks/offer-card';
-import {
-  getOffers,
-  getOffersSuccessRegister,
-  deleteOfferSuccessRegister
-} from 'logic/ajax-client/offers';
+import * as AjaxClient from 'logic/ajax-client/offers';
 
 export default class OffersBar {
   constructor(options) {
@@ -22,8 +18,7 @@ export default class OffersBar {
     }
 
     this._handleCommentsButton = this._handleCommentsButton.bind(this);
-    this._handleGetOffersSuccess = this._handleGetOffersSuccess.bind(this);
-    this._handleDeleteOfferSuccess = this._handleDeleteOfferSuccess.bind(this);
+    this._handleChangeOffersSuccess = this._handleChangeOffersSuccess.bind(this);
   }
 
   addOfferCard(offer) {
@@ -38,7 +33,7 @@ export default class OffersBar {
     return offerCard;
   }
 
-  _handleDeleteOfferSuccess(newOffers) {
+  _handleChangeOffersSuccess(newOffers) {
     this._offers = newOffers;
     this.renderOfferCards();
   }
@@ -73,14 +68,8 @@ export default class OffersBar {
     targetCommentsBar.focus();
   }
 
-  _handleGetOffersSuccess(offers) {
-    this._offers = offers;
-    this.renderOfferCards();
-  }
-
   _init() {
-    getOffersSuccessRegister(this._handleGetOffersSuccess);
-    deleteOfferSuccessRegister(this._handleDeleteOfferSuccess);
-    getOffers();
+    AjaxClient.changeOffersSuccessRegister(this._handleChangeOffersSuccess);
+    AjaxClient.getOffers();
   }
 }

@@ -1,12 +1,5 @@
 import Counter from 'blocks/counter';
-import {
-  likeOfferSuccessRegister,
-  addOfferSuccessRegister,
-  addCommentSuccessRegister,
-  deleteCommentSuccessRegister,
-  addReviewSuccessRegister,
-  deleteReviewSuccessRegister
-} from 'logic/ajax-client';
+import * as AjaxClient from 'logic/ajax-client';
 
 export default class CountersGroup {
   
@@ -57,12 +50,10 @@ export default class CountersGroup {
     this._handleChangeCommentsSuccess = this._handleChangeCommentsSuccess.bind(this);
     this._handleChangeReviewsSuccess = this._handleChangeReviewsSuccess.bind(this);
 
-    likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offerId);
-    addOfferSuccessRegister(this._handleAddOfferSuccess, this._offerId);
-    addCommentSuccessRegister(this._handleChangeCommentsSuccess, this._offerId);
-    deleteCommentSuccessRegister(this._handleChangeCommentsSuccess, this._offerId);
-    addReviewSuccessRegister(this._handleChangeReviewsSuccess, this._offerId);
-    deleteReviewSuccessRegister(this._handleChangeReviewsSuccess, this._offerId);
+    AjaxClient.likeOfferSuccessRegister(this._handleLikeOfferSuccess, this._offerId);
+    AjaxClient.addOfferSuccessRegister(this._handleAddOfferSuccess, this._offerId);
+    AjaxClient.changeCommentsSuccessRegister(this._handleChangeCommentsSuccess, this._offerId);
+    AjaxClient.changeReviewsSuccessRegister(this._handleChangeReviewsSuccess, this._offerId);
   }
 
   _handleLikeOfferSuccess(newLikedUsers) {

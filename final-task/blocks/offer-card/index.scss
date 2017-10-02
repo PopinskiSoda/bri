@@ -134,7 +134,7 @@ $hintHeight: 23px;
 
     &:disabled {
       .icon {
-        @extend .icon--purple;
+        @extend %icon--purple;
       }
       cursor: default;
     }

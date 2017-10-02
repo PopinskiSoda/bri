@@ -24,6 +24,12 @@ export function deleteCommentSuccessRegister(handler, offerId) {
   deleteCommentSuccessHandlers.push({handler, offerId});
 }
 
+export function changeCommentsSuccessRegister(handler, offerId) {
+  getCommentsSuccessRegister(handler, offerId);
+  addCommentSuccessRegister(handler, offerId);
+  deleteCommentSuccessRegister(handler, offerId);
+}
+
 export function getComments(options) {
   const {offerId, success} = options;
   const commentsURL = options.commentsURL || commentsURLstr;
